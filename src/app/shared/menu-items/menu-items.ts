@@ -144,6 +144,15 @@ const MENUITEMS = [
         type: 'link',
         icon: 'ti-id-badge',
         target: true
+      },
+      {
+        state: 'landingpage',
+        main_state: 'landing',
+        short_label: 'R',
+        name: 'Landing Page',
+        type: 'link',
+        icon: 'ti-id-badge',
+        target: true
       }
     ]
   },

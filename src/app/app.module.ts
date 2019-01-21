@@ -10,6 +10,7 @@ import { BreadcrumbsComponent } from './layouts/admin/breadcrumbs/breadcrumbs.co
 import { AuthComponent } from './layouts/auth/auth.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { LandingComponent } from './layouts/landing/landing.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AdminComponent,
     TitleComponent,
     BreadcrumbsComponent,
-    AuthComponent
+    AuthComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

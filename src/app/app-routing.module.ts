@@ -1,7 +1,9 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layouts/admin/admin.component';
 import {AuthComponent} from './layouts/auth/auth.component';
+import { LandingComponent } from './layouts/landing/landing.component';
 
 const routes: Routes = [
   {
@@ -54,8 +56,18 @@ const routes: Routes = [
     ]
   },
   {
+    path: '',
+    component: LandingComponent,
+    children: [
+      {
+        path: 'landing',
+        loadChildren: './landing/landing.module#LandingModule'
+      }
+    ]
+  },
+  {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'landing'
   }
 ];
 
