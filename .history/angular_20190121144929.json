@@ -35,15 +35,7 @@
               "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
               "node_modules/froala-editor/css/froala_style.min.css",
               "src/assets/css/animate.scss",
-              "src/styles.scss",
-               "src/assets/css/custom.scss",
-              "src/assets/css/animate.css",
-              "src/assets/css/owl.carousel.css",
-              "src/assets/css/owl.theme.css",
-              "src/assets/css/magnific-popup.css",
-              "src/assets/css/animsition.min.css",
-              "src/assets/css/ionicons.min.css"
-              // "src/assets/css/style.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
