@@ -30,23 +30,9 @@ var MENUITEMS = [{
         name: 'Category Description',
         type: 'link',
         icon: 'ti-layout-sidebar-left'
-    }, {
-        state: 'city',
-        name: 'City',
-        type: 'link',
-        icon: 'ti-layout-sidebar-left'
-    }, {
-        state: 'state',
-        name: 'State',
-        type: 'link',
-        icon: 'ti-layout-sidebar-left'
-    }, {
-        state: 'country',
-        name: 'Country',
-        type: 'link',
-        icon: 'ti-layout-sidebar-left'
     }]
   }
+
   // {
   //     label: 'Navigation',
   //     main: [
