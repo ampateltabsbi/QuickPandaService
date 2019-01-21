@@ -451,7 +451,7 @@ var MENUITEMS = [
                 type: 'link',
                 icon: 'ti-layout-sidebar-left'
             },
-            {
+            , {
                 state: 'categorytype',
                 name: 'Category Type',
                 type: 'link',

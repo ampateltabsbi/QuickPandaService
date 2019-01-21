@@ -1,5 +1,5 @@
 <div class="page-header">
-  <div class="page-header-title">
+  <!-- <div class="page-header-title">
     <span *ngFor="let breadcrumb of breadcrumbs; let last = last"><h4 *ngIf="last">{{ breadcrumb.label }}</h4></span>
   </div>
   <div class="page-header-breadcrumb">
@@ -13,8 +13,8 @@
         <a [ngClass]="breadcrumb.status === false ? 'not-active': ''" [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
       </li>
     </ul>
-  </div>
-  <!-- <div class="card borderless-card">
+  </div> -->
+  <div class="card borderless-card">
       <div class="card-block primary-breadcrumb">
           <div class="breadcrumb-header">
               <span *ngFor="let breadcrumb of breadcrumbs; let last = last"><h4 *ngIf="last">{{ breadcrumb.label }}</h4></span>
@@ -32,5 +32,5 @@
               </ul>
           </div>
       </div>
-  </div> -->
+  </div>
 </div>

@@ -39,8 +39,9 @@ const routes: Routes = [
         loadChildren: './simple-page/simple-page.module#SimplePageModule'
       }, {
         path: 'categorytype',
-        loadChildren: './categorytype/categorytype.module#CategorytypeModule'
-      },
+        loadChildren: './categorytype/categorytype.module#CategoryModule'
+      }
+
     ]
   },
   {

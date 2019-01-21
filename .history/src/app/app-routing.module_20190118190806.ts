@@ -37,10 +37,7 @@ const routes: Routes = [
       }, {
         path: 'simple-page',
         loadChildren: './simple-page/simple-page.module#SimplePageModule'
-      }, {
-        path: 'categorytype',
-        loadChildren: './categorytype/categorytype.module#CategorytypeModule'
-      },
+      }
     ]
   },
   {

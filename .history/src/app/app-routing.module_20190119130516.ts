@@ -40,7 +40,8 @@ const routes: Routes = [
       }, {
         path: 'categorytype',
         loadChildren: './categorytype/categorytype.module#CategorytypeModule'
-      },
+      }
+
     ]
   },
   {

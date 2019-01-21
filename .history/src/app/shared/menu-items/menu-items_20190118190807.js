@@ -450,12 +450,6 @@ var MENUITEMS = [
                 name: 'Simple Page',
                 type: 'link',
                 icon: 'ti-layout-sidebar-left'
-            },
-            {
-                state: 'categorytype',
-                name: 'Category Type',
-                type: 'link',
-                icon: 'ti-layout-sidebar-left'
             }
         ]
     }, {
