@@ -1,6 +1,5 @@
-
 <div class="row">
-  <div class="col-sm-12">      
+  <div class="col-sm-12">
     <app-card [title]="'Category Type'">
       <form>
         <div class="form-group row">
@@ -31,20 +30,32 @@
               <label>
                 <input type="checkbox" value="">
                 <span class="cr">
-                    <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                  <i class="cr-icon icofont icofont-ui-check txt-info"></i>
                 </span>
               </label>
             </div>
           </div>
         </div>
-        <div class="form-group row">
+        <!-- <div class="form-group row">
           <div class="col-sm-2">
           </div>
-          <div class="col-sm-6 buttons-container">
+          <div class="col-sm-1">
               <button class="btn btn-info"><i class="icofont icofont-check-circled"></i>Save</button>
+          </div>
+          <div class="col-sm-1">
               <button class="btn btn-info"><i class="icofont icofont-not-allowed"></i>Cancel</button>
           </div>
-        </div>
+        </div> -->
+        <Div class="form-group row">
+            <div class="col-sm-2">
+              </div>
+          <div class="buttons-container">
+            <button data-key="submit" type="submit" class="btn btn-default"
+              disabled="">Submit</button>
+            <button data-key="reset" type="reset" class="btn btn-default">Reset</button>
+          </div>
+        </Div>
+
         <div class="dt-responsive">
           <div class="row">
             <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">

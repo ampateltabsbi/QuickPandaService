@@ -1,6 +1,26 @@
-
+<div class="card borderless-card">
+    <div class="card-block primary-breadcrumb">
+        <div class="breadcrumb-header">
+            <h5>Primary Color Breadcrumb</h5>
+            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+        </div>
+        <div class="page-header-breadcrumb">
+            <ul class="breadcrumb-title">
+                <li class="breadcrumb-item">
+                    <a href="#!">
+                        <i class="icofont icofont-home"></i>
+                    </a>
+                </li>
+                <li class="breadcrumb-item"><a href="#!">Breadcrumb</a>
+                </li>
+                <li class="breadcrumb-item"><a href="#!">Caption Breadcrumb</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 <div class="row">
-  <div class="col-sm-12">      
+  <div class="col-sm-12">
     <app-card [title]="'Category Type'">
       <form>
         <div class="form-group row">
@@ -27,11 +47,11 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Is Active</label>
           <div class="col-sm-6">
-            <div class="checkbox-fade fade-in-info">
+            <div class="checkbox-fade fade-in-default">
               <label>
                 <input type="checkbox" value="">
                 <span class="cr">
-                    <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                  <i class="cr-icon icofont icofont-ui-check txt-default"></i>
                 </span>
               </label>
             </div>
@@ -40,9 +60,11 @@
         <div class="form-group row">
           <div class="col-sm-2">
           </div>
-          <div class="col-sm-6 buttons-container">
-              <button class="btn btn-info"><i class="icofont icofont-check-circled"></i>Save</button>
-              <button class="btn btn-info"><i class="icofont icofont-not-allowed"></i>Cancel</button>
+          <div class="col-sm-1">
+            <button type="button" class="btn btn-success" popoverTitle="Success color states" placement="bottom">Save</button>
+          </div>
+          <div class="col-sm-1">
+            <button type="button" class="btn btn-danger" popoverTitle="Danger color states" placement="bottom">Cancel</button>
           </div>
         </div>
         <div class="dt-responsive">
