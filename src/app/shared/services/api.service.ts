@@ -16,7 +16,7 @@ const httpOptions = {
 export class APIService {
 
   selectedModel: any;
-  constructor(private http: HttpClient) { debugger;}
+  constructor(private http: HttpClient) { }
   baseUrl = 'http://localhost:4201/api/';
 
   getService(modelName) {
