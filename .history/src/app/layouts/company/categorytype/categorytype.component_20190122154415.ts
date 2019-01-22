@@ -19,8 +19,8 @@ export class CategorytypeComponent implements OnInit {
   category: Category[] = [];
   submitType = 'Save';
   selectedRow: number;
-  // totalRec: number;
-  // page = 1;
+  totalRec: number;
+  page = 1;
   public searchString: string;
   public data: any;
   public rowsOnPage = 10;
@@ -68,10 +68,10 @@ export class CategorytypeComponent implements OnInit {
   }
 
   resetForm(categorytypeForm?: NgForm) {
-    // if (categorytypeForm != null) {
-      // categorytypeForm.reset();
-      // this.apiService.selectedModel = [];
-    // }
+    if (categorytypeForm != null) {
+      categorytypeForm.reset();
+      this.apiService.selectedModel = [];
+    }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,
@@ -92,12 +92,15 @@ export class CategorytypeComponent implements OnInit {
   bindAllCategorytype() {
     this.apiService.getService('CategoryTypes').subscribe((data: Categorytype[]) => {
       this.categorytype = data;
+      // this.totalRec = this.categorytype.length;
+      // console.log(this.totalRec);
+      // console.log(this.page);
     });
   }
 
   bindActiveCategory() {
     this.apiService.getModelListbyActive('Categories', 'GetActiveCategories').subscribe((data: Category[]) => {
-      const filterData = data;
+      const filterData = data; // .filter(x => x.IsActive === true);
       this.category = filterData;
     });
   }

@@ -4,7 +4,7 @@
       <form #categorytypeForm="ngForm" (ngSubmit)="onSubmit(categorytypeForm)">
         <div class="form-group row">
           <div class="col-sm-6">
-            <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID"
+            <input class="form-control" type="hidden" name="ID" [(ngModel)]="apiService.selectedModel.ID"
               required>
           </div>
         </div>
@@ -12,7 +12,7 @@
           <label class="col-sm-2 col-form-label">Category</label>
           <div class="col-sm-6">
             <select class="form-control" name="CategoryID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CategoryID" required>
-                  <option [ngValue]="0" selected>Please Select</option>
+                  <option [ngValue]="undefined" selected>Please Select</option>
                   <option *ngFor="let _category of category"
                             [ngValue]="_category.ID">
                         {{_category.Name}}
@@ -43,7 +43,7 @@
           <div class="col-sm-2">
           </div>
           <div class="col-sm-6 buttons-container">
-            <button class="btn btn-info" [disabled]="!categorytypeForm.valid" type="submit"><i class="icofont icofont-check-circled"></i>{{submitType}}</button>
+            <button class="btn btn-info" [disabled]="!categorytypeForm.valid" type="submit"><i class="icofont icofont-check-circled"></i>Save</button>
             <button class="btn btn-danger" type="button" (click)="resetForm(categorytypeForm)"><i class="icofont icofont-not-allowed"></i>Cancel</button>
           </div>
         </div>

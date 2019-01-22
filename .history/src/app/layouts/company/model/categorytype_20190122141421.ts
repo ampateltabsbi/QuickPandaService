@@ -3,5 +3,4 @@ export class Categorytype {
     Name: string;
     CategoryID: number;
     IsActive: boolean;
-    CategoryName: string;
 }
