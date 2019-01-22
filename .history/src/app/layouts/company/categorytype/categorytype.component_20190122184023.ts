@@ -1,3 +1,6 @@
+
+// declare var $: any;
+// declare var Morris: any;
 import 'd3';
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../../shared/services/api.service';
@@ -25,6 +28,9 @@ export class CategorytypeComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
 
+
+  
+
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = Categorytype;
     this.bindAllCategorytype();
@@ -36,8 +42,15 @@ export class CategorytypeComponent implements OnInit {
   }
 
   showSuccess() {
+    addToast({
+    title: 'Bootstrap Toasty',
+    msg: 'Turning standard Bootstrap alerts into awesome notifications',
+    timeout: 5000,
+    theme: 'bootstrap',
+    position: 'bottom-right',
+    type: 'success'});
   }
-
+  
   onSubmit(categorytypeForm: NgForm) {
     if (categorytypeForm.value.ID === 0) {
       this.apiService.addService(categorytypeForm.value, 'CategoryTypes').subscribe(
@@ -65,6 +78,10 @@ export class CategorytypeComponent implements OnInit {
   }
 
   resetForm(categorytypeForm?: NgForm) {
+    // if (categorytypeForm != null) {
+      // categorytypeForm.reset();
+      // this.apiService.selectedModel = [];
+    // }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,

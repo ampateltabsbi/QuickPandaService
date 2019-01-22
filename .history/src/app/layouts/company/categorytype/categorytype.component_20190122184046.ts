@@ -36,6 +36,13 @@ export class CategorytypeComponent implements OnInit {
   }
 
   showSuccess() {
+    addToast({
+    title: 'Bootstrap Toasty',
+    msg: 'Turning standard Bootstrap alerts into awesome notifications',
+    timeout: 5000,
+    theme: 'bootstrap',
+    position: 'bottom-right',
+    type: 'success'});
   }
 
   onSubmit(categorytypeForm: NgForm) {
@@ -65,6 +72,10 @@ export class CategorytypeComponent implements OnInit {
   }
 
   resetForm(categorytypeForm?: NgForm) {
+    // if (categorytypeForm != null) {
+      // categorytypeForm.reset();
+      // this.apiService.selectedModel = [];
+    // }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,

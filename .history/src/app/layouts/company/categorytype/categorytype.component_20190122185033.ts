@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Category } from '../model/category';
 import { Categorytype } from './../model/categorytype';
+import {NotificationsService} from 'angular2-notifications';
 
 @Component({
   selector: 'app-categorytype',
@@ -25,7 +26,7 @@ export class CategorytypeComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
 
-  constructor(private apiService: APIService, private router: Router) {
+  constructor(private apiService: APIService, private router: Router, private notif: NotificationsService) {
     this.apiService.selectedModel = Categorytype;
     this.bindAllCategorytype();
     this.bindActiveCategory();
@@ -36,6 +37,13 @@ export class CategorytypeComponent implements OnInit {
   }
 
   showSuccess() {
+debugger;
+    this.notif.success('Record Saved Successfully.');
+
+    // this.addToast({
+    // title: 'Success',
+    // msg: 'Record Saved Successfully.',
+    // type: 'success'});
   }
 
   onSubmit(categorytypeForm: NgForm) {
@@ -65,6 +73,10 @@ export class CategorytypeComponent implements OnInit {
   }
 
   resetForm(categorytypeForm?: NgForm) {
+    // if (categorytypeForm != null) {
+      // categorytypeForm.reset();
+      // this.apiService.selectedModel = [];
+    // }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,

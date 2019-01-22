@@ -65,6 +65,10 @@ export class CategorytypeComponent implements OnInit {
   }
 
   resetForm(categorytypeForm?: NgForm) {
+    // if (categorytypeForm != null) {
+      // categorytypeForm.reset();
+      // this.apiService.selectedModel = [];
+    // }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,
