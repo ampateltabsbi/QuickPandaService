@@ -19,12 +19,6 @@ export class CategoryComponent implements OnInit {
   submitType = 'Save';
   selectedRow: number;
 
-  public data: any;
-  public rowsOnPage = 10;
-  public filterQuery = '';
-  public sortBy = '';
-  public sortOrder = 'desc';
-
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {

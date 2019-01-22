@@ -34,37 +34,37 @@ const MENUITEMS = [
     label: 'Admin Utility',
     main: [{
       state: 'category',
-      main_state : 'company',
+      main_state : 'compnay',
       name: 'Category',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
     }, {
         state: 'categorytype',
-        main_state : 'company',
+        main_state : 'compnay',
         name: 'Category Type',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
     }, {
         state: 'categorydescription',
-        main_state : 'company',
+        main_state : 'compnay',
         name: 'Category Description',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
     }, {
       state: 'city',
-      main_state : 'company',
+      main_state : 'compnay',
       name: 'City',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'state',
-      main_state : 'company',
+      main_state : 'compnay',
       name: 'State',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'country',
-      main_state : 'company',
+      main_state : 'compnay',
       name: 'Country',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
