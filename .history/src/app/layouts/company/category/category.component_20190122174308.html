@@ -1,0 +1,129 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Category'">
+      <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="Name"
+                                    placeholder="Category" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
+                                    placeholder="Category" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Is Active</label>
+          <div class="col-sm-6">
+              <div class="checkbox-fade fade-in-info">
+                <label>
+                  <input type="checkbox" type="checkbox" name="IsActive" #name="ngModel"
+                  [(ngModel)]="apiService.selectedModel.IsActive">
+                  <span class="cr">
+                      <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                  </span>
+                </label>
+              </div>
+            </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6 buttons-container">
+              <button class="btn btn-info" [disabled]="!categoryForm.valid" type="submit">
+                <i class="icofont icofont-check-circled"></i>Save
+              </button>
+              <button class="btn btn-danger" type="button" (click)="resetForm(categoryForm)">
+                <i class="icofont icofont-not-allowed"></i>Cancel
+              </button>
+          </div>
+        </div>
+        <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" class="form-control input-sm full-data-search" placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <!-- <table class="table table-striped table-bordered full-data-table" #mf="mfDataTable" [mfData]=""
+              [mfRowsOnPage]="10">
+              <thead>
+                <tr>
+                  <th>
+                    <mfDefaultSorter by="category">Category</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="isActive">Is Active ?</mfDefaultSorter>
+                  </th>
+                  <th></th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let _category of category">
+                  <td>{{_category.Name}}</td>
+                  <td>{{_category.IsActive ? 'Yes':'No'}}</td>
+                  <td>
+                      <button type="submit" class="btn btn-info" type="button" (click)="editCategory(_category.ID)">
+                          <i class="fa fa-pencil-square-o"></i>
+                          Edit</button>
+                  </td>
+              </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table> -->
+
+            <div class="row">
+              <div class="col-sm-12">
+                <app-card [title]="'Ng-X Pagination'">
+                  <span class="m-b-20">use class <code>data-table</code> with ngx-datatable</span><br><br>
+                  <ngx-datatable
+                    class="data-table"
+                    [rows]="rowsClient"
+                    [columns]="[ { name: 'Id', prop: 'ID' },
+                    { name: 'Name', prop: 'Name' },]"
+                    [columnMode]="'force'"
+                    [headerHeight]="50"
+                    [footerHeight]="50"
+                    [scrollbarH]="true"
+                    [rowHeight]="'auto'"
+                    [limit]="10">
+                  </ngx-datatable>
+                </app-card>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>
