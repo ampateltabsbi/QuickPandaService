@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
+declare var Morris: any;
 import 'd3';
+import * as c3 from 'c3';
 import { APIService } from '../../../shared/services/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Category } from '../model/category';
 import { Categorydescription } from '../model/categorydescription';
 import { Categorytype } from '../model/categorytype';
 
@@ -23,10 +27,11 @@ export class CategorydescriptionComponent implements OnInit {
   public filterQuery = '';
   public sortBy = '';
   public sortOrder = 'desc';
+
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {
-     this.apiService.selectedModel = Categorydescription;
+     this.apiService.selectedModel = this.Categorydescription;
      this.bindAllCategorydescription();
      this.bindActiveCategoryType();
    }
@@ -37,7 +42,7 @@ export class CategorydescriptionComponent implements OnInit {
 
   onSubmit(categorydescriptionForm: NgForm) {
     if (categorydescriptionForm.value.ID === 0) {
-      this.apiService.addService(categorydescriptionForm.value, 'CategoryDescriptions').subscribe(
+      this.apiService.addService(categorydescriptionForm.value, 'Categoriesdescription').subscribe(
         result => {
           this.resetForm();
           this.bindAllCategorydescription();
@@ -47,7 +52,7 @@ export class CategorydescriptionComponent implements OnInit {
         }
       );
     } else {
-      this.apiService.updateService(categorydescriptionForm.value, categorydescriptionForm.value.ID, 'CategoryDescriptions').subscribe(
+      this.apiService.updateService(categorydescriptionForm.value, categorydescriptionForm.value.ID, 'Categoriesdescription').subscribe(
         result => {
           this.resetForm();
           this.bindAllCategorydescription();
@@ -60,6 +65,10 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   resetForm(categorydescriptionForm?: NgForm) {
+    if (categorydescriptionForm != null) {
+      categorydescriptionForm.reset();
+      this.apiService.selectedModel = [];
+    }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,
@@ -78,14 +87,16 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   bindAllCategorydescription() {
-    this.apiService.getService('CategoryDescriptions').subscribe((data: Categorydescription[]) => {
+    this.apiService.getService('Categoriesdescription').subscribe((data: Categorydescription[]) => {
       this.categorydescription = data;
     });
   }
 
   bindActiveCategoryType() {
-    this.apiService.getModelListbyActive('CategoryType', 'GetActiveCategoryTypes').subscribe((data: Categorytype[]) => {
-      this.categorytype = data;
+    this.apiService.getModelListbyActive('Categoriesdescription', 'GetActiveCategoryTypes').subscribe((data: Categorytype[]) => {
+      const filterData = data.filter(x => x.IsActive === true);
+      this.categorytype = filterData;
     });
   }
+
 }

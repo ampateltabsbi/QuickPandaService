@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import 'd3';
+import * as c3 from 'c3';
 import { APIService } from '../../../shared/services/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Categorydescription } from '../model/categorydescription';
 import { Categorytype } from '../model/categorytype';
@@ -23,10 +24,11 @@ export class CategorydescriptionComponent implements OnInit {
   public filterQuery = '';
   public sortBy = '';
   public sortOrder = 'desc';
+
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {
-     this.apiService.selectedModel = Categorydescription;
+     this.apiService.selectedModel = this.Categorydescription;
      this.bindAllCategorydescription();
      this.bindActiveCategoryType();
    }
@@ -60,6 +62,10 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   resetForm(categorydescriptionForm?: NgForm) {
+    if (categorydescriptionForm != null) {
+      categorydescriptionForm.reset();
+      this.apiService.selectedModel = [];
+    }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,

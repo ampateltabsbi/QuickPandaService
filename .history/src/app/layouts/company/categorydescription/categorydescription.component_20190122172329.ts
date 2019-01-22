@@ -23,6 +23,7 @@ export class CategorydescriptionComponent implements OnInit {
   public filterQuery = '';
   public sortBy = '';
   public sortOrder = 'desc';
+
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {
@@ -60,6 +61,10 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   resetForm(categorydescriptionForm?: NgForm) {
+    if (categorydescriptionForm != null) {
+      categorydescriptionForm.reset();
+      this.apiService.selectedModel = [];
+    }
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,

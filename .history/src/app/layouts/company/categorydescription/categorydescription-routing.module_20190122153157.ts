@@ -5,9 +5,9 @@ import {CategorydescriptionComponent} from './categorydescription.component';
 const routes: Routes = [
   {
     path: '',
-    component: CategorydescriptionComponent,
+    component: CategoryComponent,
     data: {
-      breadcrumb: 'Category Description',
+      breadcrumb: 'Category',
       status: true
     }
   }

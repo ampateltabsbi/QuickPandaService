@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Category Type'">
+      <form #categorydescriptionForm="ngForm">
+          <div class="form-group row">
+              <div class="col-sm-6">
+                <input class="form-control" type="hidden" name="ID"  required>
+              </div>
+            </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Category Type</label>
+          <div class="col-sm-6">
+            <select name="select" class="form-control">
+              <option value="opt1">Select Category Type</option>
+              <option value="opt2">Type 2</option>
+              <option value="opt3">Type 3</option>
+              <option value="opt4">Type 4</option>
+              <option value="opt5">Type 5</option>
+              <option value="opt6">Type 6</option>
+              <option value="opt7">Type 7</option>
+              <option value="opt8">Type 8</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Category Description</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" placeholder="Category Description">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Is Active</label>
+          <div class="col-sm-6">
+            <div class="checkbox-fade fade-in-info">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                    <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6 buttons-container">
+              <button class="btn btn-info"><i class="icofont icofont-check-circled"></i>Save</button>
+              <button class="btn btn-danger"><i class="icofont icofont-not-allowed"></i>Cancel</button>
+          </div>
+        </div>
+        <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" class="form-control input-sm full-data-search" placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered full-data-table" #mf="mfDataTable" [mfData]=""
+              [mfRowsOnPage]="10">
+              <thead>
+                <tr>
+                  <th>
+                    <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="position">Position</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="office">Office</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="age">Age</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="start-date">Start date</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="salary">Salary</mfDefaultSorter>
+                  </th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ABC</td>
+                  <td>DEFGH</td>
+                  <td>IJKLM</td>
+                  <td>NOPQR</td>
+                  <td>STU</td>
+                  <td>VWXYZ</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>3</td>
+                  <td>4</td>
+                  <td>5</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <td>ABC</td>
+                  <td>DEFGH</td>
+                  <td>IJKLM</td>
+                  <td>NOPQR</td>
+                  <td>STU</td>
+                  <td>VWXYZ</td>
+                </tr>
+                <tr>
+                  <td>ABC</td>
+                  <td>DEFGH</td>
+                  <td>IJKLM</td>
+                  <td>NOPQR</td>
+                  <td>STU</td>
+                  <td>VWXYZ</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

@@ -76,7 +76,7 @@
           </div>
 
           <div class="table-responsive">
-            <table class="table table-striped table-bordered full-data-table" #mf="mfDataTable" [mfData]="categorydescription | dataFilter : filterQuery"
+            <table class="table table-striped table-bordered full-data-table" #mf="mfDataTable" [mfData]="data | dataFilter : filterQuery"
               #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
                 <tr>

@@ -4,6 +4,7 @@ import {CompanyRoutingModule} from './company-routing.module';
 import { CompanyComponent } from './company.component';
 import {SharedModule} from '../../shared/shared.module';
 
+
 @NgModule({
   imports: [
     CommonModule,

@@ -43,7 +43,7 @@
           </div>
           <div class="col-sm-6 buttons-container">
             <button class="btn btn-info" [disabled]="!categorydescriptionForm.valid" type="submit">
-              <i class="icofont icofont-check-circled"></i>{{submitType}}
+              <i class="icofont icofont-check-circled"></i>Save
             </button>
             <button class="btn btn-danger" type="button" (click)="resetForm(categorydescriptionForm)">
               <i class="icofont icofont-not-allowed"></i>Cancel
@@ -80,9 +80,9 @@
               #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
                 <tr>
-                  <th>
-                    <mfDefaultSorter by="category">Category Type</mfDefaultSorter>
-                  </th>
+                    <th>
+                        <mfDefaultSorter by="category">Category Type</mfDefaultSorter>
+                      </th>
                   <th>
                     <mfDefaultSorter by="category">Category Description</mfDefaultSorter>
                   </th>

@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <select class="form-control" name="CategoryTypeID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CategoryTypeID"
               required>
-              <option [ngValue]="0" selected>Please Select</option>
+              <option [ngValue]="undefined" selected>Please Select</option>
               <option *ngFor="let _categorytype of categorytype" [ngValue]="_categorytype.ID">
                 {{_categorytype.Name}}
             </select>
@@ -43,7 +43,7 @@
           </div>
           <div class="col-sm-6 buttons-container">
             <button class="btn btn-info" [disabled]="!categorydescriptionForm.valid" type="submit">
-              <i class="icofont icofont-check-circled"></i>{{submitType}}
+              <i class="icofont icofont-check-circled"></i>Save
             </button>
             <button class="btn btn-danger" type="button" (click)="resetForm(categorydescriptionForm)">
               <i class="icofont icofont-not-allowed"></i>Cancel
@@ -80,9 +80,9 @@
               #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
                 <tr>
-                  <th>
-                    <mfDefaultSorter by="category">Category Type</mfDefaultSorter>
-                  </th>
+                    <th>
+                        <mfDefaultSorter by="category">Category Type</mfDefaultSorter>
+                      </th>
                   <th>
                     <mfDefaultSorter by="category">Category Description</mfDefaultSorter>
                   </th>
@@ -96,11 +96,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let _categorydescription of categorydescription">
-                  <td>{{_categorydescription.CategoryTypeName}}</td>
+                  <td>{{_categorydescription.CategoryTypeID}}</td>
                   <td>{{_categorydescription.Name}}</td>
                   <td>{{_categorydescription.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="submit" class="btn btn-info" type="button" (click)="editCategorydescription(_categorydescription.ID)">
+                    <button type="submit" class="btn btn-info" type="button" (click)="editCategory(_category.ID)">
                       <i class="fa fa-pencil-square-o"></i>
                       Edit</button>
                   </td>
