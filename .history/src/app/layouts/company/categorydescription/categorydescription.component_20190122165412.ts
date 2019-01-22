@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
+declare var Morris: any;
 import 'd3';
 import * as c3 from 'c3';
 import { APIService } from '../../../shared/services/api.service';
@@ -28,7 +30,7 @@ export class CategorydescriptionComponent implements OnInit {
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {
-     this.apiService.selectedModel = Categorydescription;
+     this.apiService.selectedModel = this.Categorydescription;
      this.bindAllCategorydescription();
      this.bindActiveCategoryType();
    }

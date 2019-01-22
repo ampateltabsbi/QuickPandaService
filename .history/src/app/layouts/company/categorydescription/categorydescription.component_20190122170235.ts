@@ -28,7 +28,7 @@ export class CategorydescriptionComponent implements OnInit {
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router) {
-     this.apiService.selectedModel = Categorydescription;
+     this.apiService.selectedModel = this.Categorydescription;
      this.bindAllCategorydescription();
      this.bindActiveCategoryType();
    }

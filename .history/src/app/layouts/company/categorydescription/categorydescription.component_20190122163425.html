@@ -95,12 +95,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let _categorydescription of categorydescription">
-                  <td>{{_categorydescription.CategoryTypeName}}</td>
-                  <td>{{_categorydescription.Name}}</td>
-                  <td>{{_categorydescription.IsActive ? 'Yes':'No'}}</td>
+                <tr *ngFor="let _category of category">
+                  <td>{{_category.Name}}</td>
+                  <td>{{_category.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="submit" class="btn btn-info" type="button" (click)="editCategorydescription(_categorydescription.ID)">
+                    <button type="submit" class="btn btn-info" type="button" (click)="editCategory(_category.ID)">
                       <i class="fa fa-pencil-square-o"></i>
                       Edit</button>
                   </td>

@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: CategorydescriptionComponent,
     data: {
-      breadcrumb: 'Category Description',
+      breadcrumb: 'Category',
       status: true
     }
   }
