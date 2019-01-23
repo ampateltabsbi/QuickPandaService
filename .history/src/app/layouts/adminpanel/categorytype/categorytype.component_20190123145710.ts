@@ -76,7 +76,7 @@ export class CategorytypeComponent implements OnInit {
   editCategorytype(categorytypeId: number): void {
     this.selectedRow = categorytypeId;
     this.apiService.selectedModel = new Categorytype();
-    const tempCategoryType =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+    const tempCategoryType =  Object.assign({}, this.categorytype.filter(t => t.ID === this.selectedRow));
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
   }
@@ -102,4 +102,6 @@ export class CategorytypeComponent implements OnInit {
       this.category = filterData;
     });
   }
+
+  
 }

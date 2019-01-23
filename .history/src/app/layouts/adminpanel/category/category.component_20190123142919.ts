@@ -1,9 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+declare var $: any;
+declare var Morris: any;
 import 'd3';
+import * as c3 from 'c3';
 import { APIService } from '../../../shared/services/api.service';
-import { Router } from '@angular/router';
+import {NotificationsService} from 'angular2-notifications';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Category } from '../model/category';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
+
 
 @Component({
   selector: 'app-category',
@@ -32,6 +38,7 @@ export class CategoryComponent implements OnInit {
   }
 
   showSuccess() {
+    //this.notifications.success('Record Saved Successfully.', 'Success!');
   }
 
   onSubmit(categoryForm: NgForm) {
@@ -70,6 +77,7 @@ export class CategoryComponent implements OnInit {
   }
 
   editCategory(categoryId: number): void {
+    debugger;
     this.selectedRow = categoryId;
     this.apiService.selectedModel = new Category();
     const tempCategory =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));

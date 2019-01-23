@@ -60,7 +60,7 @@
                   <label class="form-inline f-right">
                     <div class="form-group">
                       <label class="label-control">Search:
-                        <input type='text' class="form-control input-sm m-l-10" placeholder='Category Description' (keyup)='updateFilter($event)'/>
+                        <input type='text' class="form-control input-sm m-l-10" placeholder='Category Description' />
                       </label>
                     </div>
                   </label>
@@ -74,10 +74,7 @@
               <thead>
                 <tr>
                   <th>
-                    <mfDefaultSorter by="Name">Category Type</mfDefaultSorter>
-                  </th>
-                  <th>
-                    <mfDefaultSorter by="Name">Category Description</mfDefaultSorter>
+                    <mfDefaultSorter by="Name">Name</mfDefaultSorter>
                   </th>
                   <th>
                     <mfDefaultSorter by="Name">Is Active</mfDefaultSorter>
@@ -89,7 +86,6 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
-                  <td>{{item.CategoryTypeName}}</td>
                   <td>{{item.Name}}</td>
                   <td>{{item.IsActive ? 'Yes':'No'}}</td>
                   <td>
@@ -108,7 +104,73 @@
               </tfoot>
             </table>
           </div>
-        </div>        
+        </div>
+        <!-- <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search"
+                    placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered full-data-table" #mf="mfDataTable" [mfData]="categorydescription | dataFilter : filterQuery"
+              #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+                <tr>
+                  <th>
+                    <mfDefaultSorter by="category">Category Type</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="category">Category Description</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="isActive">Is Active ?</mfDefaultSorter>
+                  </th>
+                  <th></th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let _categorydescription of categorydescription">
+                  <td>{{_categorydescription.CategoryTypeName}}</td>
+                  <td>{{_categorydescription.Name}}</td>
+                  <td>{{_categorydescription.IsActive ? 'Yes':'No'}}</td>
+                  <td>
+                    <button type="submit" class="btn btn-info" type="button" (click)="editCategorydescription(_categorydescription.ID)">
+                      <i class="fa fa-pencil-square-o"></i>
+                      Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div> -->
       </form>
     </app-card>
   </div>
