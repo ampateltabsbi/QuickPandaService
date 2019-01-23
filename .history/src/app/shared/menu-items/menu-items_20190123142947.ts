@@ -40,31 +40,31 @@ const MENUITEMS = [
       icon: 'ti-layout-grid2-alt'
     }, {
         state: 'categorytype',
-        main_state : 'admin',
+        main_state : 'adminpanel',
         name: 'Category Type',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
     }, {
         state: 'categorydescription',
-        main_state : 'admin',
+        main_state : 'adminpanel',
         name: 'Category Description',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
     }, {
       state: 'city',
-      main_state : 'admin',
+      main_state : 'adminpanel',
       name: 'City',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'state',
-      main_state : 'admin',
+      main_state : 'adminpanel',
       name: 'State',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'country',
-      main_state : 'admin',
+      main_state : 'adminpanel',
       name: 'Country',
       type: 'link',
       icon: 'ti-layout-grid2-alt'

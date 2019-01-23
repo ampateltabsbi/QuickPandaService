@@ -64,7 +64,7 @@ const MENUITEMS = [
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'country',
-      main_state : 'admin',
+      main_state : 'adminpanel',
       name: 'Country',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
