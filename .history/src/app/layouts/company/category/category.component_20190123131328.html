@@ -1,0 +1,145 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Category'">
+      <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Category</label>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="Name"
+                                    placeholder="Category" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
+                                    placeholder="Category" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Is Active</label>
+          <div class="col-sm-6">
+              <div class="checkbox-fade fade-in-info">
+                <label>
+                  <input type="checkbox" type="checkbox" name="IsActive" #name="ngModel"
+                  [(ngModel)]="apiService.selectedModel.IsActive">
+                  <span class="cr">
+                      <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                  </span>
+                </label>
+              </div>
+            </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6 buttons-container">
+              <button class="btn btn-info" [disabled]="!categoryForm.valid" type="submit">
+                <i class="icofont icofont-check-circled"></i>Save
+              </button>
+              <button class="btn btn-danger" type="button" (click)="resetForm(categoryForm)">
+                <i class="icofont icofont-not-allowed"></i>Cancel
+              </button>
+          </div>
+        </div>
+        <div class="dt-responsive">
+            <!-- <app-card [title]="'Ng-X Search/Filter'" [classHeader]="true">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="form-inline f-right">
+                    <div class="form-group">
+                      <label class="label-control">Search:
+                      <input
+                        type='text'
+                        class="form-control input-sm m-l-10"
+                        placeholder='Search Name'
+                        (keyup)='updateFilter($event)'
+                      />
+                      </label>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <ngx-datatable
+                #table
+                class='data-table table-responsive'
+                [columns]="[
+                            { name: 'Name', prop: 'Name' },
+                            { name: 'Is Active?', prop: 'IsActive' }]"
+                [columnMode]="'force'"
+                [headerHeight]="40"
+                [footerHeight]="40"
+                [rowHeight]="40"
+                [limit]="10"
+                [rows]='rowsFilter'
+                [reorderable]="reorderable">
+              </ngx-datatable>
+            </app-card> -->
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+                  <div>
+                    <label class="label-control">Show
+                      <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="25">25</option>
+                        <option [ngValue]="50">50</option>
+                        <option [ngValue]="100">100</option>
+                      </select>
+                      entries
+                    </label>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                          <label class="form-inline f-right">
+                            <div class="form-group">
+                              <label class="label-control">Search:
+                              <input
+                                type='text'
+                                class="form-control input-sm m-l-10"
+                                placeholder='Search Name'
+                                (keyup)='updateFilter($event)'
+                              />
+                              </label>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                       [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                  <thead>
+                  <tr>
+                    <th>
+                      <mfDefaultSorter  by="Name">Name</mfDefaultSorter>
+                    </th>
+                  </tr>
+                  <tr>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of mf.data">
+                    <td>{{item.Name}}</td>
+                  </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Name</th>
+                  </tr>
+                  <tr>
+                    <td colspan="6">
+                      <mfBootstrapPaginator  [rowsOnPageSet]="[5,10,25]" class="pagination-main f-right"></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+          </div>
+      </form>
+    </app-card>
+  </div>
+</div>

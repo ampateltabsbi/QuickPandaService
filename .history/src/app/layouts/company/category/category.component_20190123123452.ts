@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Category } from '../model/category';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-category',
@@ -45,12 +45,18 @@ export class CategoryComponent implements OnInit {
 
   public searchString: string;
 
-  constructor(private apiService: APIService, private router: Router, public notifications: NotificationsService) {
+  constructor(private apiService: APIService, private router: Router, public notifications: NotificationsService, public http: Http) {
      this.apiService.selectedModel = this.category;
-    this.fetchFilterData((data) => {
-      this.tempFilter = [...data];
-this.rowsFilter = data;
-    });
+//     this.fetchFilterData((data) => {
+//       this.tempFilter = [...data];
+// this.rowsFilter = data;
+//     });
+
+debugger;
+this.http.get(`assets/data/data.json`)
+      .subscribe((data) => {
+        this.data = data.json();
+      });
    }
 
    ngOnInit() {

@@ -43,7 +43,7 @@ const routes: Routes = [
         loadChildren: './simple-page/simple-page.module#SimplePageModule'
       }, {
         path: 'adminpanel',
-        loadChildren: './layouts/adminpanel/adminpanel.module#AdminpanelModule'
+        loadChildren: './layouts/adminpanel/company.module#CompanyModule'
       }
     ]
   },

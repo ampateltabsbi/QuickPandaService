@@ -52,19 +52,19 @@ const MENUITEMS = [
         icon: 'ti-layout-grid2-alt'
     }, {
       state: 'city',
-      main_state : 'adminpanel',
+      main_state : 'company',
       name: 'City',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'state',
-      main_state : 'adminpanel',
+      main_state : 'company',
       name: 'State',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
   }, {
       state: 'country',
-      main_state : 'adminpanel',
+      main_state : 'company',
       name: 'Country',
       type: 'link',
       icon: 'ti-layout-grid2-alt'
