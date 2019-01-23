@@ -30,19 +30,9 @@ export interface Menu {
 }
 const COMPANYMENUITEMS = [
   {
-    label: 'Admin Utility',
-    main: [
-      {
-        state: 'category',
-        main_state: 'admin',
-        name: 'Category',
-        type: 'link',
-        icon: 'ti-layout-grid2-alt'
-      }
-    ]
+    
   }
 ];
-
 const ADMINMENUITEMS = [
   {
     label: 'Admin Utility',
@@ -96,11 +86,13 @@ const ADMINMENUITEMS = [
 @Injectable()
 export class MenuItems {
   getAll(): Menu[] {
+    debugger;
     if (localStorage.getItem('isAdmin') === 'true') {
       return ADMINMENUITEMS;
     } else {
       return COMPANYMENUITEMS;
-    }
+  }
+
   }
 
   /*add(menu: Menu) {

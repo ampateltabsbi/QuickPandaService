@@ -96,11 +96,13 @@ const ADMINMENUITEMS = [
 @Injectable()
 export class MenuItems {
   getAll(): Menu[] {
+    debugger;
     if (localStorage.getItem('isAdmin') === 'true') {
       return ADMINMENUITEMS;
     } else {
       return COMPANYMENUITEMS;
-    }
+  }
+
   }
 
   /*add(menu: Menu) {

@@ -28,22 +28,8 @@ export interface Menu {
   label: string;
   main: MainMenuItems[];
 }
-const COMPANYMENUITEMS = [
-  {
-    label: 'Admin Utility',
-    main: [
-      {
-        state: 'category',
-        main_state: 'admin',
-        name: 'Category',
-        type: 'link',
-        icon: 'ti-layout-grid2-alt'
-      }
-    ]
-  }
-];
 
-const ADMINMENUITEMS = [
+const MENUITEMS = [
   {
     label: 'Admin Utility',
     main: [
@@ -97,10 +83,9 @@ const ADMINMENUITEMS = [
 export class MenuItems {
   getAll(): Menu[] {
     if (localStorage.getItem('isAdmin') === 'true') {
-      return ADMINMENUITEMS;
-    } else {
-      return COMPANYMENUITEMS;
+
     }
+    return MENUITEMS;
   }
 
   /*add(menu: Menu) {

@@ -100,7 +100,8 @@ export class MenuItems {
       return ADMINMENUITEMS;
     } else {
       return COMPANYMENUITEMS;
-    }
+  }
+
   }
 
   /*add(menu: Menu) {
