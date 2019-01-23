@@ -121,7 +121,7 @@ const ADMINMENUITEMS = [
         main_state: 'admin',
         name: 'Customer Details',
         type: 'link',
-        icon: 'icon-people'
+        icon: 'ti-layout-grid2-icon-people'
       }
     ]
   }

@@ -27,18 +27,6 @@ const routes: Routes = [
       }, {
         path: 'city',
         loadChildren: './city/city.module#CityModule'
-      }, {
-        path: 'pendingcompany',
-        loadChildren: './companypending/companypending.module#CompanypendingModule'
-      }, {
-        path: 'approvedcompany',
-        loadChildren: './companyapproved/companyapproved.module#CompanyapprovedModule'
-      }, {
-        path: 'rejectedcompany',
-        loadChildren: './companyrejected/companyrejected.module#CompanyrejectedModule'
-      }, {
-        path: 'customerdetails',
-        loadChildren: './customerdetails/customerdetails.module#CustomerdetailsModule'
       }
     ]
   }

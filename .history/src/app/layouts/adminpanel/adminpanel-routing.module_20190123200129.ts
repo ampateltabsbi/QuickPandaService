@@ -28,17 +28,17 @@ const routes: Routes = [
         path: 'city',
         loadChildren: './city/city.module#CityModule'
       }, {
-        path: 'pendingcompany',
-        loadChildren: './companypending/companypending.module#CompanypendingModule'
+        path: '',
+        loadChildren: './city/city.module#CityModule'
       }, {
-        path: 'approvedcompany',
-        loadChildren: './companyapproved/companyapproved.module#CompanyapprovedModule'
+        path: '',
+        loadChildren: './city/city.module#CityModule'
       }, {
-        path: 'rejectedcompany',
-        loadChildren: './companyrejected/companyrejected.module#CompanyrejectedModule'
+        path: '',
+        loadChildren: './city/city.module#CityModule'
       }, {
-        path: 'customerdetails',
-        loadChildren: './customerdetails/customerdetails.module#CustomerdetailsModule'
+        path: '',
+        loadChildren: './city/city.module#CityModule'
       }
     ]
   }

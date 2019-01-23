@@ -29,16 +29,16 @@ const routes: Routes = [
         loadChildren: './city/city.module#CityModule'
       }, {
         path: 'pendingcompany',
-        loadChildren: './companypending/companypending.module#CompanypendingModule'
+        loadChildren: './city/city.module#CityModule'
       }, {
         path: 'approvedcompany',
-        loadChildren: './companyapproved/companyapproved.module#CompanyapprovedModule'
+        loadChildren: './city/city.module#CityModule'
       }, {
         path: 'rejectedcompany',
-        loadChildren: './companyrejected/companyrejected.module#CompanyrejectedModule'
+        loadChildren: './city/city.module#CityModule'
       }, {
         path: 'customerdetails',
-        loadChildren: './customerdetails/customerdetails.module#CustomerdetailsModule'
+        loadChildren: './city/city.module#CityModule'
       }
     ]
   }
