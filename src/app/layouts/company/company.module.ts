@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CompanyRoutingModule} from './company-routing.module';
 import { CompanyComponent } from './company.component';
 import { SharedModule } from '../../shared/shared.module';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   imports: [
@@ -10,6 +11,6 @@ import { SharedModule } from '../../shared/shared.module';
     CompanyRoutingModule,
     SharedModule
   ],
-  declarations: [CompanyComponent]
+  declarations: [CompanyComponent, StatusComponent]
 })
 export class CompanyModule { }
