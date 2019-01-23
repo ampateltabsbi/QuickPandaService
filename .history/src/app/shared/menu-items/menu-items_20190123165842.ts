@@ -30,7 +30,7 @@ export interface Menu {
 }
 const COMPANYMENUITEMS = [
   {
-    label: 'Company Utility',
+    label: 'Admin Utility',
     main: [
       {
         state: 'status',

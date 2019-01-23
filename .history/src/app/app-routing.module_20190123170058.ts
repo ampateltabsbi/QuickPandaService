@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layouts/admin/admin.component';
 import {AuthComponent} from './layouts/auth/auth.component';
 import { LandingComponent } from './layouts/landing/landing.component';
+import { CompanyComponent } from './layouts/company/company.component';
 
 const routes: Routes = [
   {
@@ -52,9 +53,6 @@ const routes: Routes = [
       }, {
         path: 'admin',
         loadChildren: './layouts/adminpanel/adminpanel.module#AdminpanelModule'
-      }, {
-        path: 'company',
-        loadChildren: './layouts/company/company.module#CompanyModule'
       }
     ]
   },
@@ -65,6 +63,16 @@ const routes: Routes = [
       {
         path: 'landing',
         loadChildren: './landing/landing.module#LandingModule'
+      }
+    ]
+  },
+  {
+    path: '',
+    component: CompanyComponent,
+    children: [
+      {
+        path: 'company',
+        loadChildren: './company/company.module#CompanyModule'
       }
     ]
   },

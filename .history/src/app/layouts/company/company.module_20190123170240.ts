@@ -10,6 +10,6 @@ import { SharedModule } from '../../shared/shared.module';
     CompanyRoutingModule,
     SharedModule
   ],
-  declarations: [CompanyComponent]
+  declarations: [CompanyComponent, StatusComponent]
 })
 export class CompanyModule { }
