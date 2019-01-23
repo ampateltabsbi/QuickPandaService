@@ -14,10 +14,10 @@ export class BasicLoginComponent implements OnInit {
   }
 
   onAdminLoggedin() {
-    localStorage.setItem('isAdmin', 'true');
+    localStorage.setItem('isLoggedin', 'true');
 }
-onCompanyLoggedin() {
-  localStorage.setItem('isAdmin', 'false');
+onAdminLoggedin() {
+  localStorage.setItem('isLoggedin', 'true');
 }
 
 }

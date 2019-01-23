@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {animate, AUTO_STYLE, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-basic-login',
@@ -12,12 +13,5 @@ export class BasicLoginComponent implements OnInit {
   ngOnInit() {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
-
-  onAdminLoggedin() {
-    localStorage.setItem('isAdmin', 'true');
-}
-onCompanyLoggedin() {
-  localStorage.setItem('isAdmin', 'false');
-}
 
 }

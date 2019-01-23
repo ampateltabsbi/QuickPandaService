@@ -13,11 +13,7 @@ export class BasicLoginComponent implements OnInit {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
 
-  onAdminLoggedin() {
-    localStorage.setItem('isAdmin', 'true');
+  onLoggedin() {
+    localStorage.setItem('isLoggedin', 'true');
 }
-onCompanyLoggedin() {
-  localStorage.setItem('isAdmin', 'false');
-}
-
 }

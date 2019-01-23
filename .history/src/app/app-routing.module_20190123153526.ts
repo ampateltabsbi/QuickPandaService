@@ -1,8 +1,11 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layouts/admin/admin.component';
 import {AuthComponent} from './layouts/auth/auth.component';
 import { LandingComponent } from './layouts/landing/landing.component';
+
+
 
 const routes: Routes = [
   {
@@ -11,7 +14,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
       },
       {

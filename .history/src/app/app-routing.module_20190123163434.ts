@@ -11,11 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'auth/',
         pathMatch: 'full'
       },
       {
-        path: 'auth',
+        path: 'auth/login',
         loadChildren: './auth/auth.module#AuthModule'
       }
     ]
@@ -67,7 +67,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: 'auth/login'
   }
 ];
 

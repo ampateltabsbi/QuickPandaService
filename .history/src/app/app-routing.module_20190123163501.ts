@@ -15,7 +15,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'auth',
+        path: 'login',
         loadChildren: './auth/auth.module#AuthModule'
       }
     ]
@@ -67,7 +67,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: 'login'
   }
 ];
 

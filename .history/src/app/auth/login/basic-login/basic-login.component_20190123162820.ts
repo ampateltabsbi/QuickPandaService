@@ -16,7 +16,7 @@ export class BasicLoginComponent implements OnInit {
   onAdminLoggedin() {
     localStorage.setItem('isAdmin', 'true');
 }
-onCompanyLoggedin() {
+onCompanymLoggedin() {
   localStorage.setItem('isAdmin', 'false');
 }
 

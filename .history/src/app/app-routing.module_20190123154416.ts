@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'auth',
+        redirectTo: 'login',
         pathMatch: 'full'
       },
       {
@@ -67,7 +67,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'auth'
+    redirectTo: 'login'
   }
 ];
 

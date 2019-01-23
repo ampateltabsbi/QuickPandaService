@@ -1,30 +1,22 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AdminComponent} from './layouts/admin/admin.component';
 import {AuthComponent} from './layouts/auth/auth.component';
 import { LandingComponent } from './layouts/landing/landing.component';
 
+
+
 const routes: Routes = [
-  {
-    path: '',
-    component: AuthComponent,
-    children: [
-      {
-        path: '',
-        redirectTo: 'auth',
-        pathMatch: 'full'
-      },
-      {
-        path: 'auth',
-        loadChildren: './auth/auth.module#AuthModule'
-      }
-    ]
-  }
-  ,
   {
     path: '',
     component: AdminComponent,
     children: [
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      },
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule'
@@ -55,6 +47,17 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path: 'auth',
+        loadChildren: './auth/auth.module#AuthModule'
+      }
+    ]
+  }
+  ,
   {
     path: '',
     component: LandingComponent,

@@ -10,11 +10,6 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-      },
-      {
         path: 'login',
         loadChildren: './login/basic-login/basic-login.module#BasicLoginModule'
       },
@@ -23,6 +18,10 @@ const routes: Routes = [
         loadChildren: './registration/basic-reg/basic-reg.module#BasicRegModule'
       }
     ]
+  },
+  {
+    path: '**',
+    redirectTo: 'login'
   }
 ];
 
