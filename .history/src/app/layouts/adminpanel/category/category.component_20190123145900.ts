@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+declare var $: any;
+declare var Morris: any;
 import 'd3';
+import * as c3 from 'c3';
 import { APIService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';

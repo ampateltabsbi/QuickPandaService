@@ -76,17 +76,9 @@ export class CategorytypeComponent implements OnInit {
   editCategorytype(categorytypeId: number): void {
     this.selectedRow = categorytypeId;
     this.apiService.selectedModel = new Categorytype();
-    const tempCategoryType =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+    const tempCategoryType =  Object.assign({}, this.categorytype.filter(t => t.ID === this.selectedRow));
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
-  }
-
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.tempFilter.filter(function(d) {
-      return d.Name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.data = temp;
   }
 
   bindAllCategorytype() {
@@ -101,5 +93,13 @@ export class CategorytypeComponent implements OnInit {
       const filterData = data;
       this.category = filterData;
     });
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+    const temp = this.tempFilter.filter(function(d) {
+      return d.Name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+    this.data = temp;
   }
 }

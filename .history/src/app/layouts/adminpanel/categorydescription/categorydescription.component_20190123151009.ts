@@ -73,7 +73,7 @@ export class CategorydescriptionComponent implements OnInit {
   editCategorydescription(categorydescriptionId: number): void {
     this.selectedRow = categorydescriptionId;
     this.apiService.selectedModel = new Categorydescription();
-    const tempCategoryType  =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+    const tempCategoryType  =  Object.assign({}, this.categorydescription.filter(t => t.ID === this.selectedRow));
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
   }
@@ -88,8 +88,7 @@ export class CategorydescriptionComponent implements OnInit {
 
   bindAllCategorydescription() {
     this.apiService.getService('CategoryDescriptions').subscribe((data: Categorydescription[]) => {
-      this.tempFilter = [...data];
-      this.data = data;
+      this.categorydescription = data;
     });
   }
 

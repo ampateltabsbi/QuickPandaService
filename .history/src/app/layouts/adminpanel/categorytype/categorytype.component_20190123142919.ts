@@ -14,9 +14,10 @@ import { Categorytype } from './../model/categorytype';
 export class CategorytypeComponent implements OnInit {
   categorytype: Categorytype[] = [];
   category: Category[] = [];
-  tempFilter = [];
   submitType = 'Save';
   selectedRow: number;
+  // totalRec: number;
+  // page = 1;
   public searchString: string;
   public data: any;
   public rowsOnPage = 10;
@@ -76,23 +77,14 @@ export class CategorytypeComponent implements OnInit {
   editCategorytype(categorytypeId: number): void {
     this.selectedRow = categorytypeId;
     this.apiService.selectedModel = new Categorytype();
-    const tempCategoryType =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+    const tempCategoryType =  Object.assign({}, this.categorytype.filter(t => t.ID === this.selectedRow));
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
   }
 
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.tempFilter.filter(function(d) {
-      return d.Name.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.data = temp;
-  }
-
   bindAllCategorytype() {
     this.apiService.getService('CategoryTypes').subscribe((data: Categorytype[]) => {
-      this.tempFilter = [...data];
-      this.data = data;
+      this.categorytype = data;
     });
   }
 
