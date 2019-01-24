@@ -99,12 +99,6 @@ const ADMINMENUITEMS = [
         name: 'City',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
-      }, {
-        state: 'area',
-        main_state: 'admin',
-        name: 'Area',
-        type: 'link',
-        icon: 'ti-layout-grid2-alt'
       }
     ]
   }, {
