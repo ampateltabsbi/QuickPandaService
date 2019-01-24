@@ -16,12 +16,13 @@ const httpOptions = {
 @Injectable()
 export class APIService {
   selectedModel: any;
-
+  
   baseUrl = 'http://localhost:4201/api/';
 
   constructor(private http: HttpClient) {  }
 
   setBaseUrl(isCompanyDB) {
+    debugger;
     if (isCompanyDB === true) {
       this.baseUrl = 'http://localhost:4201/api/0/';
     }

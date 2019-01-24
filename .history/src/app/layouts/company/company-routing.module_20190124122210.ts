@@ -13,10 +13,10 @@ const routes: Routes = [
         path: 'status',
         loadChildren: './status/status.module#StatusModule'
       }
-      // {
-      //   path: 'categorytype',
-      //   loadChildren: './categorytype/categorytype.module#CategorytypeModule'
-      // },
+      {
+        path: 'priority',
+        loadChildren: './priority/priority.module#PriorityModule'
+      },
       // {
       //   path: 'categorydescription',
       //   loadChildren: './categorydescription/categorydescription.module#CategorydescriptionModule'

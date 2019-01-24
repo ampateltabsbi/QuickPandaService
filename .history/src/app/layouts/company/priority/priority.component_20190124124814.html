@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'Status'">
-      <form #statusForm="ngForm" (ngSubmit)="onSubmit(statusForm)">
+    <app-card [title]="''">
+      <form #priorityForm="ngForm" (ngSubmit)="onSubmit(priorityForm)">
         <div class="form-group row">
           <div class="col-sm-6">
             <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID"
@@ -9,10 +9,20 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Status</label>
+          <label class="col-sm-2 col-form-label">Priority</label>
           <div class="col-sm-6">
-            <input class="form-control" type="text" name="Name" placeholder="Status" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
-              placeholder="Status" required>
+            <input class="form-control" type="text" name="Name" placeholder="Priority" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
+              required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Days To Complete Task</label>
+          <div class="col-sm-6">
+            <!-- <input class="form-control mob_no" mask="0" specialCharacters="false" type="text" name="DaysToCompleteTask" placeholder="Days To Complete Task" #name="ngModel" [(ngModel)]="apiService.selectedModel.DaysToCompleteTask"
+              required> -->
+              <input type="text" attri class="form-control mob_no" data-mask specialCharacters="false"  mask="0">
+              <input type="text" class="form-control autonumber" name="DaysToCompleteTask" #name="ngModel" [(ngModel)]="apiService.selectedModel.DaysToCompleteTask" >
+              <input type="text" class="form-control autonumber" name="ngModel" [(ngModel)]="apiService.selectedModel.DaysToCompleteTask" [options]="{ prefix: '€ ', align: 'left', allowZero: false }" >
           </div>
         </div>
         <div class="form-group row">
@@ -32,10 +42,10 @@
           <div class="col-sm-2">
           </div>
           <div class="col-sm-6 buttons-container">
-            <button class="btn btn-info" [disabled]="!statusForm.valid" type="submit">
+            <button class="btn btn-info" [disabled]="!priorityForm.valid" type="submit">
               <i class="icofont icofont-check-circled"></i>{{submitType}}
             </button>
-            <button class="btn btn-danger" type="button" (click)="resetForm(statusForm)">
+            <button class="btn btn-danger" type="button" (click)="resetForm(priorityForm)">
               <i class="icofont icofont-not-allowed"></i>Cancel
             </button>
           </div>
@@ -50,7 +60,7 @@
                   <label class="form-inline f-right">
                     <div class="form-group">
                       <label class="label-control">Search:
-                        <input type='text' class="form-control input-sm m-l-10" placeholder='Search Name' (keyup)='updateFilter($event)' />
+                        <input type='text' class="form-control input-sm m-l-10" placeholder='Priority' (keyup)='updateFilter($event)' />
                       </label>
                     </div>
                   </label>
@@ -79,7 +89,7 @@
                   <td>{{item.Name}}</td>
                   <td>{{item.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editStatus(item.ID)"
+                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editPriority(item.ID)"
                       style="font-size: 13px;">
                       <i class="fa fa-pencil-square-o"></i>Edit</button>
                   </td>
