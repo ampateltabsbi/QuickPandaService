@@ -44,7 +44,7 @@ import {APIService} from './services/api.service';
 import {ClickOutsideModule} from 'ng-click-outside';
 import {SpinnerComponent} from './spinner/spinner.component';
 import {PERFECT_SCROLLBAR_CONFIG, PerfectScrollbarConfigInterface, PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
-import {NotificationsService} from 'angular2-notifications';
+import {NotificationService} from './services/notification.service';
 import {ChartistModule} from 'ng-chartist';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -146,7 +146,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       TodoService,
       APIService,
       SelectOptionService,
-      NotificationsService,
+      NotificationService,
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

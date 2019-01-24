@@ -1,6 +1,7 @@
 import 'd3';
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../../shared/services/api.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Category } from '../model/category';
@@ -24,7 +25,7 @@ export class CategorytypeComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
 
-  constructor(private apiService: APIService, private router: Router) {
+  constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
     this.apiService.selectedModel = Categorytype;
     this.bindAllCategorytype();
     this.bindActiveCategory();
@@ -34,16 +35,22 @@ export class CategorytypeComponent implements OnInit {
      this.resetForm();
   }
 
+
   showSuccess() {
+    if (this.submitType === 'Save') {
+      this.notificationService.notify('Success', 'Record saved successfully.', 'success');
+    } else {
+      this.notificationService.notify('Success', 'Record updated successfully.', 'success');
+    }
   }
 
   onSubmit(categorytypeForm: NgForm) {
     if (categorytypeForm.value.ID === 0) {
       this.apiService.addService(categorytypeForm.value, 'CategoryTypes').subscribe(
         result => {
-          this.resetForm();
           this.bindAllCategorytype();
           this.showSuccess();
+          this.resetForm();
         },
         err => {
           console.log(err);
@@ -52,9 +59,9 @@ export class CategorytypeComponent implements OnInit {
     } else {
       this.apiService.updateService(categorytypeForm.value, categorytypeForm.value.ID, 'CategoryTypes').subscribe(
         result => {
-          this.resetForm();
           this.bindAllCategorytype();
           this.showSuccess();
+          this.resetForm();
         },
         err => {
           console.log(err);

@@ -53,8 +53,8 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: './layouts/adminpanel/adminpanel.module#AdminpanelModule'
       }, {
-        path: 'company',
-        loadChildren: './layouts/company/company.module#CompanyModule'
+        path: 'business',
+        loadChildren: './layouts/business/business.module#BusinessModule'
       }
     ]
   },

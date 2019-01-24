@@ -1,28 +1,29 @@
-import { Component, OnInit } from "@angular/core";
-import "d3";
-import { APIService } from "../../../shared/services/api.service";
-import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
-import { CountryMaster } from "../model/countrymaster";
+import { Component, OnInit } from '@angular/core';
+import 'd3';
+import { APIService } from '../../../shared/services/api.service';
+import { NotificationService } from '../../../shared/services/notification.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { CountryMaster } from '../model/countrymaster';
 
 @Component({
-  selector: "app-country",
-  templateUrl: "./country.component.html",
-  styleUrls: ["./country.component.scss"]
+  selector: 'app-country',
+  templateUrl: './country.component.html',
+  styleUrls: ['./country.component.scss']
 })
 export class CountryComponent implements OnInit {
   countrymaster: CountryMaster[] = [];
-  submitType = "Save";
+  submitType = 'Save';
   selectedRow: number;
   tempFilter = [];
 
   public data: any;
   public rowsOnPage = 10;
-  public filterQuery = "";
-  public sortBy = "";
-  public sortOrder = "desc";
+  public filterQuery = '';
+  public sortBy = '';
+  public sortOrder = 'desc';
 
-  constructor(private apiService: APIService, private router: Router) {
+  constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
     this.apiService.selectedModel = this.countrymaster;
     this.bindAllCountryMaster();
   }
@@ -31,17 +32,23 @@ export class CountryComponent implements OnInit {
     this.resetForm();
   }
 
-  showSuccess() {}
+  showSuccess() {
+    if (this.submitType === 'Save') {
+      this.notificationService.notify('Success', 'Record saved successfully.', 'success');
+    } else {
+      this.notificationService.notify('Success', 'Record updated successfully.', 'success');
+    }
+  }
 
   onSubmit(countrymasterForm: NgForm) {
     if (countrymasterForm.value.ID === 0) {
       this.apiService
-        .addService(countrymasterForm.value, "CountryMasters")
+        .addService(countrymasterForm.value, 'CountryMasters')
         .subscribe(
           result => {
-            this.resetForm();
             this.bindAllCountryMaster();
             this.showSuccess();
+            this.resetForm();
           },
           err => {
             console.log(err);
@@ -52,13 +59,13 @@ export class CountryComponent implements OnInit {
         .updateService(
           countrymasterForm.value,
           countrymasterForm.value.ID,
-          "CountryMasters"
+          'CountryMasters'
         )
         .subscribe(
           result => {
-            this.resetForm();
             this.bindAllCountryMaster();
             this.showSuccess();
+            this.resetForm();
           },
           err => {
             console.log(err);
@@ -69,11 +76,11 @@ export class CountryComponent implements OnInit {
 
   resetForm(countrymasterForm?: NgForm) {
     this.apiService.selectedModel = {
-      CountryName: "",
+      CountryName: '',
       ID: 0,
       IsActive: false
     };
-    this.submitType = "Save";
+    this.submitType = 'Save';
   }
 
   editCountryMaster(countryId: number): void {
@@ -81,7 +88,7 @@ export class CountryComponent implements OnInit {
     this.apiService.selectedModel = new CountryMaster();
     const tempCountryMaster = Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
     this.apiService.selectedModel = Object.assign({}, tempCountryMaster[0]);
-    this.submitType = "Update";
+    this.submitType = 'Update';
   }
 
   updateFilter(event) {
@@ -94,7 +101,7 @@ export class CountryComponent implements OnInit {
 
   bindAllCountryMaster() {
     this.apiService
-      .getService("CountryMasters")
+      .getService('CountryMasters')
       .subscribe((data: CountryMaster[]) => {
         this.tempFilter = [...data];
         this.data = data;

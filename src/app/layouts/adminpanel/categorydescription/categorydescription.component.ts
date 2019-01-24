@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import 'd3';
 import { APIService } from '../../../shared/services/api.service';
+import { NotificationService } from '../../../shared/services/notification.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Categorydescription } from '../model/categorydescription';
@@ -26,7 +27,7 @@ export class CategorydescriptionComponent implements OnInit {
   public sortOrder = 'desc';
   public searchString: string;
 
-  constructor(private apiService: APIService, private router: Router) {
+  constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
      this.apiService.selectedModel = Categorydescription;
      this.bindAllCategorydescription();
      this.bindActiveCategoryType();
@@ -36,12 +37,21 @@ export class CategorydescriptionComponent implements OnInit {
     this.resetForm();
   }
 
+  showSuccess() {
+    if (this.submitType === 'Save') {
+      this.notificationService.notify('Success', 'Record saved successfully.', 'success');
+    } else {
+      this.notificationService.notify('Success', 'Record updated successfully.', 'success');
+    }
+  }
+
   onSubmit(categorydescriptionForm: NgForm) {
     if (categorydescriptionForm.value.ID === 0) {
       this.apiService.addService(categorydescriptionForm.value, 'CategoryDescriptions').subscribe(
         result => {
-          this.resetForm();
           this.bindAllCategorydescription();
+          this.showSuccess();
+          this.resetForm();
         },
         err => {
           console.log(err);
@@ -50,8 +60,9 @@ export class CategorydescriptionComponent implements OnInit {
     } else {
       this.apiService.updateService(categorydescriptionForm.value, categorydescriptionForm.value.ID, 'CategoryDescriptions').subscribe(
         result => {
-          this.resetForm();
           this.bindAllCategorydescription();
+          this.showSuccess();
+          this.resetForm();
         },
         err => {
           console.log(err);

@@ -28,6 +28,9 @@ const routes: Routes = [
         path: 'city',
         loadChildren: './city/city.module#CityModule'
       }, {
+        path: 'area',
+        loadChildren: './area/area.module#AreaModule'
+      }, {
         path: 'pendingcompany',
         loadChildren: './companypending/companypending.module#CompanypendingModule'
       }, {

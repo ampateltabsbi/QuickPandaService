@@ -28,14 +28,28 @@ export interface Menu {
   label: string;
   main: MainMenuItems[];
 }
-const COMPANYMENUITEMS = [
+const BUSINESSMENUITEMS = [
   {
-    label: 'Company Utility',
+    label: 'Business Utility',
     main: [
       {
         state: 'status',
-        main_state: 'company',
+        main_state: 'business',
         name: 'Status',
+        type: 'link',
+        icon: 'ti-layout-grid2-alt'
+      },
+      {
+        state: 'priority',
+        main_state: 'business',
+        name: 'Priority',
+        type: 'link',
+        icon: 'ti-layout-grid2-alt'
+      },
+      {
+        state: 'company',
+        main_state: 'business',
+        name: 'Company',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
       }
@@ -67,25 +81,28 @@ const ADMINMENUITEMS = [
         name: 'Category Description',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
-      },
-      {
-        state: 'city',
+      }, {
+        state: 'country',
         main_state: 'admin',
-        name: 'City',
+        name: 'Country',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
-      },
-      {
+      }, {
         state: 'state',
         main_state: 'admin',
         name: 'State',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
-      },
-      {
-        state: 'country',
+      }, {
+        state: 'city',
         main_state: 'admin',
-        name: 'Country',
+        name: 'City',
+        type: 'link',
+        icon: 'ti-layout-grid2-alt'
+      }, {
+        state: 'area',
+        main_state: 'admin',
+        name: 'Area',
         type: 'link',
         icon: 'ti-layout-grid2-alt'
       }
@@ -133,7 +150,7 @@ export class MenuItems {
     if (localStorage.getItem('isAdmin') === 'true') {
       return ADMINMENUITEMS;
     } else {
-      return COMPANYMENUITEMS;
+      return BUSINESSMENUITEMS;
     }
   }
 

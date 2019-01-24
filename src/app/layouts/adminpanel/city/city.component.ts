@@ -1,31 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import "d3";
-import { APIService } from "../../../shared/services/api.service";
-import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
-import { CityMaster } from "../model/citymaster";
-import { StateMaster } from "../model/statemaster";
+import { Component, OnInit } from '@angular/core';
+import 'd3';
+import { APIService } from '../../../shared/services/api.service';
+import { NotificationService } from '../../../shared/services/notification.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { CityMaster } from '../model/citymaster';
+import { StateMaster } from '../model/statemaster';
 
 @Component({
-  selector: "app-city",
-  templateUrl: "./city.component.html",
-  styleUrls: ["./city.component.scss"]
+  selector: 'app-city',
+  templateUrl: './city.component.html',
+  styleUrls: ['./city.component.scss']
 })
 export class CityComponent implements OnInit {
   citymaster: CityMaster[] = [];
   statemaster: StateMaster[] = [];
   tempFilter = [];
-  submitType = "Save";
+  submitType = 'Save';
   selectedRow: number;
 
   public data: any;
   public rowsOnPage = 10;
-  public filterQuery = "";
-  public sortBy = "";
-  public sortOrder = "desc";
+  public filterQuery = '';
+  public sortBy = '';
+  public sortOrder = 'desc';
   public searchString: string;
 
-  constructor(private apiService: APIService, private router: Router) {
+  constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
     this.apiService.selectedModel = this.citymaster;
     this.bindAllCityMaster();
     this.bindActiveStateMaster();
@@ -35,14 +36,23 @@ export class CityComponent implements OnInit {
     this.resetForm();
   }
 
+  showSuccess() {
+    if (this.submitType === 'Save') {
+      this.notificationService.notify('Success', 'Record saved successfully.', 'success');
+    } else {
+      this.notificationService.notify('Success', 'Record updated successfully.', 'success');
+    }
+  }
+
   onSubmit(citymasterForm: NgForm) {
     if (citymasterForm.value.ID === 0) {
       this.apiService
-        .addService(citymasterForm.value, "Citymasters")
+        .addService(citymasterForm.value, 'Citymasters')
         .subscribe(
           result => {
-            this.resetForm();
             this.bindAllCityMaster();
+            this.showSuccess();
+            this.resetForm();
           },
           err => {
             console.log(err);
@@ -53,12 +63,13 @@ export class CityComponent implements OnInit {
         .updateService(
           citymasterForm.value,
           citymasterForm.value.ID,
-          "Citymasters"
+          'Citymasters'
         )
         .subscribe(
           result => {
-            this.resetForm();
             this.bindAllCityMaster();
+            this.showSuccess();
+            this.resetForm();
           },
           err => {
             console.log(err);
@@ -69,13 +80,13 @@ export class CityComponent implements OnInit {
 
   resetForm(citymasterForm?: NgForm) {
     this.apiService.selectedModel = {
-      CityName: "",
+      CityName: '',
       ID: 0,
       StateID: 0,
       IsActive: false,
-      StateName: ""
+      StateName: ''
     };
-    this.submitType = "Save";
+    this.submitType = 'Save';
   }
 
   editCityMaster(cityId: number): void {
@@ -86,7 +97,7 @@ export class CityComponent implements OnInit {
       this.data.filter(t => t.ID === this.selectedRow)
     );
     this.apiService.selectedModel = Object.assign({}, tempCityMaster[0]);
-    this.submitType = "Update";
+    this.submitType = 'Update';
   }
 
   updateFilter(event) {
@@ -99,7 +110,7 @@ export class CityComponent implements OnInit {
 
   bindAllCityMaster() {
     this.apiService
-      .getService("Citymasters")
+      .getService('Citymasters')
       .subscribe((data: CityMaster[]) => {
         this.tempFilter = [...data];
         this.data = data;
@@ -108,7 +119,7 @@ export class CityComponent implements OnInit {
 
   bindActiveStateMaster() {
     this.apiService
-      .getModelListbyActive("StateMasters", "GetActiveState")
+      .getModelListbyActive('StateMasters', 'GetActiveState')
       .subscribe((data: StateMaster[]) => {
         this.statemaster = data;
       });
