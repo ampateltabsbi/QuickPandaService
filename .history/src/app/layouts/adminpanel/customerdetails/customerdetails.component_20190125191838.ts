@@ -25,16 +25,15 @@ export class CustomerdetailsComponent implements OnInit {
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.customer;
-    this.bindAllCustomer();
   }
 
   ngOnInit() {
   }
 
-  bindAllCustomer() {
+  bindAllCityMaster() {
     this.apiService
-      .getService('Customers')
-      .subscribe((data: Customer[]) => {
+      .getService('Citymasters')
+      .subscribe((data: CityMaster[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });

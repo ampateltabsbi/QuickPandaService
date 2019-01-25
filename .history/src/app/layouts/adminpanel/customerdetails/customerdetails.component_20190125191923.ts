@@ -33,7 +33,7 @@ export class CustomerdetailsComponent implements OnInit {
 
   bindAllCustomer() {
     this.apiService
-      .getService('Customers')
+      .getService('Citymasters')
       .subscribe((data: Customer[]) => {
         this.tempFilter = [...data];
         this.data = data;

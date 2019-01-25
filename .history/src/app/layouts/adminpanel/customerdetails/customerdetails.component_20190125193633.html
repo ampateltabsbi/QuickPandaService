@@ -25,9 +25,6 @@
             <thead>
               <tr>
                 <th>
-                  <mfDefaultSorter by="image"></mfDefaultSorter>
-                </th>
-                <th>
                   <mfDefaultSorter by="Name">Name</mfDefaultSorter>
                 </th>
                 <th>
@@ -46,13 +43,14 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of mf.data">
-                  <td><img src="assets/images/user.png" style='height: 40px;' class="d-inline-block img-circle " alt="tbl"></td>
                 <td>{{item.Name}}</td>
                 <td>{{item.Email}}</td>
                 <td>{{item.Phone}}</td>
                 <td>{{item.IsActive ? 'Yes':'No'}}</td>
                 <td>
-                  <button class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt"></i>View</button>
+                  <button type="button" class="btn btn-primary btn-mini waves-effect waves-light"
+                    style="font-size: 13px;">
+                    <i class="fa fa-pencil-square-o"></i>Edit</button>
                 </td>
               </tr>
             </tbody>

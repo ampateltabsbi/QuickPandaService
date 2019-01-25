@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: CustomerdetailsComponent,
     data: {
-      breadcrumb: 'Customer',
+      breadcrumb: 'City',
       status: true
     }
   }
