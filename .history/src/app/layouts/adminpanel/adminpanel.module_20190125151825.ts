@@ -10,6 +10,6 @@ import {SharedModule} from '../../shared/shared.module';
     AdminpanelRoutingModule,
     SharedModule
   ],
-  declarations: [AdminpanelComponent]
+  declarations: [AdminpanelComponent, AreaComponent]
 })
 export class AdminpanelModule { }
