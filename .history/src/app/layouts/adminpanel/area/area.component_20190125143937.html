@@ -75,10 +75,10 @@
               <thead>
                 <tr>
                   <th>
-                    <mfDefaultSorter by="CityName">City</mfDefaultSorter>
+                    <mfDefaultSorter by="StateName">State</mfDefaultSorter>
                   </th>
                   <th>
-                    <mfDefaultSorter by="AreaName">Area</mfDefaultSorter>
+                    <mfDefaultSorter by="CityName">City</mfDefaultSorter>
                   </th>
                   <th>
                     <mfDefaultSorter by="IsActive">Is Active ?</mfDefaultSorter>
@@ -90,11 +90,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
+                  <td>{{item.StateName}}</td>
                   <td>{{item.CityName}}</td>
-                  <td>{{item.AreaName}}</td>
                   <td>{{item.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editArea(item.ID)"
+                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editCityMaster(item.ID)"
                       style="font-size: 13px;">
                       <i class="fa fa-pencil-square-o"></i>Edit</button>
                   </td>

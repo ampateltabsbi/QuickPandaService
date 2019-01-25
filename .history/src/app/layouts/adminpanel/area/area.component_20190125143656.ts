@@ -121,8 +121,8 @@ export class AreaComponent implements OnInit {
   bindActiveCityMaster() {
     this.apiService
       .getModelListbyActive('Citymasters', 'GetActiveCity')
-      .subscribe((data: CityMaster[]) => {
-        this.citymaster = data;
+      .subscribe((data: StateMaster[]) => {
+        this.statemaster = data;
       });
   }
 

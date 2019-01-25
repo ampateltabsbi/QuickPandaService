@@ -92,19 +92,19 @@ export class AreaComponent implements OnInit {
 
   editArea(areaId: number): void {
     this.selectedRow = areaId;
-    this.apiService.selectedModel = new Area();
-    const tempArea = Object.assign(
+    this.apiService.selectedModel = new CityMaster();
+    const tempCityMaster = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.apiService.selectedModel = Object.assign({}, tempArea[0]);
+    this.apiService.selectedModel = Object.assign({}, tempCityMaster[0]);
     this.submitType = 'Update';
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
-      return d.AreaName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.CityName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.data = temp;
   }
@@ -121,8 +121,8 @@ export class AreaComponent implements OnInit {
   bindActiveCityMaster() {
     this.apiService
       .getModelListbyActive('Citymasters', 'GetActiveCity')
-      .subscribe((data: CityMaster[]) => {
-        this.citymaster = data;
+      .subscribe((data: StateMaster[]) => {
+        this.statemaster = data;
       });
   }
 

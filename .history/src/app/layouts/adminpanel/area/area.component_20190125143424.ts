@@ -45,10 +45,10 @@ export class AreaComponent implements OnInit {
     }
   }
 
-  onSubmit(areaForm: NgForm) {
-    if (areaForm.value.ID === 0) {
+  onSubmit(citymasterForm: NgForm) {
+    if (citymasterForm.value.ID === 0) {
       this.apiService
-        .addService(areaForm.value, 'Areas')
+        .addService(citymasterForm.value, 'Areas')
         .subscribe(
           result => {
             this.bindAllArea();
@@ -62,8 +62,8 @@ export class AreaComponent implements OnInit {
     } else {
       this.apiService
         .updateService(
-          areaForm.value,
-          areaForm.value.ID,
+          citymasterForm.value,
+          citymasterForm.value.ID,
           'Areas'
         )
         .subscribe(
@@ -79,32 +79,32 @@ export class AreaComponent implements OnInit {
     }
   }
 
-  resetForm(areaForm?: NgForm) {
+  resetForm(citymasterForm?: NgForm) {
     this.apiService.selectedModel = {
-      AreaName: '',
+      CityName: '',
       ID: 0,
-      CityID: 0,
+      StateID: 0,
       IsActive: false,
-      CityName: ''
+      StateName: ''
     };
     this.submitType = 'Save';
   }
 
-  editArea(areaId: number): void {
-    this.selectedRow = areaId;
-    this.apiService.selectedModel = new Area();
-    const tempArea = Object.assign(
+  editCityMaster(cityId: number): void {
+    this.selectedRow = cityId;
+    this.apiService.selectedModel = new CityMaster();
+    const tempCityMaster = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.apiService.selectedModel = Object.assign({}, tempArea[0]);
+    this.apiService.selectedModel = Object.assign({}, tempCityMaster[0]);
     this.submitType = 'Update';
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
-      return d.AreaName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.CityName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.data = temp;
   }
@@ -121,8 +121,8 @@ export class AreaComponent implements OnInit {
   bindActiveCityMaster() {
     this.apiService
       .getModelListbyActive('Citymasters', 'GetActiveCity')
-      .subscribe((data: CityMaster[]) => {
-        this.citymaster = data;
+      .subscribe((data: StateMaster[]) => {
+        this.statemaster = data;
       });
   }
 
