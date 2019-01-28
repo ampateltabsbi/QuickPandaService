@@ -38,12 +38,4 @@ export class CompanyapprovedComponent implements OnInit {
         this.data = data;
       });
   }
-  
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.tempFilter.filter(function(d) {
-      return d.CompanyName.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.data = temp;
-  }
 }

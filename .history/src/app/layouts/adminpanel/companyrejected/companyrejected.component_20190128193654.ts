@@ -6,11 +6,12 @@ import { NgForm } from '@angular/forms';
 import { Company } from '../model/Company';
 
 @Component({
-  selector: 'app-companyapproved',
-  templateUrl: './companyapproved.component.html',
-  styleUrls: ['./companyapproved.component.scss']
+  selector: 'app-companyrejected',
+  templateUrl: './companyrejected.component.html',
+  styleUrls: ['./companyrejected.component.scss']
 })
-export class CompanyapprovedComponent implements OnInit {
+export class CompanyrejectedComponent implements OnInit {
+
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -24,26 +25,19 @@ export class CompanyapprovedComponent implements OnInit {
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
-    this.bindApprovedCompany();
+    this.bindRejectedCompany();
   }
 
   ngOnInit() {
   }
 
-  bindApprovedCompany() {
+  bindRejectedCompany() {
     this.apiService
-      .getModelListbyActive('Company', 'GetApprovedCompany')
+      .getModelListbyActive('Company', 'GetRejectedCompany')
       .subscribe((data: Company[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
   }
-  
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.tempFilter.filter(function(d) {
-      return d.CompanyName.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.data = temp;
-  }
+
 }

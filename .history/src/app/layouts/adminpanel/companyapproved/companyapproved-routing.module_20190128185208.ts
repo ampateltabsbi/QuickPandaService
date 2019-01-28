@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CompanyrejectedComponent } from './companyrejected.component';
+import { CompanyapprovedComponent } from './companyapproved.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CompanyrejectedComponent,
+    component: CompanyapprovedComponent,
     data: {
-      breadcrumb: 'Rejected Company',
+      breadcrumb: 'Customer',
       status: true
     }
   }
@@ -17,4 +17,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CompanyrejectedRoutingModule { }
+export class CompanyapprovedRoutingModule { }

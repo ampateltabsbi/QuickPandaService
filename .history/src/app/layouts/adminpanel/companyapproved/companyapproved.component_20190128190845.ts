@@ -11,6 +11,7 @@ import { Company } from '../model/Company';
   styleUrls: ['./companyapproved.component.scss']
 })
 export class CompanyapprovedComponent implements OnInit {
+  
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -37,13 +38,5 @@ export class CompanyapprovedComponent implements OnInit {
         this.tempFilter = [...data];
         this.data = data;
       });
-  }
-  
-  updateFilter(event) {
-    const val = event.target.value.toLowerCase();
-    const temp = this.tempFilter.filter(function(d) {
-      return d.CompanyName.toLowerCase().indexOf(val) !== -1 || !val;
-    });
-    this.data = temp;
   }
 }

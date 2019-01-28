@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'Customer'">
+    <app-card [title]="'Company Approved'">
       <div class="dt-responsive">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
@@ -11,7 +11,7 @@
                 <label class="form-inline f-right">
                   <div class="form-group">
                     <label class="label-control">Search:
-                      <input type='text' class="form-control input-sm m-l-10" placeholder='Customer' (keyup)='updateFilter($event)'/>
+                      <input type='text' class="form-control input-sm m-l-10" placeholder='Company' />
                     </label>
                   </div>
                 </label>
@@ -35,10 +35,7 @@
                 </th>
                 <th>
                   <mfDefaultSorter by="Phone">Phone</mfDefaultSorter>
-                </th>
-                <th>
-                  <mfDefaultSorter by="IsActive">Is Active ?</mfDefaultSorter>
-                </th>
+                </th>                
                 <th>Action</th>
               </tr>
               <tr>
@@ -47,12 +44,11 @@
             <tbody>
               <tr *ngFor="let item of mf.data">
                   <td><img src="assets/images/user.png" style='height: 40px;' class="d-inline-block img-circle " alt="tbl"></td>
-                <td>{{item.Name}}</td>
+                <td>{{item.CompanyName}}</td>
                 <td>{{item.Email}}</td>
-                <td>{{item.Phone}}</td>
-                <td>{{item.IsActive ? 'Yes':'No'}}</td>
+                <td>{{item.Phone}}</td>                
                 <td>
-                  <button class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt"></i>View</button>
+                  <button class="btn btn-sm btn-info"><i class="icofont icofont-eye-alt"></i>Rejected</button>
                 </td>
               </tr>
             </tbody>
