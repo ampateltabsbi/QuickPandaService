@@ -1,0 +1,96 @@
+<ng2-toasty></ng2-toasty>
+<section class="py-5 login d-flex text-center common-img-bg">
+  <div class="container containerColor">
+    <div class="row ">
+      <div class="col-md-3 py-5 bg-primary text-white text-center py-5-Override">
+        <div class=" ">
+          <div class="card-body">
+            <img src="assets/images/logo.png">
+            <h2 class="py-3">Registration</h2>
+            <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto
+              patrioque an per, lucilius pertinacia eu vel.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 py-5 py-5-Override">
+        <form #ownerForm="ngForm" (ngSubmit)="onSubmit(ownerForm)">
+          <div class="container register-form">
+            <div class="form">
+              <div class="note">
+                <p class="pHeader">
+                  Owner Registration
+                </p>
+              </div>
+
+              <div class="form-content">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="FirstName" class="col-md-4 col-form-label">First Name</label>
+                      <div class="col-md-8">
+                        <input type="text" id="FirstName" class="form-control" name="FirstName" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.FirstName">
+                      </div>
+
+                      <div class="col-sm-6">
+                          <input class="form-control" type="text" name="Name" placeholder="Category" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
+                            placeholder="Category" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="LastName" class="col-md-4 col-form-label">Last Name</label>
+                      <div class="col-md-8">
+                        <input type="text" id="LastName" class="form-control" name="LastName" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.LastName">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Email" class="col-md-4 col-form-label">Email</label>
+                      <div class="col-md-8">
+                        <input type="text" id="Email" class="form-control" name="Email" required #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.Email">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Phone</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="text" name="Phone" placeholder="Phone" required #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.Phone">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Company Group</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="text" name="CompanyGroup" placeholder="Company Group" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.CompanyGroup">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Password</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="password" name="Password" placeholder="Password" required #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.Password">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-10"></div>
+              <div class="col-md-2">
+                <button [disabled]="!categoryForm.valid" type="submit"
+                class="btn btn-info btn-md btn-block waves-effect text-center m-b-20">
+                <i class="icofont icofont-check-circled"></i>Submit
+              </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
