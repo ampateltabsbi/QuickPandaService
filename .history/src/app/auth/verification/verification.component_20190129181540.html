@@ -1,0 +1,73 @@
+<ng2-toasty></ng2-toasty>
+<section class="py-5 login d-flex text-center common-img-bg">
+  <div class="container containerColor">
+    <div class="row ">
+      <div class="col-md-3 py-5 bg-primary text-white text-center py-5-Override">
+        <div class=" ">
+          <div class="card-body">
+            <img src="assets/images/logo.png">
+            <h2 class="py-3">Registration</h2>
+            <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto
+              patrioque an per, lucilius pertinacia eu vel.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 py-5 py-5-Override">
+        <form #verificationForm="ngForm" (ngSubmit)="onSubmit(verificationForm)">
+          <div class="container register-form">
+            <div class="form">
+              <div class="note">
+                <p class="pHeader">
+                  {{verificicationtype}}
+                </p>
+              </div>
+
+              <div class="form-content">
+                <div class="container">
+                  <div class="form-row">
+                    <p class="desc">We’ve sent a six-digit confirmation code to <strong>{{veriftyemailaddress}}</strong>.
+                      Enter it below to confirm your email address.</p>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    confirmation code
+                  </div>
+                  <div class="form-row">
+                    <div class="confirmation_code split_input large_bottom_margin" data-multi-input-code="true">
+                      <div class="confirmation_code_group">
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                      </div>
+                      <div class="confirmation_code_span_cell">—</div>
+                      <div class="confirmation_code_group">
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                        <div class="split_input_item input_wrapper"><input type="text" class="inline_input" maxlength="1"></div>
+                      </div>
+                      <div class="confirmation_code_group">
+                          <button [disabled]="!verificationForm.valid" type="submit" class="btn btn-info btn-md btn-block waves-effect text-center m-b-20">
+                              <i class="icofont icofont-check-circled"></i>Verify
+                            </button>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-2">
+                          <button [disabled]="!verificationForm.valid" type="submit" class="btn btn-info btn-md btn-block waves-effect text-center m-b-20">
+                              <i class="icofont icofont-check-circled"></i>Verify
+                            </button>
+                      </div>
+                      <div class="col-md-10">
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

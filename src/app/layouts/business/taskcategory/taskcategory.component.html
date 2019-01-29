@@ -1,0 +1,117 @@
+<ng2-toasty></ng2-toasty>
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Task Category'">
+      <form #taskcategoryForm="ngForm" (ngSubmit)="onSubmit(taskcategoryForm)">
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID"
+              required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Company</label>
+          <div class="col-sm-6">
+            <select class="form-control" name="CompanyID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CompanyID"
+              required>
+              <option [ngValue]="null" selected>Please Select</option>
+              <option *ngFor="let _company of company" [ngValue]="_company.ID">
+                {{_company.CompanyName}}
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Task Category</label>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="CategoryName" placeholder="Task Category" #name="ngModel" [(ngModel)]="apiService.selectedModel.CategoryName"
+              required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Is Active</label>
+          <div class="col-sm-6">
+            <div class="checkbox-fade fade-in-info">
+              <label>
+                <input type="checkbox" type="checkbox" name="IsActive" #name="ngModel" [(ngModel)]="apiService.selectedModel.IsActive">
+                <span class="cr">
+                  <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-6 buttons-container">
+            <button class="btn btn-info" [disabled]="!taskcategoryForm.valid" type="submit">
+              <i class="icofont icofont-check-circled"></i>{{submitType}}
+            </button>
+            <button class="btn btn-danger" type="button" (click)="resetForm(taskcategoryForm)">
+              <i class="icofont icofont-not-allowed"></i>Cancel
+            </button>
+          </div>
+        </div>
+        <div class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label class="form-inline f-right">
+                    <div class="form-group">
+                      <label class="label-control">Search:
+                        <input type='text' class="form-control input-sm m-l-10" placeholder='Task Category' (keyup)='updateFilter($event)' />
+                      </label>
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery"
+              #mf="mfDataTable" [mfRowsOnPage]="5" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+              <thead>
+                <tr>
+                  <th>
+                    <mfDefaultSorter by="CompanyName">Company</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="CategoryName">Task Category</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="IsActive">Is Active ?</mfDefaultSorter>
+                  </th>
+                  <th></th>
+                </tr>
+                <tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of mf.data">
+                  <td>{{item.CompanyName}}</td>
+                  <td>{{item.CategoryName}}</td>
+                  <td>{{item.IsActive ? 'Yes':'No'}}</td>
+                  <td>
+                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editTaskCategory(item.ID)"
+                      style="font-size: 13px;">
+                      <i class="fa fa-pencil-square-o"></i>Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="6">
+                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]" class="pagination-main f-right"></mfBootstrapPaginator>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </form>
+    </app-card>
+  </div>
+</div>

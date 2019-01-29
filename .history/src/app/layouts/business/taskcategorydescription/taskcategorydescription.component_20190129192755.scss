@@ -1,0 +1,8 @@
+form.submitted .ng-invalid
+{
+    border:1px solid #f00;
+}
+
+.ng-pristine .ng-invalid-required {
+    box-shadow: none;
+}
