@@ -11,6 +11,7 @@ import { Company } from '../model/Company';
   styleUrls: ['./companypending.component.scss']
 })
 export class CompanypendingComponent implements OnInit {
+
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -27,7 +28,8 @@ export class CompanypendingComponent implements OnInit {
     this.bindPendingCompany();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   bindPendingCompany() {
     this.apiService
@@ -52,35 +54,12 @@ export class CompanypendingComponent implements OnInit {
       this.data.filter(t => t.ID === this.selectedRow)
     );
     tempCompany[0].Approved = true;
+    this.apiService.selectedModel = Object.assign({}, tempCompany[0]);
     this.apiService
-      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
-      .subscribe(
-        result => {
-          this.bindPendingCompany();
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
-  isRejectCompany(companyId: number): void {
-    this.selectedRow = companyId;
-    this.apiService.selectedModel = new Company();
-    const tempCompany = Object.assign(
-      {},
-      this.data.filter(t => t.ID === this.selectedRow)
+    .updateService(
+      this.apiService.selectedModel,
+      this.apiService.selectedModel.ID,
+      'Company'
     );
-    tempCompany[0].Rejected = true;
-    this.apiService
-      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
-      .subscribe(
-        result => {
-          this.bindPendingCompany();
-        },
-        err => {
-          console.log(err);
-        }
-      );
   }
 }

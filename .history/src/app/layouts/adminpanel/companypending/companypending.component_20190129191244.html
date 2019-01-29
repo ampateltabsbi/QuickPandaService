@@ -49,7 +49,7 @@
                 <td>{{item.Phone}}</td>                
                 <td>
                   <button class="btn btn-sm btn-success" (click)="isApprovCompany(item.ID)"><i class="icofont icofont-check-circled"></i>Approv</button>
-                  <button class="btn btn-sm btn-danger" (click)="modalRejectedReason.show(item)"><i class="icofont icofont-not-allowed"></i>Reject</button>
+                  <button class="btn btn-sm btn-danger" (click)="modalRejectedReason.show()"><i class="icofont icofont-not-allowed"></i>Reject</button>
                   <!-- <button class="btn btn-sm btn-danger" (click)="isRejectCompany(item.ID)"><i class="icofont icofont-not-allowed"></i>Reject</button> -->
                 </td>                
               </tr>
@@ -75,15 +75,11 @@
     </button>
   </div>
   <div class="app-modal-body">
-      <div class="row">
-          <div class="col-sm-12">
-              <label class="form-control-label">Enter Reason:</label>
-              <textarea  class="form-control" rows="5" name="Reason" placeholder="Enter Rejected Reason" required></textarea>              
-          </div>
-        </div>
+    <h5>Default Modal</h5>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing lorem impus dolorsit.onsectetur adipiscing</p>
   </div>
-  <div class="app-modal-footer">    
-    <button type="button" class="btn btn-primary ripple light" (click)="isRejectCompany()">Save changes</button>
+  <div class="app-modal-footer">
     <button type="button" class="btn btn-default ripple" (click)="modalRejectedReason.hide()">Close</button>
+    <button type="button" class="btn btn-primary ripple light">Save changes</button>
   </div>
 </app-modal-basic>

@@ -6,11 +6,11 @@ import { NgForm } from '@angular/forms';
 import { Company } from '../model/Company';
 
 @Component({
-  selector: 'app-companypending',
-  templateUrl: './companypending.component.html',
-  styleUrls: ['./companypending.component.scss']
+  selector: 'app-companyapproved',
+  templateUrl: './companyapproved.component.html',
+  styleUrls: ['./companyapproved.component.scss']
 })
-export class CompanypendingComponent implements OnInit {
+export class CompanyapprovedComponent implements OnInit {
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -24,14 +24,15 @@ export class CompanypendingComponent implements OnInit {
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
-    this.bindPendingCompany();
+    this.bindApprovedCompany();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  bindPendingCompany() {
+  bindApprovedCompany() {
     this.apiService
-      .getModelListbyActive('Company', 'GetActiveCompany')
+      .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
         this.tempFilter = [...data];
         this.data = data;
@@ -44,26 +45,6 @@ export class CompanypendingComponent implements OnInit {
     });
     this.data = temp;
   }
-  isApprovCompany(companyId: number): void {
-    this.selectedRow = companyId;
-    this.apiService.selectedModel = new Company();
-    const tempCompany = Object.assign(
-      {},
-      this.data.filter(t => t.ID === this.selectedRow)
-    );
-    tempCompany[0].Approved = true;
-    this.apiService
-      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
-      .subscribe(
-        result => {
-          this.bindPendingCompany();
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
-
   isRejectCompany(companyId: number): void {
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();

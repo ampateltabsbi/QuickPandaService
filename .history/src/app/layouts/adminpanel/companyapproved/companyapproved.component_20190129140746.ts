@@ -6,12 +6,11 @@ import { NgForm } from '@angular/forms';
 import { Company } from '../model/Company';
 
 @Component({
-  selector: 'app-companyrejected',
-  templateUrl: './companyrejected.component.html',
-  styleUrls: ['./companyrejected.component.scss']
+  selector: 'app-companyapproved',
+  templateUrl: './companyapproved.component.html',
+  styleUrls: ['./companyapproved.component.scss']
 })
-export class CompanyrejectedComponent implements OnInit {
-
+export class CompanyapprovedComponent implements OnInit {
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -25,47 +24,25 @@ export class CompanyrejectedComponent implements OnInit {
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
-    this.bindRejectedCompany();
+    this.bindApprovedCompany();
   }
 
   ngOnInit() {
   }
 
-  bindRejectedCompany() {
+  bindApprovedCompany() {
     this.apiService
-      .getModelListbyActive('Company', 'GetRejectedCompany')
+      .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
   }
-
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
       return d.CompanyName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.data = temp;
-  }
-
-  isApprovCompany(companyId: number): void {
-    this.selectedRow = companyId;
-    this.apiService.selectedModel = new Company();
-    const tempCompany = Object.assign(
-      {},
-      this.data.filter(t => t.ID === this.selectedRow)
-    );
-    tempCompany[0].Approved = true;
-    tempCompany[0].Rejected = false;
-    this.apiService
-      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
-      .subscribe(
-        result => {
-          this.bindRejectedCompany();
-        },
-        err => {
-          console.log(err);
-        }
-      );
   }
 }

@@ -63,24 +63,4 @@ export class CompanypendingComponent implements OnInit {
         }
       );
   }
-
-  isRejectCompany(companyId: number): void {
-    this.selectedRow = companyId;
-    this.apiService.selectedModel = new Company();
-    const tempCompany = Object.assign(
-      {},
-      this.data.filter(t => t.ID === this.selectedRow)
-    );
-    tempCompany[0].Rejected = true;
-    this.apiService
-      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
-      .subscribe(
-        result => {
-          this.bindPendingCompany();
-        },
-        err => {
-          console.log(err);
-        }
-      );
-  }
 }

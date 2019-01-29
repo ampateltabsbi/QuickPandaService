@@ -71,7 +71,7 @@ export class CompanypendingComponent implements OnInit {
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    tempCompany[0].Rejected = true;
+    tempCompany[0].Approved = true;
     this.apiService
       .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
       .subscribe(
