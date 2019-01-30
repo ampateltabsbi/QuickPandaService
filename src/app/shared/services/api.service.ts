@@ -16,15 +16,19 @@ const httpOptions = {
 @Injectable()
 export class APIService {
   selectedModel: any;
-
+   groupName: any;
   baseUrl = 'http://localhost:4201/api/';
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+    }
 
   setBaseUrl(isCompanyDB) {
     if (isCompanyDB === true) {
       this.baseUrl = 'http://localhost:4201/api/0/';
     }
+  }
+  setCompanyBaseUrl(groupName) {
+      this.baseUrl = 'http://localhost:4201/api/'+groupName+'/';   
   }
 
   getService(modelName) {
