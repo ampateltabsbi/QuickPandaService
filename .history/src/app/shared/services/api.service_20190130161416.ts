@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable()
 export class APIService {
@@ -20,7 +28,7 @@ export class APIService {
     }
   }
   setCompanyBaseUrl(groupName) {
-      this.baseUrl = 'http://localhost:4201/api/' + groupName + '/';
+      this.baseUrl = 'http://localhost:4201/api/'+groupName+'/';   
   }
 
   getService(modelName) {

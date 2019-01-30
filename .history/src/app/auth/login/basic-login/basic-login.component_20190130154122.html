@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="login-card card-body auth-body">
-          <form class="md-float-material" #basicloginForm="ngForm">
+          <form class="md-float-material" #basic-loginForm="ngForm" (ngSubmit)="onSubmit(basic-loginForm)">
             <div class="text-center">
               <img src="assets/images/logo.png" alt="logo.png">
             </div>
@@ -26,13 +26,13 @@
               </div>
               <div class="row m-t-25 text-left">
                 <div class="col-sm-7 col-xs-12">
-                  <!-- <div class="checkbox-fade fade-in-primary">
+                  <div class="checkbox-fade fade-in-primary">
                     <label>
                       <input type="checkbox" value="">
                       <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                       <span class="text-inverse">Is Owner?</span>
                     </label>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="col-sm-5 col-xs-12 forgot-phone text-right">
                   <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Forgot Your Password?</a>
@@ -44,8 +44,8 @@
                     [routerLink]="['/dashboard']" (click)="onAdminLoggedin()">Admin Sign in</button>
                 </div>
                 <div class="col-md-6">
-                  <button [disabled]="!basicloginForm.valid" type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
-                    (click)="onLoggedin()">Sign in</button>
+                  <button [disabled]="!ownerForm.valid" type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
+                    [routerLink]="['/dashboard']" (click)="onCompanyLoggedin()">Company Sign in</button>
                 </div>
                 <!-- <div class="col-md-6">
                   <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"

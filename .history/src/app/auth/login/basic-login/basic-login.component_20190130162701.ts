@@ -41,16 +41,17 @@ export class BasicLoginComponent implements OnInit {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
   onAdminLoggedin() {
-    localStorage.setItem('isAdmin', 'true');
+    // localStorage.setItem('isAdmin', 'true');
   }
   onLoggedin() {
+    // localStorage.setItem('isAdmin', 'false');
     if (this.urlArrayLength === 4) {
-      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email,
-      this.apiService.selectedModel.Password, 'ValidateLogIn')
+      debugger;
+      // tslint:disable-next-line:max-line-length
+      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email, this.apiService.selectedModel.Password, 'ValidateLogIn')
       .subscribe((companyresourcedata: CompanyResource[]) => {
         const filterData = companyresourcedata;
         this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
-        localStorage.setItem('isAdmin', 'false');
       });
     }
   }

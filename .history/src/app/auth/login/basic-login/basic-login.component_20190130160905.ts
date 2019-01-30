@@ -11,7 +11,6 @@ import { CompanyResource } from '../../model/companyresource';
 })
 export class BasicLoginComponent implements OnInit {
   public urlArrayLength = 0;
-  public groupName = '';
   usermaster: Usermaster[] = [];
   companyresource: CompanyResource[] = [];
 
@@ -21,9 +20,8 @@ export class BasicLoginComponent implements OnInit {
     this.urlArrayLength = urlArray.length;
 
     if (this.urlArrayLength === 4) {
-      this.groupName = urlArray[1];
       this.apiService
-        .getService('GetUserMasterByGroupName/' + this.groupName + '')
+        .getService('GetUserMasterByGroupName/' + urlArray[1] + '')
         .subscribe((data: Usermaster) => {
           if (data.CompanyGroupName != null) {
             apiService.setCompanyBaseUrl(data.CompanyGroupName);
@@ -41,17 +39,18 @@ export class BasicLoginComponent implements OnInit {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
   onAdminLoggedin() {
-    localStorage.setItem('isAdmin', 'true');
+    // localStorage.setItem('isAdmin', 'true');
   }
   onLoggedin() {
+    // localStorage.setItem('isAdmin', 'false');
     if (this.urlArrayLength === 4) {
-      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email,
-      this.apiService.selectedModel.Password, 'ValidateLogIn')
-      .subscribe((companyresourcedata: CompanyResource[]) => {
-        const filterData = companyresourcedata;
-        this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
-        localStorage.setItem('isAdmin', 'false');
-      });
+      debugger;
+      const a =  this.apiService.selectedModel.email;
+      const b =  this.apiService.selectedModel.password;
+      // this.apiService.getModelListById('CompanyResource', this.apiService.selectedModel.email, this.apiService.selectedModel.password, 'ValidateLogIn')
+      // .subscribe((companyresourcedata: CompanyResource[]) => {
+      //   const filterData = companyresourcedata;
+      // });
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="login-card card-body auth-body">
-          <form class="md-float-material" #basicloginForm="ngForm">
+          <form class="md-float-material">
             <div class="text-center">
               <img src="assets/images/logo.png" alt="logo.png">
             </div>
@@ -13,26 +13,25 @@
                   <h3 class="text-left txt-primary">Sign In</h3>
                 </div>
               </div>
-              <hr />
+              <hr/>
               <div class="input-group">
-                <input type="email" id="Email" class="form-control" name="Email" #name="ngModel" [(ngModel)]="apiService.selectedModel.Email"
-                  placeholder="Your Email Address" required>
+                               <input type="email" id="Email" class="form-control" name="Email" #name="ngModel"
+                [(ngModel)]="apiService.selectedModel.Email"  placeholder="Your Email Address" required>
                 <span class="md-line"></span>
               </div>
               <div class="input-group">
-                <input type="password" id="Password" class="form-control" name="Password" #name="ngModel" [(ngModel)]="apiService.selectedModel.Password"
-                  placeholder="Password" required>
+                <input type="password" class="form-control" placeholder="Password">
                 <span class="md-line"></span>
               </div>
               <div class="row m-t-25 text-left">
                 <div class="col-sm-7 col-xs-12">
-                  <!-- <div class="checkbox-fade fade-in-primary">
+                  <div class="checkbox-fade fade-in-primary">
                     <label>
                       <input type="checkbox" value="">
                       <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
                       <span class="text-inverse">Is Owner?</span>
                     </label>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="col-sm-5 col-xs-12 forgot-phone text-right">
                   <a [routerLink]="['/auth/forgot']" class="text-right f-w-600 text-inverse"> Forgot Your Password?</a>
@@ -40,23 +39,16 @@
               </div>
               <div class="row m-t-30">
                 <div class="col-md-6">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
-                    [routerLink]="['/dashboard']" (click)="onAdminLoggedin()">Admin Sign in</button>
+                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" [routerLink]="['/dashboard']" (click)="onAdminLoggedin()">Admin Sign in</button>
                 </div>
                 <div class="col-md-6">
-                  <button [disabled]="!basicloginForm.valid" type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
-                    (click)="onLoggedin()">Sign in</button>
-                </div>
-                <!-- <div class="col-md-6">
-                  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
-                    [routerLink]="['/dashboard']" (click)="onCompanyLoggedin()">Company Sign in</button>
-                </div> -->
+                    <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" [routerLink]="['/dashboard']" (click)="onCompanyLoggedin()">Company Sign in</button>
+                  </div>
               </div>
-              <hr />
+              <hr/>
               <div class="row">
                 <div class="col-md-10">
-                  <p class="text-inverse text-left m-b-0"> <a [routerLink]="['/auth/owner-register']" class="text-right f-w-600 text-inverse">
-                      <b>Register Company?</b></a></p>
+                  <p class="text-inverse text-left m-b-0"> <a [routerLink]="['/auth/owner-register']" class="text-right f-w-600 text-inverse"> <b>Register Company?</b></a></p>
                   <p class="text-inverse text-left"></p>
                 </div>
                 <div class="col-md-2">

@@ -10,48 +10,37 @@ import { CompanyResource } from '../../model/companyresource';
   styleUrls: ['./basic-login.component.scss']
 })
 export class BasicLoginComponent implements OnInit {
-  public urlArrayLength = 0;
-  public groupName = '';
+
   usermaster: Usermaster[] = [];
   companyresource: CompanyResource[] = [];
 
   constructor(private activeRoute: Router, private apiService: APIService) {
     this.apiService.selectedModel = this.usermaster;
     const urlArray = activeRoute.url.split('/');
-    this.urlArrayLength = urlArray.length;
-
-    if (this.urlArrayLength === 4) {
-      this.groupName = urlArray[1];
+    if (urlArray.length === 4) {
       this.apiService
-        .getService('GetUserMasterByGroupName/' + this.groupName + '')
+        .getService('GetUserMasterByGroupName/' + urlArray[1] + '')
         .subscribe((data: Usermaster) => {
           if (data.CompanyGroupName != null) {
             apiService.setCompanyBaseUrl(data.CompanyGroupName);
-            this.apiService.selectedModel = this.companyresource;
+            
+            
           } else {
+            alert('Invalid URL');
             this.activeRoute.navigate(['/auth/login']);
             localStorage.setItem('CompanyGroupName', '');
-            this.apiService.selectedModel = this.usermaster;
+           
           }
         });
     }
   }
-
   ngOnInit() {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
   onAdminLoggedin() {
     localStorage.setItem('isAdmin', 'true');
   }
-  onLoggedin() {
-    if (this.urlArrayLength === 4) {
-      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email,
-      this.apiService.selectedModel.Password, 'ValidateLogIn')
-      .subscribe((companyresourcedata: CompanyResource[]) => {
-        const filterData = companyresourcedata;
-        this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
-        localStorage.setItem('isAdmin', 'false');
-      });
-    }
+  onCompanyLoggedin() {
+    localStorage.setItem('isAdmin', 'false');
   }
 }

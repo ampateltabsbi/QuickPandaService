@@ -45,7 +45,7 @@ export class BasicLoginComponent implements OnInit {
   }
   onLoggedin() {
     if (this.urlArrayLength === 4) {
-      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email,
+      this.apiService.getModelByMultiplePara('CompanyResource', this.apiService.selectedModel.Email, 
       this.apiService.selectedModel.Password, 'ValidateLogIn')
       .subscribe((companyresourcedata: CompanyResource[]) => {
         const filterData = companyresourcedata;
