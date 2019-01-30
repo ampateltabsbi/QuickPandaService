@@ -3,20 +3,22 @@ import 'd3';
 import { APIService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { TaskCategoryType } from '../model/Taskcategorytype';
 import { TaskCategory } from '../model/taskcategory';
+import { TaskCategoryType } from '../model/Taskcategorytype';
+import { TaskCategoryDescription } from '../model/Taskcategorydescription';
 import { Company } from '../model/company';
 import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
-  selector: 'app-taskcategorytype',
-  templateUrl: './taskcategorytype.component.html',
-  styleUrls: ['./taskcategorytype.component.scss']
+  selector: 'app-taskcategorydescription',
+  templateUrl: './taskcategorydescription.component.html',
+  styleUrls: ['./taskcategorydescription.component.scss']
 })
-export class TaskcategorytypeComponent implements OnInit {
-  taskcategory: TaskCategory[] = [];
+export class TaskcategorydescriptionComponent implements OnInit {
   company: Company[] = [];
+  taskcategory: TaskCategory[] = [];
   taskcategorytype: TaskCategoryType[] = [];
+  taskcategorydescription: TaskCategoryDescription[] = [];
   tempFilter = [];
   submitType = 'Save';
   selectedRow: number;
@@ -34,8 +36,8 @@ export class TaskcategorytypeComponent implements OnInit {
     private notificationService: NotificationService
   ) {
     this.apiService.setBaseUrl(true);
-    this.apiService.selectedModel = this.taskcategorytype;
-    this.bindAllTaskCategoryType();
+    this.apiService.selectedModel = this.taskcategorydescription;
+    this.bindAllTaskCategoryDescription();
     this.bindActiveCompany();
   }
 
@@ -59,13 +61,16 @@ export class TaskcategorytypeComponent implements OnInit {
     }
   }
 
-  onSubmit(taskcategorytypeForm: NgForm) {
-    if (taskcategorytypeForm.value.ID === 0) {
+  onSubmit(taskcategorydescriptionForm: NgForm) {
+    if (taskcategorydescriptionForm.value.ID === 0) {
       this.apiService
-        .addService(taskcategorytypeForm.value, 'TaskCategoryType')
+        .addService(
+          taskcategorydescriptionForm.value,
+          'TaskCategoryDescription'
+        )
         .subscribe(
           result => {
-            this.bindAllTaskCategoryType();
+            this.bindAllTaskCategoryDescription();
             this.showSuccess();
             this.resetForm();
           },
@@ -76,13 +81,13 @@ export class TaskcategorytypeComponent implements OnInit {
     } else {
       this.apiService
         .updateService(
-          taskcategorytypeForm.value,
-          taskcategorytypeForm.value.ID,
-          'TaskCategoryType'
+          taskcategorydescriptionForm.value,
+          taskcategorydescriptionForm.value.ID,
+          'TaskCategoryDescription'
         )
         .subscribe(
           result => {
-            this.bindAllTaskCategoryType();
+            this.bindAllTaskCategoryDescription();
             this.showSuccess();
             this.resetForm();
           },
@@ -93,42 +98,52 @@ export class TaskcategorytypeComponent implements OnInit {
     }
   }
 
-  resetForm(taskcategorytypeForm?: NgForm) {
+  resetForm(taskcategorydescriptionForm?: NgForm) {
     this.apiService.selectedModel = {
-      CategoryTypeName: '',
+      CategoryDescriptionName: '',
       ID: 0,
       CompanyID: null,
-      CategoryID: null,
-      IsActive: false
+      CategoryTypeID: null,
+      IsActive: false,
+      CategoryID: null
     };
     this.submitType = 'Save';
     this.taskcategory = null;
+    this.taskcategorytype = null;
   }
 
-  editTaskCategoryType(taskcategorytypeId: number): void {
-    this.selectedRow = taskcategorytypeId;
-    this.apiService.selectedModel = new TaskCategoryType();
-    const tempTaskcategorytype = Object.assign(
+  editTaskCategoryDescription(taskcategorydescriptionId: number): void {
+    this.selectedRow = taskcategorydescriptionId;
+    this.apiService.selectedModel = new TaskCategoryDescription();
+    const tempTaskcategorydescription = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.bindActiveCompanyCategory(tempTaskcategorytype[0].CompanyID);
-    this.apiService.selectedModel = Object.assign({}, tempTaskcategorytype[0]);
+    this.bindActiveCompanyCategory(tempTaskcategorydescription[0].CompanyID);
+    this.bindActiveCompanyCategoryType(
+      tempTaskcategorydescription[0].CategoryID
+    );
+    this.apiService.selectedModel = Object.assign(
+      {},
+      tempTaskcategorydescription[0]
+    );
     this.submitType = 'Update';
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
-      return d.CategoryTypeName.toLowerCase().indexOf(val) !== -1 || !val;
+      return (
+        d.CategoryDescriptionName.toLowerCase().indexOf(val) !== -1 || !val
+      );
     });
     this.data = temp;
   }
 
-  bindAllTaskCategoryType() {
+  bindAllTaskCategoryDescription() {
     this.apiService
-      .getService('GetTaskCategoryType')
-      .subscribe((data: TaskCategoryType[]) => {
+      .getService('GetTaskCategoryDescription')
+      .subscribe((data: TaskCategoryDescription[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
@@ -144,9 +159,10 @@ export class TaskcategorytypeComponent implements OnInit {
   }
 
   bindActiveCompanyCategory(companyId: number) {
-    this.apiService.selectedModel.CategoryID = null;
     if (companyId === null) {
-      this.taskcategory = null;
+      this.taskcategorytype = null;
+      this.apiService.selectedModel.CategoryID = null;
+      this.apiService.selectedModel.CategoryTypeID = null;
     } else {
       this.apiService
         .getModelListById(
@@ -157,6 +173,25 @@ export class TaskcategorytypeComponent implements OnInit {
         .subscribe((categorydata: TaskCategory[]) => {
           const filterData = categorydata;
           this.taskcategory = filterData;
+          // this.taskcategorytype = null;
+        });
+    }
+  }
+
+  bindActiveCompanyCategoryType(categoryId: number) {
+    this.apiService.selectedModel.CategoryTypeID = null;
+    if (categoryId === null) {
+      this.taskcategorytype = null;
+    } else {
+      this.apiService
+        .getModelListById(
+          'TaskCategoryType',
+          categoryId,
+          'GetTaskCategoryTypeByCategoryId'
+        )
+        .subscribe((categorytypedata: TaskCategoryType[]) => {
+          const filterData = categorytypedata;
+          this.taskcategorytype = filterData;
         });
     }
   }
