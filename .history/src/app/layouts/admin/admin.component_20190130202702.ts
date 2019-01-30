@@ -80,7 +80,8 @@ export class AdminComponent implements OnInit {
     } else {
       this.apiService
         .getServiceById(
-          Number(localStorage.getItem('UserCompanyID')),
+          // localStorage.getItem('UserCompanyID') as number,
+          4,
           'GetBusinessCompanyById'
         )
         .subscribe((data: Company[]) => {

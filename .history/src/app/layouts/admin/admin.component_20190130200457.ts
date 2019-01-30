@@ -72,21 +72,22 @@ export class AdminComponent implements OnInit {
     document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService
-        .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')
+        .getModelListbyActive('Companies', 'GetActiveBusinessCompany')
         .subscribe((data: Company[]) => {
           const filterData = data;
           this.company = filterData;
         });
     } else {
-      this.apiService
-        .getServiceById(
-          Number(localStorage.getItem('UserCompanyID')),
-          'GetBusinessCompanyById'
-        )
-        .subscribe((data: Company[]) => {
-          const filterData = data;
-          this.company = filterData;
-        });
+      // this.apiService
+      //   .getModelListById(
+      //     'Companies',
+      //     localStorage.getItem('UserCompanyID'),
+      //     'GetBusinessCompanyById'
+      //   )
+      //   .subscribe((data: Company[]) => {
+      //     const filterData = data;
+      //     this.company = filterData;
+      //   });
     }
   }
 

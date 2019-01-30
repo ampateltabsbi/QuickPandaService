@@ -1,21 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {
-  state,
-  style,
-  transition,
-  animate,
-  trigger,
-  AUTO_STYLE
-} from '@angular/animations';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/animations';
 import 'rxjs/add/operator/filter';
-import { MenuItems } from '../../shared/menu-items/menu-items';
-import { APIService } from '../../shared/services/api.service';
+import {MenuItems} from '../../shared/menu-items/menu-items';
 import { Company } from '../business/model/company';
 
 @Component({
@@ -25,20 +11,20 @@ import { Company } from '../business/model/company';
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('mobileMenuTop', [
-      state(
-        'no-block, void',
+      state('no-block, void',
         style({
           overflow: 'hidden',
-          height: '0px'
+          height: '0px',
         })
       ),
-      state(
-        'yes-block',
+      state('yes-block',
         style({
-          height: AUTO_STYLE
+          height: AUTO_STYLE,
         })
       ),
-      transition('no-block <=> yes-block', [animate('400ms ease-in-out')])
+      transition('no-block <=> yes-block', [
+        animate('400ms ease-in-out')
+      ])
     ])
   ]
 })
@@ -60,42 +46,17 @@ export class AdminComponent implements OnInit {
 
   config: any;
 
-  constructor(public menuItems: MenuItems, private apiService: APIService) {
+  constructor(public menuItems: MenuItems) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
-    this.apiService.setBaseUrl(true);
   }
 
-  ngOnInit() {
-    document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
-    if (localStorage.getItem('IsCompanyAdmin') === 'true') {
-      this.apiService
-        .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')
-        .subscribe((data: Company[]) => {
-          const filterData = data;
-          this.company = filterData;
-        });
-    } else {
-      this.apiService
-        .getServiceById(
-          Number(localStorage.getItem('UserCompanyID')),
-          'GetBusinessCompanyById'
-        )
-        .subscribe((data: Company[]) => {
-          const filterData = data;
-          this.company = filterData;
-        });
-    }
-  }
+  ngOnInit() { document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName'); }
 
   onClickedOutside(e: Event) {
-    if (
-      this.windowWidth < 768 &&
-      this.toggleOn &&
-      this.verticalNavType !== 'offcanvas'
-    ) {
+    if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
       this.toggleOn = true;
       this.verticalNavType = 'offcanvas';
     }
@@ -106,11 +67,7 @@ export class AdminComponent implements OnInit {
     /* menu responsive */
     this.windowWidth = event.target.innerWidth;
     let reSizeFlag = true;
-    if (
-      this.deviceType === 'tablet' &&
-      this.windowWidth >= 768 &&
-      this.windowWidth <= 1024
-    ) {
+    if (this.deviceType === 'tablet' && this.windowWidth >= 768 && this.windowWidth <= 1024) {
       reSizeFlag = false;
     } else if (this.deviceType === 'mobile' && this.windowWidth < 768) {
       reSizeFlag = false;
@@ -139,21 +96,18 @@ export class AdminComponent implements OnInit {
 
   toggleOpened() {
     if (this.windowWidth < 768) {
-      this.toggleOn =
-        this.verticalNavType === 'offcanvas' ? true : this.toggleOn;
-      this.verticalNavType =
-        this.verticalNavType === 'expanded' ? 'offcanvas' : 'expanded';
+      this.toggleOn = this.verticalNavType === 'offcanvas' ? true : this.toggleOn;
+      this.verticalNavType = this.verticalNavType === 'expanded' ? 'offcanvas' : 'expanded';
     } else {
-      this.verticalNavType =
-        this.verticalNavType === 'expanded' ? 'offcanvas' : 'expanded';
+      this.verticalNavType = this.verticalNavType === 'expanded' ? 'offcanvas' : 'expanded';
     }
   }
   onMobileMenu() {
-    this.isCollapsedMobile =
-      this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
+    this.isCollapsedMobile = this.isCollapsedMobile === 'yes-block' ? 'no-block' : 'yes-block';
   }
 
   onScroll(event) {
     this.isScrolled = false;
   }
+
 }

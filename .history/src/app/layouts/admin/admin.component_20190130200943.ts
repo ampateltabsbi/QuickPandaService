@@ -72,7 +72,7 @@ export class AdminComponent implements OnInit {
     document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService
-        .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')
+        .getModelListbyActive('Companies', 'GetActiveBusinessCompany')
         .subscribe((data: Company[]) => {
           const filterData = data;
           this.company = filterData;
@@ -80,7 +80,8 @@ export class AdminComponent implements OnInit {
     } else {
       this.apiService
         .getServiceById(
-          Number(localStorage.getItem('UserCompanyID')),
+          // localStorage.getItem('UserCompanyID') as number,
+          4,
           'GetBusinessCompanyById'
         )
         .subscribe((data: Company[]) => {

@@ -60,15 +60,14 @@ export class BasicLoginComponent implements OnInit {
             if ( this.data1.ID > 0) {
             if (this.data1.IsAdmin === true) {
               // tslint:disable-next-line:no-unused-expression
-              this.IsCompanyAdmin = 'true';
+              this.IsCompanyAdmin === 'true';
             } else {
               // tslint:disable-next-line:no-unused-expression
-              this.IsCompanyAdmin = 'false';
+              this.IsCompanyAdmin === 'false';
             }
             localStorage.setItem('IsCompanyAdmin', this.IsCompanyAdmin);
             localStorage.setItem('UserName', this.data1.Name);
             localStorage.setItem('UserID', this.data1.ID);
-            localStorage.setItem('UserCompanyID', this.data1.CompanyID);
             localStorage.setItem('isAdmin', 'false');
             this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
           } else {

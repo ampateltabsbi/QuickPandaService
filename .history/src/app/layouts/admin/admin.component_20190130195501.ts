@@ -70,18 +70,20 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
+    debugger;
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService
-        .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')
+        .getModelListbyActive('Companies', 'GetActiveBusinessCompany')
         .subscribe((data: Company[]) => {
           const filterData = data;
           this.company = filterData;
         });
     } else {
       this.apiService
-        .getServiceById(
-          Number(localStorage.getItem('UserCompanyID')),
-          'GetBusinessCompanyById'
+        .getModelListById(
+          'Companies',
+          localStorage.getItem('UserCompanyID'),
+          'GetActiveBusinessCompany'
         )
         .subscribe((data: Company[]) => {
           const filterData = data;
