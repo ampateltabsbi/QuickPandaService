@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { APIService } from '../../../shared/services/api.service';
 import { Usermaster } from '../../model/usermaster';
 import { CompanyResource } from '../../model/companyresource';
-import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
   selector: 'app-basic-login',
@@ -18,7 +17,7 @@ export class BasicLoginComponent implements OnInit {
   public IsCompanyAdmin = '';
   data1: any;
 
-  constructor(private activeRoute: Router, private apiService: APIService, private notificationService: NotificationService) {
+  constructor(private activeRoute: Router, private apiService: APIService) {
     this.apiService.selectedModel = this.usermaster;
     const urlArray = activeRoute.url.split('/');
     this.urlArrayLength = urlArray.length;
@@ -70,7 +69,7 @@ export class BasicLoginComponent implements OnInit {
             localStorage.setItem('isAdmin', 'false');
             this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
           } else {
-            this.notificationService.notify('Error', 'Incorrect Email Address or Password.', 'error');
+            alert('Incorrect Email or Password.');
           }
         });
     }

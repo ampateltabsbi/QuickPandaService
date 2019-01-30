@@ -70,7 +70,7 @@ export class BasicLoginComponent implements OnInit {
             localStorage.setItem('isAdmin', 'false');
             this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
           } else {
-            this.notificationService.notify('Error', 'Incorrect Email Address or Password.', 'error');
+            alert('Incorrect Email Address or Password.');
           }
         });
     }
