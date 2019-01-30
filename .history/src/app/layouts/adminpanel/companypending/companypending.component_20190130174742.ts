@@ -26,6 +26,7 @@ export class CompanypendingComponent implements OnInit {
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
     this.bindPendingCompany();
+    //localStorage.setItem('abc','');
   }
 
   ngOnInit() {}

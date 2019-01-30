@@ -49,7 +49,8 @@
                 <td>{{item.Phone}}</td>                
                 <td >
                   <button class="btn btn-sm btn-success" (click)="isApprovCompany(item.ID)"><i class="icofont icofont-check-circled"></i>Approv</button>
-                  <button data-id=item.id class="btn btn-sm btn-danger" (click)="modalRejectedReason.open(item.ID)"><i class="icofont icofont-not-allowed"></i>Reject</button>                  
+                  <button data-id=item.id class="btn btn-sm btn-danger" (click)="modalRejectedReason.open(item.ID)"><i class="icofont icofont-not-allowed"></i>Reject</button>
+                  <!-- <button class="btn btn-sm btn-danger" (click)="isRejectCompany(item.ID)"><i class="icofont icofont-not-allowed"></i>Reject</button> -->
                 </td>                
               </tr>
             </tbody>

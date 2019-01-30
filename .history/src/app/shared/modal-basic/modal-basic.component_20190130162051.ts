@@ -17,15 +17,11 @@ export class ModalBasicComponent implements OnInit {
   constructor(){}
 
   ngOnInit(){
+
   }
 
-  public open(my_Id: number): void {
+  public show(my_Id: number): void {
     this.My_Id = my_Id;
-    this.visible = true;
-    setTimeout(() => this.visibleAnimate = true, 100);
-  }
-
-  public show(): void {
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
   }

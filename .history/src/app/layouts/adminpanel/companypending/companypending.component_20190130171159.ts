@@ -26,6 +26,7 @@ export class CompanypendingComponent implements OnInit {
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
     this.bindPendingCompany();
+    //localStorage.setItem('abc','');
   }
 
   ngOnInit() {}
@@ -66,6 +67,7 @@ export class CompanypendingComponent implements OnInit {
   }
 
   isRejectCompany(companyId: number, reason: string): void {
+    debugger;
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();
     const tempCompany = Object.assign(

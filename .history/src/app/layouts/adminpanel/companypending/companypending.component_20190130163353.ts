@@ -21,11 +21,11 @@ export class CompanypendingComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
   public searchString: string;
-  public bodyText = '';
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
     this.bindPendingCompany();
+    //localStorage.setItem('abc','');
   }
 
   ngOnInit() {}

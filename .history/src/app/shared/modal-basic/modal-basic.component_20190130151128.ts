@@ -12,20 +12,16 @@ export class ModalBasicComponent implements OnInit {
   @Input() hideFooter: boolean = false;
   public visible = false;
   public visibleAnimate = false;
-  public My_Id = 0;
+  public ModalId: number;
 
   constructor(){}
 
   ngOnInit(){
+
   }
 
-  public open(my_Id: number): void {
-    this.My_Id = my_Id;
-    this.visible = true;
-    setTimeout(() => this.visibleAnimate = true, 100);
-  }
-
-  public show(): void {
+  public show(modalId: number): void {
+    this.ModalId = modalId;
     this.visible = true;
     setTimeout(() => this.visibleAnimate = true, 100);
   }

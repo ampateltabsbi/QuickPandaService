@@ -21,11 +21,11 @@ export class CompanypendingComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
   public searchString: string;
-  public bodyText = '';
 
   constructor(private apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
     this.bindPendingCompany();
+    //localStorage.setItem('abc','');
   }
 
   ngOnInit() {}
@@ -65,7 +65,7 @@ export class CompanypendingComponent implements OnInit {
       );
   }
 
-  isRejectCompany(companyId: number, reason: string): void {
+  isRejectCompany(companyId: number): void {
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();
     const tempCompany = Object.assign(
@@ -73,7 +73,6 @@ export class CompanypendingComponent implements OnInit {
       this.data.filter(t => t.ID === this.selectedRow)
     );
     tempCompany[0].Rejected = true;
-    tempCompany[0].RejectedReason = reason;
     this.apiService
       .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
       .subscribe(
