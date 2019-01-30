@@ -7,6 +7,4 @@ export class Priority {
     IncludeSaturdaysInPriorityCalculation: boolean;
     IncludeSundaysInPriorityCalculation: boolean;
     IsActive: boolean;
-    CompanyID: number;
-    CompanyName: string;
 }

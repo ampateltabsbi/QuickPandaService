@@ -1,0 +1,164 @@
+<ng2-toasty></ng2-toasty>
+<section class="py-5 login d-flex text-center common-img-bg">
+  <div class="container containerColor">
+    <div class="row ">
+      <div class="col-md-3 py-5 bg-primary text-white text-center py-5-Override">
+        <div class=" ">
+          <div class="card-body">
+            <img src="assets/images/logo.png">
+            <h2 class="py-3">Registration</h2>
+            <p>Tation argumentum et usu, dicit viderer evertitur te has. Eu dictas concludaturque usu, facete detracto
+              patrioque an per, lucilius pertinacia eu vel.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 py-5 border py-5-Override">
+        <form #companyForm="ngForm" (ngSubmit)="onSubmit(companyForm)">
+          <div class="container register-form">
+            <div class="form">
+              <div class="note">
+                <p class="pHeader">
+                  Company Registration
+                </p>
+              </div>
+
+              <div class="form-content">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="CompanyName" class="col-md-4 col-form-label">Company Name</label>
+                      <div class="col-md-8">
+                        <input type="text" id="CompanyName" class="form-control" name="CompanyName" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.CompanyName" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="IsActive" class="col-md-4 col-form-label">Is Active</label>
+                      <div class="col-md-8 checkBoxAlign">
+                        <!-- <input type="text" id="IsActive" class="form-control" name="IsActive"> -->
+                        <div class="checkbox-fade fade-in-primary">
+                          <label>
+                            <input type="checkbox" value="" #name="ngModel" [(ngModel)]="apiService.selectedModel.IsActive">
+                            <span class="cr"><i class="cr-icon icofont icofont-ui-check txt-primary"></i></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Address1</label>
+                      <div class="col-sm-8">
+                        <input type="text" id="Address1" class="form-control" name="Address1" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.Address1" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Address2</label>
+                      <div class="col-sm-8">
+                        <input type="text" id="Address2" class="form-control" name="Address2" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.Address2">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Country</label>
+                      <div class="col-sm-8">
+                          <select class="form-control" name="CountryID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CountryID"
+                          (change)="onSelectCountry($event.target.value)" required>
+                          <option [ngValue]="0" selected>Please Select</option>
+                          <option *ngFor="let _countrymaster of countrymaster" [ngValue]="_countrymaster.ID">
+                            {{_countrymaster.CountryName}}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-form-label">State</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" name="StateID" #name="ngModel" [(ngModel)]="apiService.selectedModel.StateID"
+                            (change)="onSelectState($event.target.value)" required>
+                            <option [ngValue]="0" selected>Please Select</option>
+                            <option *ngFor="let _statemaster of statemaster" [ngValue]="_statemaster.ID">
+                              {{_statemaster.StateName}}
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-sm-4 col-form-label">City</label>
+                          <div class="col-sm-8">
+                              <select class="form-control" name="CityID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CityID"
+                              required>
+                              <option [ngValue]="0" selected>Please Select</option>
+                              <option *ngFor="let _statemaster of statemaster" [ngValue]="_statemaster.ID">
+                                {{_statemaster.StateName}}
+                            </select>
+                          </div>
+                        </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label for="Email" class="col-md-4 col-form-label">Email</label>
+                      <div class="col-md-8">
+                        <input type="text" id="Email" class="form-control" name="Email" #name="ngModel" [(ngModel)]="apiService.selectedModel.Email"
+                          required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="Phone" class="col-md-4 col-form-label">Phone</label>
+                      <div class="col-md-8">
+                        <input type="text" id="Phone" class="form-control" name="Phone" #name="ngModel" [(ngModel)]="apiService.selectedModel.Phone"
+                          required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Post Code</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="text" name="PinCode" placeholder="PinCode" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.PinCode">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Web Address</label>
+                      <div class="col-sm-8">
+                        <input class="form-control" type="text" name="WebAddress" placeholder="WebAddress" #name="ngModel"
+                          [(ngModel)]="apiService.selectedModel.WebAddress">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Company Logo</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Registration Number</label>
+                      <div class="col-sm-8">
+                          <label class="col-form-label">{{RegistrationNo}}</label>
+
+                        <!-- <input class="form-control" type="text" name="RegistrationNumber" placeholder="RegistrationNumber"
+                        #name="ngModel" [(ngModel)]="apiService.selectedModel.RegistrationNumber" readonly> {{RegistrationNumber}} -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-8"></div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-info btn-md btn-block waves-effect text-center m-b-20">
+                  <i class="icofont icofont-edit"></i>Edit Owner
+                </button>
+              </div>
+              <div class="col-md-2">
+                <button [disabled]="!companyForm.valid" type="submit" class="btn btn-info btn-md btn-block waves-effect text-center m-b-20">
+                  <i class="icofont icofont-save"></i>Submit
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+.form-control.ng-untouched,
+.form-control.ng-valid {
+    border-color: green !important;
+}
+
+.form-control.ng-invalid {
+    border-color: red !important;
+}

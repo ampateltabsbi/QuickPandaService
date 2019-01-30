@@ -54,6 +54,7 @@ export class APIService {
     return this.http.get(this.baseUrl + apiName, modelName);
   };
   updateService(model, modeId, modelName) {
+    debugger;
     return this.http.put(this.baseUrl + modelName + '/' + modeId, model);
   }
 
