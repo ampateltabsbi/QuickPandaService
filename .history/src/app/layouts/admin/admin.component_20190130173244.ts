@@ -49,6 +49,8 @@ export class AdminComponent implements OnInit {
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
+
+    
   }
 
   ngOnInit() { document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName'); }

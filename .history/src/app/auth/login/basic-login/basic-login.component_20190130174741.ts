@@ -55,8 +55,8 @@ export class BasicLoginComponent implements OnInit {
           'ValidateLogIn'
         )
         .subscribe((companyresourcedata: CompanyResource[]) => {
+          if (companyresourcedata != null) {
             this.data1 = companyresourcedata;
-            if ( this.data1.ID > 0) {
             if (this.data1.IsAdmin === true) {
               // tslint:disable-next-line:no-unused-expression
               this.IsCompanyAdmin === 'true';

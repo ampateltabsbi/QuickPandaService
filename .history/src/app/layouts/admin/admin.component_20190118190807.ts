@@ -51,7 +51,7 @@ export class AdminComponent implements OnInit {
     this.setMenuAttributs(this.windowWidth);
   }
 
-  ngOnInit() { document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName'); }
+  ngOnInit() { }
 
   onClickedOutside(e: Event) {
     if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
