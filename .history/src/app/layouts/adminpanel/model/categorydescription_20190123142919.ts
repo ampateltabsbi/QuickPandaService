@@ -4,6 +4,4 @@ export class Categorydescription {
     CategoryTypeID: number;
     IsActive: boolean;
     CategoryTypeName: string;
-    CategoryID: number;
-    CategoryName: string;
 }

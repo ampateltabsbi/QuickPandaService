@@ -32,6 +32,7 @@ export class CategorydescriptionComponent implements OnInit {
   constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
      this.apiService.selectedModel = Categorydescription;
      this.bindAllCategorydescription();
+     //this.bindActiveCategoryType();
      this.bindActiveCategory();
    }
 
@@ -89,7 +90,7 @@ export class CategorydescriptionComponent implements OnInit {
     this.selectedRow = categorydescriptionId;
     this.apiService.selectedModel = new Categorydescription();
     const tempCategoryType  =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
-    this.bindActiveCategoryType(tempCategoryType[0].CategoryID);
+    //this.bindActiveCategoryType(tempCategoryType[0].CategoryID);
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
   }
@@ -110,13 +111,12 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   bindActiveCategoryType(categoryId: number) {
-    debugger;
     this.apiService.selectedModel.CategoryTypeID = null;
     if (categoryId === null) {
       this.categorytype = null;
     } else {
       this.apiService
-      .getModelListById('CategoryTypes', categoryId, 'GetCategoryTypeByCategoryId')
+      .getModelListById('CategoryType', categoryId, 'GetCategoryTypeByCategoryId')
       .subscribe((categorytypedata: Categorytype[]) => {
         const filterData = categorytypedata;
         this.categorytype = filterData;

@@ -32,6 +32,7 @@ export class CategorydescriptionComponent implements OnInit {
   constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
      this.apiService.selectedModel = Categorydescription;
      this.bindAllCategorydescription();
+     //this.bindActiveCategoryType();
      this.bindActiveCategory();
    }
 
@@ -110,7 +111,6 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   bindActiveCategoryType(categoryId: number) {
-    debugger;
     this.apiService.selectedModel.CategoryTypeID = null;
     if (categoryId === null) {
       this.categorytype = null;

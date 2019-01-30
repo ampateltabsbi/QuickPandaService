@@ -1,40 +1,44 @@
-import 'd3';
 import { Component, OnInit } from '@angular/core';
+import 'd3';
 import { APIService } from '../../../shared/services/api.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { Categorydescription } from '../model/categorydescription';
+import { Categorytype } from '../model/categorytype';
 import { Category } from '../model/category';
-import { Categorytype } from './../model/categorytype';
 
 @Component({
-  selector: 'app-categorytype',
-  templateUrl: './categorytype.component.html',
-  styleUrls: ['./categorytype.component.scss']
+  selector: 'app-categorydescription',
+  templateUrl: './categorydescription.component.html',
+  styleUrls: ['./categorydescription.component.scss']
 })
-export class CategorytypeComponent implements OnInit {
+export class CategorydescriptionComponent implements OnInit {
+
+  categorydescription: Categorydescription[] = [];
   categorytype: Categorytype[] = [];
   category: Category[] = [];
   tempFilter = [];
   submitType = 'Save';
   selectedRow: number;
-  public searchString: string;
+
   public data: any;
   public rowsOnPage = 10;
   public filterQuery = '';
   public sortBy = '';
   public sortOrder = 'desc';
+  public searchString: string;
 
   constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
-    this.apiService.selectedModel = Categorytype;
-    this.bindAllCategorytype();
-    this.bindActiveCategory();
-  }
+     this.apiService.selectedModel = Categorydescription;
+     this.bindAllCategorydescription();
+     //this.bindActiveCategoryType();
+     this.bindActiveCategory();
+   }
 
-  ngOnInit() {
-     this.resetForm();
+   ngOnInit() {
+    this.resetForm();
   }
-
 
   showSuccess() {
     if (this.submitType === 'Save') {
@@ -44,11 +48,11 @@ export class CategorytypeComponent implements OnInit {
     }
   }
 
-  onSubmit(categorytypeForm: NgForm) {
-    if (categorytypeForm.value.ID === 0) {
-      this.apiService.addService(categorytypeForm.value, 'CategoryTypes').subscribe(
+  onSubmit(categorydescriptionForm: NgForm) {
+    if (categorydescriptionForm.value.ID === 0) {
+      this.apiService.addService(categorydescriptionForm.value, 'CategoryDescriptions').subscribe(
         result => {
-          this.bindAllCategorytype();
+          this.bindAllCategorydescription();
           this.showSuccess();
           this.resetForm();
         },
@@ -57,9 +61,9 @@ export class CategorytypeComponent implements OnInit {
         }
       );
     } else {
-      this.apiService.updateService(categorytypeForm.value, categorytypeForm.value.ID, 'CategoryTypes').subscribe(
+      this.apiService.updateService(categorydescriptionForm.value, categorydescriptionForm.value.ID, 'CategoryDescriptions').subscribe(
         result => {
-          this.bindAllCategorytype();
+          this.bindAllCategorydescription();
           this.showSuccess();
           this.resetForm();
         },
@@ -70,20 +74,23 @@ export class CategorytypeComponent implements OnInit {
     }
   }
 
-  resetForm(categorytypeForm?: NgForm) {
+  resetForm(categorydescriptionForm?: NgForm) {
     this.apiService.selectedModel = {
       Name: '',
       ID: 0,
-      CategoryID: null,
+      CategoryTypeID: null,
       IsActive: false,
+      CategoryID: null
     };
     this.submitType = 'Save';
+    this.categorytype = null;
   }
 
-  editCategorytype(categorytypeId: number): void {
-    this.selectedRow = categorytypeId;
-    this.apiService.selectedModel = new Categorytype();
-    const tempCategoryType =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+  editCategorydescription(categorydescriptionId: number): void {
+    this.selectedRow = categorydescriptionId;
+    this.apiService.selectedModel = new Categorydescription();
+    const tempCategoryType  =  Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
+    //this.bindActiveCategoryType(tempCategoryType[0].CategoryID);
     this.apiService.selectedModel = Object.assign({}, tempCategoryType[0]);
     this.submitType = 'Update';
   }
@@ -96,17 +103,22 @@ export class CategorytypeComponent implements OnInit {
     this.data = temp;
   }
 
-  bindAllCategorytype() {
-    this.apiService.getService('CategoryTypes').subscribe((data: Categorytype[]) => {
+  bindAllCategorydescription() {
+    this.apiService.getService('CategoryDescriptions').subscribe((data: Categorydescription[]) => {
       this.tempFilter = [...data];
       this.data = data;
     });
   }
 
+  bindActiveCategoryType() {
+    this.apiService.getModelListbyActive('CategoryType', 'GetActiveCategoryTypes').subscribe((data: Categorytype[]) => {
+      this.categorytype = data;
+    });
+  }
+
   bindActiveCategory() {
     this.apiService.getModelListbyActive('Categories', 'GetActiveCategories').subscribe((data: Category[]) => {
-      const filterData = data;
-      this.category = filterData;
+      this.category = data;
     });
   }
 }

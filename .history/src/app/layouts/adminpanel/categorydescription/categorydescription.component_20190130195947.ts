@@ -110,7 +110,6 @@ export class CategorydescriptionComponent implements OnInit {
   }
 
   bindActiveCategoryType(categoryId: number) {
-    debugger;
     this.apiService.selectedModel.CategoryTypeID = null;
     if (categoryId === null) {
       this.categorytype = null;
