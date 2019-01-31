@@ -44,7 +44,7 @@ export class TaskcategoryComponent implements OnInit {
   }
 
   onSubmit(taskcategoryForm: NgForm) {
-    taskcategoryForm.value.CompanyID = this.SelectedCompanyID;
+    priorityForm.value.CompanyID = this.SelectedCompanyID;
     if (taskcategoryForm.value.ID === 0) {
       this.apiService.addService(taskcategoryForm.value, 'TaskCategory').subscribe(
         result => {

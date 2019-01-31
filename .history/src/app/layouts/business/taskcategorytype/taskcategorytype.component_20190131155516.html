@@ -1,8 +1,8 @@
 <ng2-toasty></ng2-toasty>
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'Status'">
-      <form #statusForm="ngForm" (ngSubmit)="onSubmit(statusForm)">
+    <app-card [title]="'Task Category Type'">
+      <form #taskcategorytypeForm="ngForm" (ngSubmit)="onSubmit(taskcategorytypeForm)">
         <div class="form-group row">
           <div class="col-sm-6">
             <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID"
@@ -10,12 +10,23 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Status</label>
+          <label class="col-sm-2 col-form-label">Task Category</label>
           <div class="col-sm-6">
-            <input class="form-control" type="text" name="Name" placeholder="Status" #name="ngModel" [(ngModel)]="apiService.selectedModel.Name"
+            <select class="form-control" name="CategoryID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CategoryID"
               required>
+              <option [ngValue]="null" selected>Please Select</option>
+              <option *ngFor="let _taskcategory of taskcategory" [ngValue]="_taskcategory.ID">
+                {{_taskcategory.CategoryName}}
+            </select>
           </div>
         </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Task Category Type</label>
+            <div class="col-sm-6">
+              <input class="form-control" type="text" name="CategoryTypeName" placeholder="Task Category Type" #name="ngModel" [(ngModel)]="apiService.selectedModel.CategoryTypeName"
+                required>
+            </div>
+          </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Is Active</label>
           <div class="col-sm-6">
@@ -33,10 +44,10 @@
           <div class="col-sm-2">
           </div>
           <div class="col-sm-6 buttons-container">
-            <button class="btn btn-info" [disabled]="!statusForm.valid" type="submit">
+            <button class="btn btn-info" [disabled]="!taskcategorytypeForm.valid" type="submit">
               <i class="icofont icofont-check-circled"></i>{{submitType}}
             </button>
-            <button class="btn btn-danger" type="button" (click)="resetForm(statusForm)">
+            <button class="btn btn-danger" type="button" (click)="resetForm(taskcategorytypeForm)">
               <i class="icofont icofont-not-allowed"></i>Cancel
             </button>
           </div>
@@ -51,7 +62,7 @@
                   <label class="form-inline f-right">
                     <div class="form-group">
                       <label class="label-control">Search:
-                        <input type='text' class="form-control input-sm m-l-10" placeholder='Status' (keyup)='updateFilter($event)' />
+                        <input type='text' class="form-control input-sm m-l-10" placeholder='Task Category Type' (keyup)='updateFilter($event)' />
                       </label>
                     </div>
                   </label>
@@ -65,8 +76,14 @@
               <thead>
                 <tr>
                   <th>
-                    <mfDefaultSorter by="Name">Status</mfDefaultSorter>
+                    <mfDefaultSorter by="CompanyName">Company</mfDefaultSorter>
                   </th>
+                  <th>
+                    <mfDefaultSorter by="CategoryName">Task Category</mfDefaultSorter>
+                  </th>
+                  <th>
+                      <mfDefaultSorter by="CategoryTypeName">Task Category Type</mfDefaultSorter>
+                    </th>
                   <th>
                     <mfDefaultSorter by="IsActive">Is Active ?</mfDefaultSorter>
                   </th>
@@ -77,10 +94,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
-                  <td>{{item.Name}}</td>
+                  <td>{{item.CompanyName}}</td>
+                  <td>{{item.CategoryName}}</td>
+                  <td>{{item.CategoryTypeName}}</td>
                   <td>{{item.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editStatus(item.ID)"
+                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editTaskCategoryType(item.ID)"
                       style="font-size: 13px;">
                       <i class="fa fa-pencil-square-o"></i>Edit</button>
                   </td>

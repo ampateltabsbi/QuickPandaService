@@ -135,7 +135,7 @@ export class TaskcategorydescriptionComponent implements OnInit {
     if (categoryId === null) {
       this.taskcategorytype = null;
     } else {
-      this.apiService.getModelListById('TaskCategoryTypes', categoryId, 'GetTaskCategoryTypeByCategoryId')
+      this.apiService.getModelListById('TaskCategoryType', categoryId, 'GetTaskCategoryTypeByCategoryId')
         .subscribe((categorytypedata: TaskCategoryType[]) => {
           const filterData = categorytypedata;
           this.taskcategorytype = filterData;

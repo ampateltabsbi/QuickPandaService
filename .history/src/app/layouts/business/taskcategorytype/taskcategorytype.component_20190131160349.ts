@@ -33,7 +33,6 @@ export class TaskcategorytypeComponent implements OnInit {
     this.apiService.setBaseUrl(true);
     this.apiService.selectedModel = this.taskcategorytype;
     this.bindAllTaskCategoryType();
-    this.bindActiveCompanyCategory();
   }
 
   ngOnInit() {
@@ -92,6 +91,7 @@ export class TaskcategorytypeComponent implements OnInit {
       IsActive: false
     };
     this.submitType = 'Save';
+    this.taskcategory = null;
   }
 
   editTaskCategoryType(taskcategorytypeId: number): void {
@@ -101,6 +101,7 @@ export class TaskcategorytypeComponent implements OnInit {
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
+    this.bindActiveCompanyCategory(tempTaskcategorytype[0].CompanyID);
     this.apiService.selectedModel = Object.assign({}, tempTaskcategorytype[0]);
     this.submitType = 'Update';
   }
@@ -121,11 +122,16 @@ export class TaskcategorytypeComponent implements OnInit {
       });
   }
 
-  bindActiveCompanyCategory() {
-    this.apiService.getModelListById('TaskCategories', this.SelectedCompanyID, 'GetActiveTaskCategoryByCompanyId')
+  bindActiveCompanyCategory(companyId: number) {
+    this.apiService.selectedModel.CategoryID = null;
+    if (companyId === null) {
+      this.taskcategory = null;
+    } else {
+      this.apiService.getModelListById('TaskCategory', companyId, 'GetActiveTaskCategoryByCompanyId')
         .subscribe((categorydata: TaskCategory[]) => {
           const filterData = categorydata;
           this.taskcategory = filterData;
         });
+    }
   }
 }

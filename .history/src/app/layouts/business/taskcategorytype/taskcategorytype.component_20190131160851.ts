@@ -92,6 +92,7 @@ export class TaskcategorytypeComponent implements OnInit {
       IsActive: false
     };
     this.submitType = 'Save';
+    this.taskcategory = null;
   }
 
   editTaskCategoryType(taskcategorytypeId: number): void {
@@ -101,6 +102,7 @@ export class TaskcategorytypeComponent implements OnInit {
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
+    this.bindActiveCompanyCategory();
     this.apiService.selectedModel = Object.assign({}, tempTaskcategorytype[0]);
     this.submitType = 'Update';
   }

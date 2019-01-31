@@ -34,7 +34,7 @@ export class TaskcategorydescriptionComponent implements OnInit {
     this.apiService.setBaseUrl(true);
     this.apiService.selectedModel = this.taskcategorydescription;
     this.bindAllTaskCategoryDescription();
-    this.bindActiveCompanyCategory();
+    // this.bindActiveCompany();
   }
 
   ngOnInit() {
@@ -89,15 +89,25 @@ export class TaskcategorydescriptionComponent implements OnInit {
       CategoryID: null
     };
     this.submitType = 'Save';
+    this.taskcategory = null;
     this.taskcategorytype = null;
   }
 
   editTaskCategoryDescription(taskcategorydescriptionId: number): void {
     this.selectedRow = taskcategorydescriptionId;
     this.apiService.selectedModel = new TaskCategoryDescription();
-    const tempTaskcategorydescription = Object.assign({}, this.data.filter(t => t.ID === this.selectedRow));
-    this.bindActiveCompanyCategoryType(tempTaskcategorydescription[0].CategoryID);
-    this.apiService.selectedModel = Object.assign({}, tempTaskcategorydescription[0]);
+    const tempTaskcategorydescription = Object.assign(
+      {},
+      this.data.filter(t => t.ID === this.selectedRow)
+    );
+    this.bindActiveCompanyCategory(tempTaskcategorydescription[0].CompanyID);
+    this.bindActiveCompanyCategoryType(
+      tempTaskcategorydescription[0].CategoryID
+    );
+    this.apiService.selectedModel = Object.assign(
+      {},
+      tempTaskcategorydescription[0]
+    );
     this.submitType = 'Update';
   }
 
@@ -127,7 +137,7 @@ export class TaskcategorydescriptionComponent implements OnInit {
         .subscribe((categorydata: TaskCategory[]) => {
           const filterData = categorydata;
           this.taskcategory = filterData;
-    });
+        });
   }
 
   bindActiveCompanyCategoryType(categoryId: number) {
@@ -135,7 +145,12 @@ export class TaskcategorydescriptionComponent implements OnInit {
     if (categoryId === null) {
       this.taskcategorytype = null;
     } else {
-      this.apiService.getModelListById('TaskCategoryTypes', categoryId, 'GetTaskCategoryTypeByCategoryId')
+      this.apiService
+        .getModelListById(
+          'TaskCategoryType',
+          categoryId,
+          'GetTaskCategoryTypeByCategoryId'
+        )
         .subscribe((categorytypedata: TaskCategoryType[]) => {
           const filterData = categorytypedata;
           this.taskcategorytype = filterData;

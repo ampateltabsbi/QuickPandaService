@@ -3,16 +3,16 @@ import 'd3';
 import { APIService } from '../../../shared/services/api.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { TaskCategory } from '../model/taskcategory';
+import { Status } from '../model/status';
 import { NotificationService } from '../../../shared/services/notification.service';
 
 @Component({
-  selector: 'app-taskcategory',
-  templateUrl: './taskcategory.component.html',
-  styleUrls: ['./taskcategory.component.scss']
+  selector: 'app-status',
+  templateUrl: './status.component.html',
+  styleUrls: ['./status.component.scss']
 })
-export class TaskcategoryComponent implements OnInit {
-  taskcategory: TaskCategory[] = [];
+export class StatusComponent implements OnInit {
+  status: Status[] = [];
   tempFilter = [];
   submitType = 'Save';
   selectedRow: number;
@@ -27,8 +27,8 @@ export class TaskcategoryComponent implements OnInit {
   constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
     this.SelectedCompanyID = Number(localStorage.getItem('SelectedCompanyID'));
     this.apiService.setBaseUrl(true);
-    this.apiService.selectedModel = this.taskcategory;
-    this.bindAllTaskcategory();
+    this.apiService.selectedModel = this.status;
+    this.bindAllStatus();
   }
 
   ngOnInit() {
@@ -43,12 +43,12 @@ export class TaskcategoryComponent implements OnInit {
     }
   }
 
-  onSubmit(taskcategoryForm: NgForm) {
-    taskcategoryForm.value.CompanyID = this.SelectedCompanyID;
-    if (taskcategoryForm.value.ID === 0) {
-      this.apiService.addService(taskcategoryForm.value, 'TaskCategory').subscribe(
+  onSubmit(statusForm: NgForm) {
+    statusForm.value.CompanyID = this.SelectedCompanyID;
+    if (statusForm.value.ID === 0) {
+      this.apiService.addService(statusForm.value, 'Status').subscribe(
         result => {
-          this.bindAllTaskcategory();
+          this.bindAllStatus();
           this.showSuccess();
           this.resetForm();
         },
@@ -58,10 +58,10 @@ export class TaskcategoryComponent implements OnInit {
       );
     } else {
       this.apiService
-        .updateService(taskcategoryForm.value, taskcategoryForm.value.ID, 'TaskCategory')
+        .updateService(statusForm.value, statusForm.value.ID, 'Status')
         .subscribe(
           result => {
-            this.bindAllTaskcategory();
+            this.bindAllStatus();
             this.showSuccess();
             this.resetForm();
           },
@@ -72,9 +72,9 @@ export class TaskcategoryComponent implements OnInit {
     }
   }
 
-  resetForm(taskcategoryForm?: NgForm) {
+  resetForm(statusForm?: NgForm) {
     this.apiService.selectedModel = {
-      CategoryName: '',
+      Name: '',
       ID: 0,
       CompanyID: 0,
       IsActive: false
@@ -82,28 +82,27 @@ export class TaskcategoryComponent implements OnInit {
     this.submitType = 'Save';
   }
 
-  editTaskCategory(taskcategoryId: number): void {
-    this.selectedRow = taskcategoryId;
-    this.apiService.selectedModel = new TaskCategory();
-    const tempTaskcategory = Object.assign(
+  editStatus(statusId: number): void {
+    this.selectedRow = statusId;
+    this.apiService.selectedModel = new Status();
+    const tempStatus = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.apiService.selectedModel = Object.assign({}, tempTaskcategory[0]);
+    this.apiService.selectedModel = Object.assign({}, tempStatus[0]);
     this.submitType = 'Update';
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
-      return d.CategoryName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.Name.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.data = temp;
   }
 
-  bindAllTaskcategory() {
-    this.apiService.getModelListById('TaskCategories', this.SelectedCompanyID, 'GetTaskCategoryByCompanyId').
-    subscribe((data: TaskCategory[]) => {
+  bindAllStatus() {
+    this.apiService.getModelListById('Status', this.SelectedCompanyID, 'GetPriorityByCompanyId').subscribe((data: Status[]) => {
       this.tempFilter = [...data];
       this.data = data;
     });

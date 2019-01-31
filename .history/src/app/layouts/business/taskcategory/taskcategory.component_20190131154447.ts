@@ -44,7 +44,7 @@ export class TaskcategoryComponent implements OnInit {
   }
 
   onSubmit(taskcategoryForm: NgForm) {
-    taskcategoryForm.value.CompanyID = this.SelectedCompanyID;
+    priorityForm.value.CompanyID = this.SelectedCompanyID;
     if (taskcategoryForm.value.ID === 0) {
       this.apiService.addService(taskcategoryForm.value, 'TaskCategory').subscribe(
         result => {
@@ -102,10 +102,16 @@ export class TaskcategoryComponent implements OnInit {
   }
 
   bindAllTaskcategory() {
-    this.apiService.getModelListById('TaskCategories', this.SelectedCompanyID, 'GetTaskCategoryByCompanyId').
-    subscribe((data: TaskCategory[]) => {
+    this.apiService.getService('GetTaskCategory').subscribe((data: TaskCategory[]) => {
       this.tempFilter = [...data];
       this.data = data;
+    });
+  }
+
+  bindActiveCompany() {
+    this.apiService.getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany').subscribe((data: Company[]) => {
+      const filterData = data;
+      this.company = filterData;
     });
   }
 }
