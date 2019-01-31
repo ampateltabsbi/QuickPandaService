@@ -57,9 +57,8 @@ export class AdminComponent implements OnInit {
   @ViewChild('toggleButton') toggle_button: ElementRef;
   @ViewChild('sideMenu') side_menu: ElementRef;
   company: Company[] = [];
+  selectedItem: any;
   config: any;
-  public IsSuperAdmin = false;
-  lblUserName = '';
 
   constructor(public menuItems: MenuItems, private apiService: APIService) {
     const scrollHeight = window.screen.height - 150;
@@ -70,18 +69,13 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('isAdmin') === 'true') {
-      this.IsSuperAdmin = true;
-    } else {
-      this.lblUserName = localStorage.getItem('UserName');
-    }
+    document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService
         .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')
         .subscribe((data: Company[]) => {
           const filterData = data;
           this.company = filterData;
-          localStorage.setItem('SelectedCompanyID', String(this.company[0].ID));
         });
     } else {
       this.apiService
@@ -92,14 +86,17 @@ export class AdminComponent implements OnInit {
         .subscribe((data: Company[]) => {
           const filterData = data;
           this.company = filterData;
-          localStorage.setItem('SelectedCompanyID', String(this.company[0].ID));
         });
     }
+    debugger;
+    
+    localStorage.setItem('SelectedCompanyID', String(this.company[0].ID));
+   // localStorage.setItem('SelectedCompanyID', Number(this.company[0].ID));
+    this.selectedItem = this.company[0].ID;
   }
 
   onChange($event: any) {
    localStorage.setItem('SelectedCompanyID', $event.ID);
-   // this.activeRoute.navigate(['/' + this.groupName + '/dashboard']);
   }
 
   onClickedOutside(e: Event) {

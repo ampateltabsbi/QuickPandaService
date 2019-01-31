@@ -5,6 +5,7 @@ import { NotificationService } from '../../../shared/services/notification.servi
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { Priority } from '../model/priority';
+import { Company } from '../model/company';
 
 @Component({
   selector: 'app-priority',
@@ -13,6 +14,7 @@ import { Priority } from '../model/priority';
 })
 export class PriorityComponent implements OnInit {
   priority: Priority[] = [];
+  company: Company[] = [];
   submitType = 'Save';
   selectedRow: number;
   tempFilter = [];
@@ -29,6 +31,7 @@ export class PriorityComponent implements OnInit {
     this.apiService.setBaseUrl(true);
     this.apiService.selectedModel = this.priority;
     this.bindAllPriority();
+    // this.bindActiveCompany();
   }
 
   ngOnInit() {
@@ -44,7 +47,6 @@ export class PriorityComponent implements OnInit {
   }
 
   onSubmit(priorityForm: NgForm) {
-    priorityForm.value.CompanyID = this.SelectedCompanyID;
     if (priorityForm.value.ID === 0) {
       this.apiService.addService(priorityForm.value, 'Priority').subscribe(
         result => {
@@ -82,7 +84,7 @@ export class PriorityComponent implements OnInit {
       IncludeSaturdaysInPriorityCalculation: false,
       IncludeSundaysInPriorityCalculation: false,
       IsActive: false,
-      CompanyID: 0
+      CompanyID: null
     };
     this.submitType = 'Save';
   }
@@ -107,9 +109,16 @@ export class PriorityComponent implements OnInit {
   }
 
   bindAllPriority() {
-    this.apiService.getModelListById('Priorities', this.SelectedCompanyID, 'GetPriorityByCompanyId').subscribe((data: Priority[]) => {
+    this.apiService.getService('GetPriority').subscribe((data: Priority[]) => {
       this.tempFilter = [...data];
       this.data = data;
     });
   }
+
+  // bindActiveCompany() {
+  //   this.apiService.getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany').subscribe((data: Company[]) => {
+  //     const filterData = data;
+  //     this.company = filterData;
+  //   });
+  // }
 }

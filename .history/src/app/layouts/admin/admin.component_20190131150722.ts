@@ -59,7 +59,7 @@ export class AdminComponent implements OnInit {
   company: Company[] = [];
   config: any;
   public IsSuperAdmin = false;
-  lblUserName = '';
+  public IsNotSuperAdmin = false;
 
   constructor(public menuItems: MenuItems, private apiService: APIService) {
     const scrollHeight = window.screen.height - 150;
@@ -73,8 +73,12 @@ export class AdminComponent implements OnInit {
     if (localStorage.getItem('isAdmin') === 'true') {
       this.IsSuperAdmin = true;
     } else {
-      this.lblUserName = localStorage.getItem('UserName');
+      this.IsNotSuperAdmin = true;
+      document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
     }
+    // if (localStorage.getItem('UserName') !== '') {
+      
+    // }
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService
         .getModelListbyActive('BusinessCompanies', 'GetActiveBusinessCompany')

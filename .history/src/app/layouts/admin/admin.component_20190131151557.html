@@ -227,10 +227,10 @@
                   </li>
                 </ul>
               </li> -->
-              <li class="user-profile header-notification" *ngIf="!IsSuperAdmin">
+              <li class="user-profile header-notification"  *ngIf="!IsSuperAdmin">
                 <a [routerLink]="['/']">
                   <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>{{lblUserName}}</span>
+                  <span id="lblUserName"></span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">

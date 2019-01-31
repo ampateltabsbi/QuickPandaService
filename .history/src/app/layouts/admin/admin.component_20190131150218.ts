@@ -58,8 +58,7 @@ export class AdminComponent implements OnInit {
   @ViewChild('sideMenu') side_menu: ElementRef;
   company: Company[] = [];
   config: any;
-  public IsSuperAdmin = false;
-  lblUserName = '';
+  public IsSuperAdmin = true;
 
   constructor(public menuItems: MenuItems, private apiService: APIService) {
     const scrollHeight = window.screen.height - 150;
@@ -70,10 +69,18 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.getItem('isAdmin') === 'true') {
+    debugger;
+
+    if (localStorage.getItem('isAdmin') !== 'true') {
       this.IsSuperAdmin = true;
     } else {
-      this.lblUserName = localStorage.getItem('UserName');
+      this.IsSuperAdmin = false;
+    }
+
+
+
+    if (localStorage.getItem('UserName') !== '') {
+      // document.getElementById('lblUserName').innerHTML = localStorage.getItem('UserName');
     }
     if (localStorage.getItem('IsCompanyAdmin') === 'true') {
       this.apiService

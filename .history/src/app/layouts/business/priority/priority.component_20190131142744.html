@@ -9,6 +9,17 @@
               required>
           </div>
         </div>
+        <!-- <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Company</label>
+          <div class="col-sm-4">
+            <select class="form-control" name="CompanyID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CompanyID"
+              required>
+              <option [ngValue]="null" selected>Please Select</option>
+              <option *ngFor="let _company of company" [ngValue]="_company.ID">
+                {{_company.CompanyName}}
+            </select>
+          </div>
+        </div> -->
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Priority</label>
           <div class="col-sm-4">
@@ -107,6 +118,9 @@
               #mf="mfDataTable" [mfRowsOnPage]="5" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
                 <tr>
+                  <!-- <th>
+                    <mfDefaultSorter by="CompanyName">Company</mfDefaultSorter>
+                  </th> -->
                   <th>
                     <mfDefaultSorter by="Name">Priority</mfDefaultSorter>
                   </th>
@@ -126,6 +140,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
+                  <!-- <td>{{item.CompanyName}}</td> -->
                   <td>{{item.Name}}</td>
                   <td>{{item.IncludeSaturdaysInPriorityCalculation ? 'Yes':'No'}}</td>
                   <td>{{item.IncludeSundaysInPriorityCalculation ? 'Yes':'No'}}</td>

@@ -24,12 +24,12 @@
               <li>
                 <div class="sidebar_toggle"><a href="javascript:;" (click)="toggleOpened()"><i class="ti-menu f-18"></i></a></div>
               </li>
-              <li *ngIf="!IsSuperAdmin">
+              <li>
                 <span>Company</span>
               </li>
-              <li style="width: 400px; padding-top: 9px;"  *ngIf="!IsSuperAdmin">
-                <select class="form-control form-control-primary"   (change)="onChange(company[$event.target.selectedIndex])">
-                    <option *ngFor="let _company of company" [value]="_company.ID">
+              <li style="width: 400px; padding-top: 9px;">
+                <select class="form-control form-control-primary"  name="SelectCompanyID">
+                    <option *ngFor="let _company of company" [ngValue]="_company.ID">
                         {{_company.CompanyName}}
                 </select>
               </li>
@@ -227,10 +227,10 @@
                   </li>
                 </ul>
               </li> -->
-              <li class="user-profile header-notification" *ngIf="!IsSuperAdmin">
+              <li class="user-profile header-notification">
                 <a [routerLink]="['/']">
                   <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>{{lblUserName}}</span>
+                  <span id="lblUserName"></span>
                   <i class="ti-angle-down"></i>
                 </a>
                 <ul class="show-notification profile-notification">
@@ -260,13 +260,6 @@
                     </a>
                   </li>
                 </ul>
-              </li>
-              <li class="user-profile header-notification" *ngIf="IsSuperAdmin">
-                <a [routerLink]="['/']">
-                  <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>Supar Admin</span>
-                  <i class="ti-angle-down"></i>
-                </a>
               </li>
             </ul>
           </div>
