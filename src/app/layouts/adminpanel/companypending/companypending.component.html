@@ -43,7 +43,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of mf.data">
-                  <td><img src="assets/images/Company-Logo.png" style='height: 40px;' class="d-inline-block img-circle " alt="tbl"></td>
+                <td><img src="data:image/JPEG;base64,{{item.CompanyLogo}}" style='height: 40px;' class="d-inline-block img-circle " alt="tbl" /></td>
                 <td>{{item.CompanyName}}</td>
                 <td>{{item.Email}}</td>
                 <td>{{item.Phone}}</td>                

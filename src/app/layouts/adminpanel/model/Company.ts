@@ -11,7 +11,7 @@ export class Company {
     CountryID: number;
     PostCode: string;
     WebAddress: string;
-    CompanyLogo: string;
+    CompanyLogo: any;
     HourlyRate: number;
     VAT: string;
     RegistrationNumber: string;
