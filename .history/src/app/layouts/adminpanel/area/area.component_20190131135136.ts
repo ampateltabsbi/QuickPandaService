@@ -86,15 +86,11 @@ export class AreaComponent implements OnInit {
     this.apiService.selectedModel = {
       AreaName: '',
       ID: 0,
-      CityID: null,
+      CityID: 0,
       IsActive: false,
-      CityName: '',
-      StateID: null,
-      CountryID: null
+      CityName: ''
     };
     this.submitType = 'Save';
-    this.citymaster = null;
-    this.statemaster = null;
   }
 
   editArea(areaId: number): void {
@@ -104,8 +100,6 @@ export class AreaComponent implements OnInit {
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.bindActiveStateMaster(tempArea[0].CountryID);
-    this.bindActiveCityMaster(tempArea[0].StateID);
     this.apiService.selectedModel = Object.assign({}, tempArea[0]);
     this.submitType = 'Update';
   }
@@ -128,22 +122,15 @@ export class AreaComponent implements OnInit {
   }
 
   bindActiveCityMaster(stateID: number) {
-    this.apiService.selectedModel.CityID = null;
-    if (stateID === null) {
-      this.citymaster = null;
-    } else {
-      this.apiService
-      .getModelListById('Citymasters', stateID, 'GetCityByStateID')
-      .subscribe((citymasterdata: CityMaster[]) => {
-        const filterData = citymasterdata;
-        this.citymaster = filterData;
+    this.apiService
+      .getModelListbyActive('Citymasters', 'GetActiveCity')
+      .subscribe((data: CityMaster[]) => {
+        this.citymaster = data;
       });
-    }
   }
 
   bindActiveStateMaster(countryID: number) {
-    this.apiService.selectedModel.StateID = null;
-    this.apiService.selectedModel.CityID = null;
+    this.apiService.selectedModel.stateID = null;
     if (countryID === null) {
       this.statemaster = null;
     } else {

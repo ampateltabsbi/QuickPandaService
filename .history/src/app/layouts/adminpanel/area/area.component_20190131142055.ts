@@ -93,8 +93,6 @@ export class AreaComponent implements OnInit {
       CountryID: null
     };
     this.submitType = 'Save';
-    this.citymaster = null;
-    this.statemaster = null;
   }
 
   editArea(areaId: number): void {

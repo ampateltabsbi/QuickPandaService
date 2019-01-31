@@ -93,8 +93,6 @@ export class AreaComponent implements OnInit {
       CountryID: null
     };
     this.submitType = 'Save';
-    this.citymaster = null;
-    this.statemaster = null;
   }
 
   editArea(areaId: number): void {
@@ -142,8 +140,7 @@ export class AreaComponent implements OnInit {
   }
 
   bindActiveStateMaster(countryID: number) {
-    this.apiService.selectedModel.StateID = null;
-    this.apiService.selectedModel.CityID = null;
+    this.apiService.selectedModel.stateID = null;
     if (countryID === null) {
       this.statemaster = null;
     } else {

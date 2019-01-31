@@ -4,17 +4,18 @@ import { APIService } from '../../../shared/services/api.service';
 import { NotificationService } from '../../../shared/services/notification.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { CityMaster } from '../model/citymaster';
 import { StateMaster } from '../model/statemaster';
 import { CountryMaster } from '../model/countrymaster';
 
 @Component({
-  selector: 'app-state',
-  templateUrl: './state.component.html',
-  styleUrls: ['./state.component.scss']
+  selector: 'app-city',
+  templateUrl: './city.component.html',
+  styleUrls: ['./city.component.scss']
 })
-export class StateComponent implements OnInit {
+export class CityComponent implements OnInit {
+  citymaster: CityMaster[] = [];
   statemaster: StateMaster[] = [];
-  countrymaster: CountryMaster[] = [];
   tempFilter = [];
   submitType = 'Save';
   selectedRow: number;
@@ -27,9 +28,9 @@ export class StateComponent implements OnInit {
   public searchString: string;
 
   constructor(private apiService: APIService, private router: Router, private notificationService: NotificationService) {
-    this.apiService.selectedModel = this.statemaster;
-    this.bindAllStateMaster();
-    this.bindActiveCountryMaster();
+    this.apiService.selectedModel = this.citymaster;
+    this.bindAllCityMaster();
+    this.bindActiveStateMaster();
   }
 
   ngOnInit() {
@@ -44,13 +45,13 @@ export class StateComponent implements OnInit {
     }
   }
 
-  onSubmit(statemasterForm: NgForm) {
-    if (statemasterForm.value.ID === 0) {
+  onSubmit(citymasterForm: NgForm) {
+    if (citymasterForm.value.ID === 0) {
       this.apiService
-        .addService(statemasterForm.value, 'StateMasters')
+        .addService(citymasterForm.value, 'Citymasters')
         .subscribe(
           result => {
-            this.bindAllStateMaster();
+            this.bindAllCityMaster();
             this.showSuccess();
             this.resetForm();
           },
@@ -61,13 +62,13 @@ export class StateComponent implements OnInit {
     } else {
       this.apiService
         .updateService(
-          statemasterForm.value,
-          statemasterForm.value.ID,
-          'StateMasters'
+          citymasterForm.value,
+          citymasterForm.value.ID,
+          'Citymasters'
         )
         .subscribe(
           result => {
-            this.bindAllStateMaster();
+            this.bindAllCityMaster();
             this.showSuccess();
             this.resetForm();
           },
@@ -78,50 +79,50 @@ export class StateComponent implements OnInit {
     }
   }
 
-  resetForm(statemasterForm?: NgForm) {
+  resetForm(citymasterForm?: NgForm) {
     this.apiService.selectedModel = {
-      StateName: '',
+      CityName: '',
       ID: 0,
-      CountryID: null,
+      StateID: 0,
       IsActive: false,
-      CountryName: ''
+      StateName: ''
     };
     this.submitType = 'Save';
   }
 
-  editStateMaster(stateId: number): void {
-    this.selectedRow = stateId;
-    this.apiService.selectedModel = new StateMaster();
-    const tempStateMaster = Object.assign(
+  editCityMaster(cityId: number): void {
+    this.selectedRow = cityId;
+    this.apiService.selectedModel = new CityMaster();
+    const tempCityMaster = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    this.apiService.selectedModel = Object.assign({}, tempStateMaster[0]);
+    this.apiService.selectedModel = Object.assign({}, tempCityMaster[0]);
     this.submitType = 'Update';
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
-      return d.StateName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.CityName.toLowerCase().indexOf(val) !== -1 || !val;
     });
     this.data = temp;
   }
 
-  bindAllStateMaster() {
+  bindAllCityMaster() {
     this.apiService
-      .getService('StateMasters')
-      .subscribe((data: StateMaster[]) => {
+      .getService('Citymasters')
+      .subscribe((data: CityMaster[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
   }
 
-  bindActiveCountryMaster() {
+  bindActiveStateMaster() {
     this.apiService
-      .getModelListbyActive('CountryMasters', 'GetActiveCountry')
-      .subscribe((data: CountryMaster[]) => {
-        this.countrymaster = data;
+      .getModelListbyActive('StateMasters', 'GetActiveState')
+      .subscribe((data: StateMaster[]) => {
+        this.statemaster = data;
       });
   }
 }

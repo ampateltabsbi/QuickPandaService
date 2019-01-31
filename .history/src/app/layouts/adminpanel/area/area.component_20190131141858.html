@@ -1,40 +1,51 @@
 <ng2-toasty></ng2-toasty>
 <div class="row">
   <div class="col-sm-12">
-    <app-card [title]="'City'">
-      <form #citymasterForm="ngForm" (ngSubmit)="onSubmit(citymasterForm)">
+    <app-card [title]="'Area'">
+      <form #areaForm="ngForm" (ngSubmit)="onSubmit(areaForm)">
         <div class="form-group row">
           <div class="col-sm-6">
             <input class="form-control" type="hidden" name="ID" #name="ngModel" [(ngModel)]="apiService.selectedModel.ID">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Country</label>
-          <div class="col-sm-6">
-            <select class="form-control" name="CountryID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CountryID"
-              required (change)="bindActiveStateMaster(apiService.selectedModel.CountryID)">
-              <option [ngValue]="null" selected>Please Select</option>
-              <option *ngFor="let _countryMaster of countryMaster" [ngValue]="_countryMaster.ID">
-                {{_countryMaster.CountryName}}
-            </select>
+            <label class="col-sm-2 col-form-label">Country</label>
+            <div class="col-sm-6">
+              <select class="form-control" name="CountryID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CountryID"
+                required>
+                <option [ngValue]="null" selected>Please Select</option>
+                <option *ngFor="let _countryMaster of countryMaster" [ngValue]="_countryMaster.ID">
+                  {{_countryMaster.CountryName}}
+              </select>
+            </div>
           </div>
-        </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">State</label>
-          <div class="col-sm-6">
-            <select class="form-control" name="StateID" #name="ngModel" [(ngModel)]="apiService.selectedModel.StateID"
-              required>
-              <option [ngValue]="null" selected>Please Select</option>
-              <option *ngFor="let _statemaster of statemaster" [ngValue]="_statemaster.ID">
-                {{_statemaster.StateName}}
-            </select>
+            <label class="col-sm-2 col-form-label">State</label>
+            <div class="col-sm-6">
+              <select class="form-control" name="StateID" #name="ngModel" [(ngModel)]="apiService.selectedModel.StateID"
+                required>
+                <option [ngValue]="null" selected>Please Select</option>
+                <option *ngFor="let _statemaster of statemaster" [ngValue]="_statemaster.ID">
+                  {{_statemaster.StateName}}
+              </select>
+            </div>
           </div>
-        </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">City</label>
           <div class="col-sm-6">
-            <input class="form-control" type="text" name="CityName" #name="ngModel" [(ngModel)]="apiService.selectedModel.CityName"
-              placeholder="City" required>
+            <select class="form-control" name="CityID" #name="ngModel" [(ngModel)]="apiService.selectedModel.CityID"
+              required>
+              <option [ngValue]="null" selected>Please Select</option>
+              <option *ngFor="let _citymaster of citymaster" [ngValue]="_citymaster.ID">
+                {{_citymaster.CityName}}
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Area</label>
+          <div class="col-sm-6">
+            <input class="form-control" type="text" name="AreaName" #name="ngModel" [(ngModel)]="apiService.selectedModel.AreaName"
+              placeholder="Area" required>
           </div>
         </div>
         <div class="form-group row">
@@ -54,10 +65,10 @@
           <div class="col-sm-2">
           </div>
           <div class="col-sm-6 buttons-container">
-            <button class="btn btn-info" [disabled]="!citymasterForm.valid" type="submit">
+            <button class="btn btn-info" [disabled]="!areaForm.valid" type="submit">
               <i class="icofont icofont-check-circled"></i>{{submitType}}
             </button>
-            <button class="btn btn-danger" type="button" (click)="resetForm(citymasterForm)">
+            <button class="btn btn-danger" type="button" (click)="resetForm(areaForm)">
               <i class="icofont icofont-not-allowed"></i>Cancel
             </button>
           </div>
@@ -72,7 +83,7 @@
                   <label class="form-inline f-right">
                     <div class="form-group">
                       <label class="label-control">Search:
-                        <input type='text' class="form-control input-sm m-l-10" placeholder='City' (keyup)='updateFilter($event)'/>
+                        <input type='text' class="form-control input-sm m-l-10" placeholder='Area' (keyup)='updateFilter($event)'/>
                       </label>
                     </div>
                   </label>
@@ -85,14 +96,11 @@
               #mf="mfDataTable" [mfRowsOnPage]="5" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
               <thead>
                 <tr>
-                    <th>
-                        <mfDefaultSorter by="CountryName">Country</mfDefaultSorter>
-                      </th>
-                  <th>
-                    <mfDefaultSorter by="StateName">State</mfDefaultSorter>
-                  </th>
                   <th>
                     <mfDefaultSorter by="CityName">City</mfDefaultSorter>
+                  </th>
+                  <th>
+                    <mfDefaultSorter by="AreaName">Area</mfDefaultSorter>
                   </th>
                   <th>
                     <mfDefaultSorter by="IsActive">Is Active ?</mfDefaultSorter>
@@ -104,12 +112,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let item of mf.data">
-                  <td>{{item.CountryName}}</td>
-                  <td>{{item.StateName}}</td>
                   <td>{{item.CityName}}</td>
+                  <td>{{item.AreaName}}</td>
                   <td>{{item.IsActive ? 'Yes':'No'}}</td>
                   <td>
-                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editCityMaster(item.ID)"
+                    <button type="button" class="btn btn-primary btn-mini waves-effect waves-light" (click)="editArea(item.ID)"
                       style="font-size: 13px;">
                       <i class="fa fa-pencil-square-o"></i>Edit</button>
                   </td>
