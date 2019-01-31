@@ -47,14 +47,6 @@ export class BasicLoginComponent implements OnInit {
     localStorage.setItem('isAdmin', 'true');
   }
   onLoggedin() {
-    localStorage.setItem('IsCompanyAdmin', '');
-    localStorage.setItem('UserName', '');
-    localStorage.setItem('UserID', '');
-    localStorage.setItem('UserCompanyID', '');
-    localStorage.setItem('isAdmin', '');
-    localStorage.setItem('CompanyGroupName', '');
-    localStorage.setItem('SelectedCompanyID', '');
-
     if (this.urlArrayLength === 4) {
       this.apiService
         .getModelByMultiplePara(

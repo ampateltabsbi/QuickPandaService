@@ -47,14 +47,6 @@ export class BasicLoginComponent implements OnInit {
     localStorage.setItem('isAdmin', 'true');
   }
   onLoggedin() {
-    localStorage.setItem('IsCompanyAdmin', '');
-    localStorage.setItem('UserName', '');
-    localStorage.setItem('UserID', '');
-    localStorage.setItem('UserCompanyID', '');
-    localStorage.setItem('isAdmin', '');
-    localStorage.setItem('CompanyGroupName', '');
-    localStorage.setItem('SelectedCompanyID', '');
-
     if (this.urlArrayLength === 4) {
       this.apiService
         .getModelByMultiplePara(
@@ -66,6 +58,7 @@ export class BasicLoginComponent implements OnInit {
         .subscribe((companyresourcedata: CompanyResource[]) => {
             this.data1 = companyresourcedata;
             if ( this.data1.ID > 0) {
+              debugger;
             if (this.data1.IsAdmin === true) {
               // tslint:disable-next-line:no-unused-expression
               this.IsCompanyAdmin = 'true';

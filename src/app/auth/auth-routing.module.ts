@@ -16,6 +16,10 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: ':company/login',
+        loadChildren: './login/basic-login/basic-login.module#BasicLoginModule'
+      },
+      {
         path: 'login',
         loadChildren: './login/basic-login/basic-login.module#BasicLoginModule'
       },

@@ -34,10 +34,6 @@ const routes: Routes = [
         loadChildren: './dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: ':groupName/dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
-      },
-      {
         path: 'widget',
         loadChildren: './widget/widget.module#WidgetModule'
       }, {
