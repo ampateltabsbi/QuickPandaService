@@ -48,23 +48,21 @@ export class CustomerdetailsComponent implements OnInit {
     this.data = temp;
   }
 
-  isActiveCustomer(customerId: number): void {
-    this.selectedRow = customerId;
-    this.apiService.selectedModel = new Customer();
-    const tempCustomer = Object.assign(
+  isActiveCustomer(companyId: number): void {
+    this.selectedRow = companyId;
+    this.apiService.selectedModel = new Company();
+    const tempCompany = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    if (tempCustomer[0].IsActive) {
-      tempCustomer[0].IsActive = false;
-    } else {
-      tempCustomer[0].IsActive = true;
-    }
+    tempCompany[0].Approved = true;
+    tempCompany[0].Rejected = false;
+    tempCompany[0].RejectedReason = '';
     this.apiService
-      .updateService(tempCustomer[0], tempCustomer[0].ID, 'Customers')
+      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
       .subscribe(
         result => {
-          this.bindAllCustomer();
+          this.bindRejectedCompany();
         },
         err => {
           console.log(err);

@@ -49,6 +49,7 @@ export class CustomerdetailsComponent implements OnInit {
   }
 
   isActiveCustomer(customerId: number): void {
+    debugger;
     this.selectedRow = customerId;
     this.apiService.selectedModel = new Customer();
     const tempCustomer = Object.assign(

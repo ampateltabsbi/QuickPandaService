@@ -56,9 +56,9 @@ export class CustomerdetailsComponent implements OnInit {
       this.data.filter(t => t.ID === this.selectedRow)
     );
     if (tempCustomer[0].IsActive) {
-      tempCustomer[0].IsActive = false;
+      tempCustomer[0].Approved = false;
     } else {
-      tempCustomer[0].IsActive = true;
+      tempCustomer[0].Approved = true;
     }
     this.apiService
       .updateService(tempCustomer[0], tempCustomer[0].ID, 'Customers')
