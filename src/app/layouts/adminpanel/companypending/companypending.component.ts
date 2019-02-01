@@ -64,8 +64,6 @@ export class CompanypendingComponent implements OnInit {
         }
       );
   }
-
-  // tslint:disable-next-line:whitespace
   isRejectCompany(companyId: number, reason: string, temp: any): void {
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();

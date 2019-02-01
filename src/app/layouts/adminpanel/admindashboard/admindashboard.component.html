@@ -1,10 +1,10 @@
 <div class="row">
-  <!-- Visitor Chart Start-->
+  <!-- Company Chart Start-->
   <div class="col-md-6 col-xl-4">
     <app-card [blockClass]="'card-body-big card-visitor-block'">
       <div class="row">
         <div class="col-sm-8  card-visitor-button">
-          <button class="btn btn-primary btn-icon"><i class="icofont icofont-user-alt-3"></i></button>
+          <button class="btn btn-primary btn-icon"><i class="icofont icofont icofont-hour-glass" [routerLink]="['/admin/pendingcompany']"></i></button>
           <div class="card-contain">
             <h6>2,534</h6>
             <p class="text-muted f-18 m-0">Pending Company</p>
@@ -20,7 +20,7 @@
     <app-card [blockClass]="'card-body-big card-visitor-block'">
       <div class="row">
         <div class="col-sm-8 card-visitor-button">
-          <button class="btn btn-success btn-icon"><i class="icofont icofont-thumbs-up"></i></button>
+          <button class="btn btn-success btn-icon"><i class="icofont icofont-thumbs-up" [routerLink]="['/admin/approvedcompany']"></i></button>
           <div class="card-contain">
             <h6>2,534</h6>
             <p class="text-muted f-18 m-0">Approved Company</p>
@@ -36,7 +36,7 @@
     <app-card [blockClass]="'card-body-big card-visitor-block'">
       <div class="row">
         <div class="col-sm-8 card-visitor-button">
-          <button class="btn btn-danger btn-icon"><i class="icofont icofont-thumbs-down"></i></button>
+          <button class="btn btn-danger btn-icon"><i class="icofont icofont-thumbs-down" [routerLink]="['/admin/rejectedcompany']"></i></button>
           <div class="card-contain">
             <h6>5,782</h6>
             <p class="text-muted f-18 m-0">Rejected Company</p>
@@ -48,7 +48,7 @@
       </div>
     </app-card>
   </div>
-  <!-- Visitor Chart End-->
+  <!-- Company Chart End-->
 
   <!-- facebook Start -->
   <div class="col-md-12 col-xl-8">
