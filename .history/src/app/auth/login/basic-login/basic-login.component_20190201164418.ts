@@ -18,7 +18,7 @@ export class BasicLoginComponent implements OnInit {
   public IsCompanyAdmin = '';
   data1: any;
 
-  constructor(private activeRoute: Router, public apiService: APIService, private notificationService: NotificationService) {
+  constructor(private activeRoute: Router, pub apiService: APIService, private notificationService: NotificationService) {
     this.apiService.selectedModel = this.usermaster;
     const urlArray = activeRoute.url.split('/');
     this.urlArrayLength = urlArray.length;

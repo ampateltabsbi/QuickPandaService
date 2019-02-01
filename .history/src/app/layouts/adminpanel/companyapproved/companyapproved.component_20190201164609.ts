@@ -6,12 +6,11 @@ import { NgForm } from '@angular/forms';
 import { Company } from '../model/company';
 
 @Component({
-  selector: 'app-companyrejected',
-  templateUrl: './companyrejected.component.html',
-  styleUrls: ['./companyrejected.component.scss']
+  selector: 'app-companyapproved',
+  templateUrl: './companyapproved.component.html',
+  styleUrls: ['./companyapproved.component.scss']
 })
-export class CompanyrejectedComponent implements OnInit {
-
+export class CompanyapprovedComponent implements OnInit {
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -22,24 +21,24 @@ export class CompanyrejectedComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
   public searchString: string;
+  public bodyText = '';
 
   constructor(public apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
-    this.bindRejectedCompany();
+    this.bindApprovedCompany();
   }
 
   ngOnInit() {
   }
 
-  bindRejectedCompany() {
+  bindApprovedCompany() {
     this.apiService
-      .getModelListbyActive('Company', 'GetRejectedCompany')
+      .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
   }
-
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
@@ -47,22 +46,21 @@ export class CompanyrejectedComponent implements OnInit {
     });
     this.data = temp;
   }
-
-  isApprovCompany(companyId: number): void {
+  isRejectCompany(companyId: number, reason: string): void {
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();
     const tempCompany = Object.assign(
       {},
       this.data.filter(t => t.ID === this.selectedRow)
     );
-    tempCompany[0].Approved = true;
-    tempCompany[0].Rejected = false;
-    tempCompany[0].RejectedReason = '';
+    tempCompany[0].Approved = false;
+    tempCompany[0].Rejected = true;
+    tempCompany[0].RejectedReason = reason;
     this.apiService
       .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
       .subscribe(
         result => {
-          this.bindRejectedCompany();
+          this.bindApprovedCompany();
         },
         err => {
           console.log(err);

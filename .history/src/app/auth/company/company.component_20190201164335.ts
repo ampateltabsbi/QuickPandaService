@@ -24,7 +24,7 @@ export class CompanyComponent implements OnInit {
   CurrentFile: File;
 
   constructor(
-    public apiService: APIService,
+    private apiService: APIService,
     private router: Router,
     private notificationService: NotificationService
   ) {

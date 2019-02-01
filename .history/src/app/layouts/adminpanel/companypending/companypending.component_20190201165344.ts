@@ -6,12 +6,11 @@ import { NgForm } from '@angular/forms';
 import { Company } from '../model/company';
 
 @Component({
-  selector: 'app-companyrejected',
-  templateUrl: './companyrejected.component.html',
-  styleUrls: ['./companyrejected.component.scss']
+  selector: 'app-companypending',
+  templateUrl: './companypending.component.html',
+  styleUrls: ['./companypending.component.scss']
 })
-export class CompanyrejectedComponent implements OnInit {
-
+export class CompanypendingComponent implements OnInit {
   company: Company[] = [];
   tempFilter = [];
   selectedRow: number;
@@ -22,24 +21,23 @@ export class CompanyrejectedComponent implements OnInit {
   public sortBy = '';
   public sortOrder = 'desc';
   public searchString: string;
+  public bodyText = '';
 
   constructor(public apiService: APIService, private router: Router) {
     this.apiService.selectedModel = this.company;
-    this.bindRejectedCompany();
+    this.bindPendingCompany();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  bindRejectedCompany() {
+  bindPendingCompany() {
     this.apiService
-      .getModelListbyActive('Company', 'GetRejectedCompany')
+      .getModelListbyActive('Company', 'GetActiveCompany')
       .subscribe((data: Company[]) => {
         this.tempFilter = [...data];
         this.data = data;
       });
   }
-
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     const temp = this.tempFilter.filter(function(d) {
@@ -47,7 +45,6 @@ export class CompanyrejectedComponent implements OnInit {
     });
     this.data = temp;
   }
-
   isApprovCompany(companyId: number): void {
     this.selectedRow = companyId;
     this.apiService.selectedModel = new Company();
@@ -56,13 +53,33 @@ export class CompanyrejectedComponent implements OnInit {
       this.data.filter(t => t.ID === this.selectedRow)
     );
     tempCompany[0].Approved = true;
-    tempCompany[0].Rejected = false;
-    tempCompany[0].RejectedReason = '';
     this.apiService
       .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
       .subscribe(
         result => {
-          this.bindRejectedCompany();
+          this.bindPendingCompany();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+  }
+
+  // tslint:disable-next-line:whitespace
+  isRejectCompany(companyId: number, reason: string, temmp: any): void {
+    this.selectedRow = companyId;
+    this.apiService.selectedModel = new Company();
+    const tempCompany = Object.assign(
+      {},
+      this.data.filter(t => t.ID === this.selectedRow)
+    );
+    tempCompany[0].Rejected = true;
+    tempCompany[0].RejectedReason = reason;
+    this.apiService
+      .updateService(tempCompany[0], tempCompany[0].ID, 'Company')
+      .subscribe(
+        result => {
+          this.bindPendingCompany();
         },
         err => {
           console.log(err);
