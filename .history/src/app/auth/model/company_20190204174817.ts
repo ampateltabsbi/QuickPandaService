@@ -1,0 +1,35 @@
+export class Company {
+  ID: number;
+  CompanyName: string;
+  //IsActive: boolean;
+  Email: string;
+  Phone: string;
+  Address1: string;
+  Address2: string;
+  CityID: number;
+  StateID: number;
+  CountryID: number;
+  PostCode: string;
+  WebAddress: string;
+  //CompanyLogo: any;
+  // HourlyRate: Float64Array;
+  // VAT: string;
+  //RegistrationNumber: string;
+  CreatedBy: number;
+  CreatedDate: Date;
+  OwnerEmail: string;
+  VerifyCode6: string;
+  VerifyCode1: string;
+  VerifyCode2: string;
+  VerifyCode6: string;
+  VerifyCode6: string;
+  VerifyCode6: string;
+  // UpdatedBy: number;
+  // UpdatedDate: Date;
+  // UserID: number;
+  // ConnectionString: string;
+  // DatabaseName: string;
+  // Approved: boolean;
+  // Rejected: boolean;
+  // RejectedReason: string;
+}
