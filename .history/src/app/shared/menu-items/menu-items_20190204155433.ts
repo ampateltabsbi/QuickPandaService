@@ -140,7 +140,7 @@ const ADMINMENUITEMS = [
         main_state: 'admin',
         name: 'Pending',
         type: 'link',
-        icon: 'fa fa-hourglass-2'
+        icon: 'icofont icofont-hour-glass'
       }, {
         state: 'approvedcompany',
         main_state: 'admin',

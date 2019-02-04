@@ -140,7 +140,7 @@ const ADMINMENUITEMS = [
         main_state: 'admin',
         name: 'Pending',
         type: 'link',
-        icon: 'fa fa-hourglass-2'
+        icon: 'ti-layout-grid2-alt'
       }, {
         state: 'approvedcompany',
         main_state: 'admin',
@@ -152,7 +152,7 @@ const ADMINMENUITEMS = [
         main_state: 'admin',
         name: 'Rejected',
         type: 'link',
-        icon: 'fa fa-thumbs-down'
+        icon: 'ti-layout-grid2-alt'
       }
     ]
   }, {
