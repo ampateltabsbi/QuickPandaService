@@ -26,11 +26,11 @@
                 <span class="md-line"></span>
               </div>              
               <div class="row m-t-30">
-                <!-- <div class="col-md-6">
+                <div class="col-md-6">
                   <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
                    (click)="onAdminLoggedin()">Admin Sign in</button>
-                </div> -->
-                <div class="col-md-12">
+                </div>
+                <div class="col-md-6">
                   <button [disabled]="!basicloginForm.valid" type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"
                     (click)="onLoggedin()">Sign in</button>
                 </div>
@@ -39,7 +39,7 @@
                     [routerLink]="['/dashboard']" (click)="onCompanyLoggedin()">Company Sign in</button>
                 </div> -->
               </div>
-              <div class="row m-t-1 text-left">
+              <div class="row m-t-25 text-left">
                   <div class="col-sm-7 col-xs-12">
                     <!-- <div class="checkbox-fade fade-in-primary">
                       <label>

@@ -19,6 +19,7 @@ export class BasicLoginComponent implements OnInit {
   data1: any;
 
   constructor(private activeRoute: Router, public apiService: APIService, private notificationService: NotificationService) {
+    debugger;
     this.apiService.selectedModel = this.usermaster;
     const urlArray = activeRoute.url.split('/');
     this.urlArrayLength = urlArray.length;
@@ -44,6 +45,7 @@ export class BasicLoginComponent implements OnInit {
     document.querySelector('body').setAttribute('themebg-pattern12', 'theme1');
   }
   onAdminLoggedin() {
+    debugger;
     localStorage.setItem('isAdmin', 'true');
     this.activeRoute.navigate(['/admin/deshboard']);
   }
@@ -85,8 +87,6 @@ export class BasicLoginComponent implements OnInit {
             this.notificationService.notify('Error', 'Incorrect Email Address or Password.', 'error');
           }
         });
-    } else if (this.urlArrayLength === 3) {
-      this.onAdminLoggedin();
     }
   }
 }

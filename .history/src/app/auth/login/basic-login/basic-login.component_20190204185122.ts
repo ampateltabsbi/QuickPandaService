@@ -19,6 +19,7 @@ export class BasicLoginComponent implements OnInit {
   data1: any;
 
   constructor(private activeRoute: Router, public apiService: APIService, private notificationService: NotificationService) {
+    debugger;
     this.apiService.selectedModel = this.usermaster;
     const urlArray = activeRoute.url.split('/');
     this.urlArrayLength = urlArray.length;
