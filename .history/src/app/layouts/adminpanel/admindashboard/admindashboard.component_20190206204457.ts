@@ -21,7 +21,6 @@ export class AdmindashboardComponent implements OnInit {
   public pendingCompany = 0;
 
   constructor(public apiService: APIService) {
-    debugger;
     this.apiService.selectedModel = this.company;
     this.getApprovedCompany();
     this.getPendingCompany();

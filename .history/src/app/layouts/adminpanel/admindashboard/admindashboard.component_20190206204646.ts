@@ -31,7 +31,7 @@ export class AdmindashboardComponent implements OnInit {
   getApprovedCompany() {
     this.apiService
       .getModelListbyActive('Company', 'GetApprovedCompany')
-      .subscribe((data: Company[]) => {
+      .subscribe((data) => {
         this.approvedCompany = data.length;
       });
   }

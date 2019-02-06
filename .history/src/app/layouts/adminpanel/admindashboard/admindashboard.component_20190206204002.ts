@@ -21,7 +21,6 @@ export class AdmindashboardComponent implements OnInit {
   public pendingCompany = 0;
 
   constructor(public apiService: APIService) {
-    debugger;
     this.apiService.selectedModel = this.company;
     this.getApprovedCompany();
     this.getPendingCompany();
@@ -32,7 +31,7 @@ export class AdmindashboardComponent implements OnInit {
     this.apiService
       .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
-        this.approvedCompany = data.length;
+        this.data = data;
       });
   }
 
@@ -40,7 +39,7 @@ export class AdmindashboardComponent implements OnInit {
     this.apiService
       .getModelListbyActive('Company', 'GetActiveCompany')
       .subscribe((data: Company[]) => {
-        this.pendingCompany = data.length;
+        this.data = data;
       });
   }
 
@@ -48,7 +47,7 @@ export class AdmindashboardComponent implements OnInit {
     this.apiService
       .getModelListbyActive('Company', 'GetRejectedCompany')
       .subscribe((data: Company[]) => {
-        this.rejectedCompany = data.length;
+        this.data = data;
       });
   }
 

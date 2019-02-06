@@ -55,7 +55,7 @@ export class AdmindashboardComponent implements OnInit {
   ngOnInit() {
     setTimeout( () => {
       /* visitors pie chart*/
-      $('.visitor-chart').sparkline([1, 2], {
+      $('.visitor-chart').sparkline([100, 1], {
         type: 'pie',
         width: '100px',
         height: '65px',
