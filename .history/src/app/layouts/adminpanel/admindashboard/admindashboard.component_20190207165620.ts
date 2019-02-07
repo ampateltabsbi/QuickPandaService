@@ -16,28 +16,23 @@ export class AdmindashboardComponent implements OnInit {
   company: Company[] = [];
 
   public data: any;
-  public pendingCompany = '0';
-  public approvedCompany = '0';
-  public rejectedCompany = '0';
-
-  public pending = '';
+  public approvedCompany = 0;
+  public rejectedCompany = 0;
+  public pendingCompany = 0;
 
   constructor(public apiService: APIService) {
+    debugger;
     this.apiService.selectedModel = this.company;
+    this.getApprovedCompany();
+    this.getPendingCompany();
+    this.getRejectedCompany();
   }
 
   getApprovedCompany() {
     this.apiService
       .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
-        this.approvedCompany = data.length.toString();
-        $('.Approved-chart').sparkline([100, this.approvedCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#2ECC71'],
-          tooltipClassname: 'chart-sparkline'
-        });
+        this.approvedCompany = data.length;
       });
   }
 
@@ -45,14 +40,7 @@ export class AdmindashboardComponent implements OnInit {
     this.apiService
       .getModelListbyActive('Company', 'GetActiveCompany')
       .subscribe((data: Company[]) => {
-        this.pendingCompany = data.length.toString();
-        $('.Pending-chart').sparkline([100, this.pendingCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#0073aa'],
-          tooltipClassname: 'chart-sparkline'
-        });
+        this.pendingCompany = data.length;
       });
   }
 
@@ -60,22 +48,37 @@ export class AdmindashboardComponent implements OnInit {
     this.apiService
       .getModelListbyActive('Company', 'GetRejectedCompany')
       .subscribe((data: Company[]) => {
-        this.rejectedCompany = data.length.toString();
-        $('.Rejected-chart').sparkline([100, this.rejectedCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#E74C3C'],
-          tooltipClassname: 'chart-sparkline'
-        });
+        this.rejectedCompany = data.length;
       });
   }
 
   ngOnInit() {
     setTimeout( () => {
-      this.getPendingCompany();
-      this.getApprovedCompany();
-      this.getRejectedCompany();
+      /* visitors pie chart*/
+      $('.Pending-chart').sparkline([1, 2], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#0073aa'],
+        tooltipClassname: 'chart-sparkline'
+      });
+      /* visitors pie chart*/
+      $('.Approved-chart').sparkline([1, 2], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#0073aa'],
+        tooltipClassname: 'chart-sparkline'
+      });
+      /* visitors pie chart*/
+      $('.Rejected-chart').sparkline([1, 2], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#0073aa'],
+        tooltipClassname: 'chart-sparkline'
+      });
     }, 1);
   }
+
 }

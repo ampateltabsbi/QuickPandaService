@@ -24,6 +24,9 @@ export class AdmindashboardComponent implements OnInit {
 
   constructor(public apiService: APIService) {
     this.apiService.selectedModel = this.company;
+    this.getApprovedCompany();
+    this.getPendingCompany();
+    this.getRejectedCompany();
   }
 
   getApprovedCompany() {
@@ -31,13 +34,6 @@ export class AdmindashboardComponent implements OnInit {
       .getModelListbyActive('Company', 'GetApprovedCompany')
       .subscribe((data: Company[]) => {
         this.approvedCompany = data.length.toString();
-        $('.Approved-chart').sparkline([100, this.approvedCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#2ECC71'],
-          tooltipClassname: 'chart-sparkline'
-        });
       });
   }
 
@@ -46,13 +42,6 @@ export class AdmindashboardComponent implements OnInit {
       .getModelListbyActive('Company', 'GetActiveCompany')
       .subscribe((data: Company[]) => {
         this.pendingCompany = data.length.toString();
-        $('.Pending-chart').sparkline([100, this.pendingCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#0073aa'],
-          tooltipClassname: 'chart-sparkline'
-        });
       });
   }
 
@@ -61,21 +50,36 @@ export class AdmindashboardComponent implements OnInit {
       .getModelListbyActive('Company', 'GetRejectedCompany')
       .subscribe((data: Company[]) => {
         this.rejectedCompany = data.length.toString();
-        $('.Rejected-chart').sparkline([100, this.rejectedCompany], {
-          type: 'pie',
-          width: '100px',
-          height: '65px',
-          sliceColors: ['#ccc', '#E74C3C'],
-          tooltipClassname: 'chart-sparkline'
-        });
       });
   }
 
   ngOnInit() {
     setTimeout( () => {
-      this.getPendingCompany();
-      this.getApprovedCompany();
-      this.getRejectedCompany();
+      /* Pending pie chart*/
+      $('.Pending-chart').sparkline([100, this.pendingCompany], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#0073aa'],
+        tooltipClassname: 'chart-sparkline'
+      });
+      /* Approved pie chart*/
+      $('.Approved-chart').sparkline([100, this.approvedCompany], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#2ECC71'],
+        tooltipClassname: 'chart-sparkline'
+      });
+      /* Rejected pie chart*/
+      $('.Rejected-chart').sparkline([1,1], {
+        type: 'pie',
+        width: '100px',
+        height: '65px',
+        sliceColors: ['#ccc', '#E74C3C'],
+        tooltipClassname: 'chart-sparkline'
+      });
     }, 1);
   }
+
 }

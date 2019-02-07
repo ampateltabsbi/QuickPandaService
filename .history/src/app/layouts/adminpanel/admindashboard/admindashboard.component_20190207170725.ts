@@ -24,6 +24,9 @@ export class AdmindashboardComponent implements OnInit {
 
   constructor(public apiService: APIService) {
     this.apiService.selectedModel = this.company;
+    this.getApprovedCompany();
+    this.getPendingCompany();
+    this.getRejectedCompany();
   }
 
   getApprovedCompany() {
@@ -73,9 +76,14 @@ export class AdmindashboardComponent implements OnInit {
 
   ngOnInit() {
     setTimeout( () => {
-      this.getPendingCompany();
-      this.getApprovedCompany();
-      this.getRejectedCompany();
+      /* Pending pie chart*/
+      
+      /* Approved pie chart*/
+      
+      debugger;
+      /* Rejected pie chart*/
+     
     }, 1);
   }
+
 }
